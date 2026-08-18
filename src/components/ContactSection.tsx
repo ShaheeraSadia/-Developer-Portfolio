@@ -38,22 +38,22 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 border-b border-[#E7E6E2]">
+    <section id="contact" className="py-24 sm:py-28 md:py-32 border-b border-[#E7E6E2]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[#E7E6E2]">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider mb-2">
-              <span className="text-[#2F5CFF]">06.</span>
+        {/* Section Header with Clear Hierarchy and mb-14 spacing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-14 border-b border-[#E7E6E2]">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider">
+              <span className="text-[#2F5CFF] font-bold">06.</span>
               <span>INITIATE_CONTACT</span>
               <span className="text-[#9E9EA7]">//</span>
               <span>AVAILABILITY_RADAR</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
               Let’s connect and build something fast.
             </h2>
           </div>
-          <p className="text-sm text-[#64666E] max-w-md font-sans">
+          <p className="text-base text-[#555761] max-w-md font-sans leading-relaxed">
             Available for front-end engineering, web &amp; mobile application development, and client-side SaaS initiatives.
           </p>
         </div>
@@ -284,9 +284,9 @@ export const ContactSection: React.FC = () => {
                     type="submit"
                     id="contact-submit-btn"
                     disabled={isSubmitting}
-                    className="w-full py-3 rounded bg-[#14151A] text-white font-bold hover:bg-[#2F5CFF] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                    className="w-full py-3.5 px-4 rounded-lg bg-[#14151A] text-[#FAFAF8] font-bold text-xs sm:text-sm font-mono hover:bg-[#2F5CFF] hover:-translate-y-0.5 active:translate-y-0 hover:shadow-[0_4px_16px_rgba(47,92,255,0.35)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-xs disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <Send className="w-4 h-4" />
                     <span>{isSubmitting ? 'dispatching_payload...' : 'dispatch_message'}</span>
                   </button>
                 </form>

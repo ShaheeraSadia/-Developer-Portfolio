@@ -33,109 +33,140 @@ export const ArchitecturePhilosophy: React.FC = () => {
   };
 
   return (
-    <section id="architecture" className="py-16 border-b border-[#E7E6E2]">
+    <section id="architecture" className="py-24 sm:py-28 md:py-32 border-b border-[#E7E6E2]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[#E7E6E2]">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider mb-2">
-              <span className="text-[#2F5CFF]">03.</span>
+        {/* Section Header with Clear Hierarchy and mb-14 spacing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-14 border-b border-[#E7E6E2]">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider">
+              <span className="text-[#2F5CFF] font-bold">03.</span>
               <span>TECHNICAL_PILLARS</span>
               <span className="text-[#9E9EA7]">//</span>
               <span>ENGINEERING_STANDARDS</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
               Architectural philosophies &amp; principles.
             </h2>
           </div>
-          <p className="text-sm text-[#64666E] max-w-md font-sans">
+          <p className="text-base text-[#555761] max-w-md font-sans leading-relaxed">
             How I structure front-end systems to guarantee low latency, mathematical accessibility, and type safety at scale.
           </p>
         </div>
 
         {/* 4 Pillar Selection Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-8 pb-6">
-          {philosophyPillars.map((pillar, idx) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
+          {philosophyPillars.map((pillar) => {
             const isSelected = pillar.id === selectedPillarId;
             return (
               <button
                 key={pillar.id}
-                id={`philosophy-tab-${pillar.id}`}
+                id={`pillar-tab-${pillar.id}`}
                 onClick={() => setSelectedPillarId(pillar.id)}
-                className={`text-left p-4 rounded-xl border transition-all ${
+                className={`p-4 rounded-xl text-left transition-all border ${
                   isSelected
-                    ? 'bg-white border-[#2F5CFF] shadow-xs ring-1 ring-[#2F5CFF]/20'
-                    : 'bg-[#F4F3EF]/60 border-[#E7E6E2] hover:bg-white hover:border-[#D5D4CE]'
+                    ? 'bg-[#14151A] text-white border-[#14151A] shadow-xs'
+                    : 'bg-white text-[#14151A] border-[#E7E6E2] hover:bg-[#F4F3EF]'
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="p-2 bg-[#F4F3EF] rounded-md border border-[#E7E6E2]">
+                <div className="flex items-center justify-between mb-2">
+                  <div
+                    className={`p-2 rounded-lg ${
+                      isSelected ? 'bg-white/10' : 'bg-[#F4F3EF]'
+                    }`}
+                  >
                     {getIcon(pillar.iconName)}
                   </div>
-                  <span className="text-xs font-mono text-[#64666E]">0{idx + 1}</span>
+                  <span
+                    className={`text-[11px] font-mono ${
+                      isSelected ? 'text-[#9E9EA7]' : 'text-[#64666E]'
+                    }`}
+                  >
+                    // 0{philosophyPillars.indexOf(pillar) + 1}
+                  </span>
                 </div>
-                <h3 className="text-sm font-bold text-[#14151A] tracking-tight">{pillar.title}</h3>
-                <p className="text-xs text-[#64666E] mt-1 line-clamp-2">{pillar.tagline}</p>
+                <div className="font-bold text-sm mb-1">{pillar.title}</div>
+                <p
+                  className={`text-xs line-clamp-2 ${
+                    isSelected ? 'text-[#B6B5AE]' : 'text-[#64666E]'
+                  }`}
+                >
+                  {pillar.tagline}
+                </p>
               </button>
             );
           })}
         </div>
 
-        {/* Interactive Deep-Dive Details Panel */}
-        <div className="rounded-xl border border-[#E7E6E2] bg-white p-6 sm:p-8 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Narrative */}
-            <div className="lg:col-span-5 space-y-4 font-sans">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F4F3EF] border border-[#E7E6E2] text-xs font-mono text-[#2F5CFF] font-medium">
-                {getIcon(selectedPillar.iconName)}
-                <span>{selectedPillar.title}</span>
+        {/* Active Pillar Expanded Detail Card */}
+        <div className="rounded-xl border border-[#E7E6E2] bg-white overflow-hidden shadow-2xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#E7E6E2]">
+            {/* Left: Detailed Technical Narrative */}
+            <div className="lg:col-span-6 p-6 sm:p-8 space-y-6">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono text-[#2F5CFF] uppercase mb-1 font-semibold">
+                  <span>Pillar Focus</span>
+                  <span>•</span>
+                  <span>Zero-Jank SLA</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#14151A]">
+                  {selectedPillar.title}
+                </h3>
+                <p className="text-sm font-mono text-[#64666E] mt-0.5">
+                  &quot;{selectedPillar.quote}&quot;
+                </p>
               </div>
 
-              <blockquote className="text-base sm:text-lg font-medium text-[#14151A] italic border-l-2 border-[#2F5CFF] pl-3 py-0.5">
-                &ldquo;{selectedPillar.quote}&rdquo;
-              </blockquote>
-
-              <p className="text-sm text-[#44464F] leading-relaxed">
+              <p className="text-base text-[#44464F] leading-relaxed font-sans">
                 {selectedPillar.description}
               </p>
 
-              <div className="pt-2 text-xs font-mono text-[#64666E] space-y-1 bg-[#F4F3EF] p-3 rounded-lg border border-[#E7E6E2]">
-                <div><span className="text-[#9E9EA7]">pattern:</span> <span className="text-[#14151A] font-medium">{selectedPillar.codeExample.title}</span></div>
-                <div><span className="text-[#9E9EA7]">status:</span> <span className="text-[#1FAA6E]">production_standard</span></div>
+              <div className="p-4 rounded-lg bg-[#F4F3EF] border border-[#E7E6E2] text-xs font-mono text-[#14151A] space-y-1.5">
+                <span className="text-[#2F5CFF] font-bold">// implementation_guarantee:</span>
+                <p className="text-[#44464F] font-sans text-xs leading-relaxed">
+                  {selectedPillar.tagline}
+                </p>
               </div>
             </div>
 
-            {/* Right Code Snippet Box */}
-            <div className="lg:col-span-7 space-y-2 font-mono">
-              <div className="flex items-center justify-between px-1">
-                <span className="text-xs text-[#64666E] flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-[#2F5CFF]" />
-                  <span>{selectedPillar.codeExample.filename}</span>
-                </span>
+            {/* Right: Code Sample */}
+            <div className="lg:col-span-6 bg-[#14151A] text-white p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between border-b border-[#2C2D35] pb-3 mb-4 font-mono text-xs">
+                  <div className="flex items-center gap-2 text-[#9E9EA7]">
+                    <Terminal className="w-3.5 h-3.5 text-[#2F5CFF]" />
+                    <span>{selectedPillar.codeExample.filename}</span>
+                  </div>
+                  <button
+                    onClick={() =>
+                      handleCopy(
+                        selectedPillar.codeExample.code,
+                        selectedPillar.id
+                      )
+                    }
+                    className="flex items-center gap-1 text-[#9E9EA7] hover:text-white transition-colors"
+                  >
+                    {copiedCodeId === selectedPillar.id ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-[#1FAA6E]" />
+                        <span className="text-[#1FAA6E]">copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>copy</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
-                <button
-                  id={`copy-pillar-code-${selectedPillar.id}`}
-                  onClick={() => handleCopy(selectedPillar.codeExample.code, selectedPillar.id)}
-                  className="flex items-center gap-1 text-xs px-2.5 py-1 rounded bg-[#F4F3EF] border border-[#D5D4CE] hover:bg-[#EAE8E2] text-[#14151A] transition-colors"
-                >
-                  {copiedCodeId === selectedPillar.id ? (
-                    <>
-                      <Check className="w-3 h-3 text-[#1FAA6E]" />
-                      <span className="text-[#1FAA6E]">copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3 text-[#64666E]" />
-                      <span>copy_pattern</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <div className="rounded-lg bg-[#14151A] text-[#FAFAF8] p-4 text-xs overflow-x-auto border border-[#2B2D37] shadow-inner">
-                <pre className="text-emerald-400/90 leading-relaxed font-mono">
+                <pre className="font-mono text-xs leading-relaxed text-[#EAE8E2] overflow-x-auto p-2 bg-[#1C1D24] rounded-lg border border-[#2C2D35]">
                   <code>{selectedPillar.codeExample.code}</code>
                 </pre>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-[#2C2D35] text-xs font-mono text-[#9E9EA7]">
+                <span className="text-[#2F5CFF]">Architecture: </span>
+                <span>{selectedPillar.codeExample.title}</span>
               </div>
             </div>
           </div>

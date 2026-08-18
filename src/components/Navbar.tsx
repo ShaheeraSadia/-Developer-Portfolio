@@ -51,10 +51,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume, isConfigMode, onTo
   return (
     <header
       id="main-navbar"
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
-        scrolled
-          ? 'bg-[#FAFAF8]/90 backdrop-blur-md border-b border-[#E7E6E2] shadow-xs'
-          : 'bg-[#FAFAF8] border-b border-[#E7E6E2]'
+      className={`sticky top-0 z-50 w-full transition-all duration-200 bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E7E6E2] ${
+        scrolled ? 'shadow-xs' : ''
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

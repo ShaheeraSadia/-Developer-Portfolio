@@ -101,28 +101,28 @@ export const ComponentLab: React.FC = () => {
   };
 
   return (
-    <section id="component-lab" className="py-16 border-b border-[#E7E6E2]">
+    <section id="component-lab" className="py-24 sm:py-28 md:py-32 border-b border-[#E7E6E2]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[#E7E6E2]">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider mb-2">
-              <span className="text-[#2F5CFF]">02.</span>
-              <span>INTERACTIVE_LAB</span>
+        {/* Section Header with Clear Hierarchy and mb-14 spacing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-14 border-b border-[#E7E6E2]">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider">
+              <span className="text-[#2F5CFF] font-bold">LAB.</span>
+              <span>INTERACTIVE_WORKBENCH</span>
               <span className="text-[#9E9EA7]">//</span>
               <span>LIVE_ENGINEERING_BENCHMARKS</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
               Live Front-End Architecture Sandbox.
             </h2>
           </div>
-          <p className="text-sm text-[#64666E] max-w-md font-sans">
+          <p className="text-base text-[#555761] max-w-md font-sans leading-relaxed">
             Interactive experiments demonstrating token compilers, main-thread performance telemetry, and algebraic state machines.
           </p>
         </div>
 
         {/* Workbench Container */}
-        <div className="mt-8 rounded-xl border border-[#E7E6E2] bg-[#F4F3EF]/60 backdrop-blur-xs overflow-hidden shadow-xs">
+        <div className="rounded-xl border border-[#E7E6E2] bg-[#F4F3EF] overflow-hidden shadow-2xs">
           {/* Top Bar with Lab Switchers */}
           <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-b border-[#E7E6E2] bg-[#EAE8E2]/70 gap-2">
             <div className="flex items-center gap-2">

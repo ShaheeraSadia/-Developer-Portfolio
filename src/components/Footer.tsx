@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, ArrowUp, Github, Heart } from 'lucide-react';
+import { Terminal, ArrowUp } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
@@ -8,57 +8,55 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="main-footer" className="bg-[#F4F3EF] text-[#14151A] border-t border-[#E7E6E2] py-12 font-mono text-xs">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Footer Top: Metadata Motif Config Block */}
-        <div className="p-4 sm:p-6 rounded-lg bg-white border border-[#E7E6E2] space-y-3">
-          <div className="flex items-center justify-between border-b border-[#E7E6E2] pb-2">
-            <div className="flex items-center gap-2">
-              <Terminal className="w-3.5 h-3.5 text-[#2F5CFF]" />
-              <span className="font-bold text-[#14151A]">system_telemetry.manifest</span>
-            </div>
-            <span className="text-[#1FAA6E] text-[11px] font-bold">status: 200_OK</span>
+    <footer id="main-footer" className="w-full max-w-6xl mx-auto mt-12 pt-8 pb-14 px-4 sm:px-6 lg:px-8">
+      {/* System Telemetry Manifest */}
+      <div className="bg-[#F3F3EE] border border-[#14151A]/10 rounded-xl p-6 font-mono text-sm shadow-2xs mb-8">
+        {/* Manifest Header */}
+        <div className="flex items-center justify-between border-b border-[#14151A]/10 pb-4 mb-4">
+          <div className="flex items-center gap-2 text-[#14151A]">
+            <span className="text-[#2F5CFF] font-bold">&gt;_</span>
+            <span className="font-semibold">system_telemetry.manifest</span>
           </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] text-[#64666E]">
-            <div>
-              <span className="text-[#9E9EA7] block">build_hash:</span>
-              <span className="text-[#14151A] font-bold">git@8f4a21e</span>
-            </div>
-            <div>
-              <span className="text-[#9E9EA7] block">runtime:</span>
-              <span className="text-[#14151A] font-bold">React 19 + Vite 6</span>
-            </div>
-            <div>
-              <span className="text-[#9E9EA7] block">bundle_weight:</span>
-              <span className="text-[#2F5CFF] font-bold">24.2 kB (brotli)</span>
-            </div>
-            <div>
-              <span className="text-[#9E9EA7] block">lighthouse_a11y:</span>
-              <span className="text-[#1FAA6E] font-bold">100 / 100</span>
-            </div>
+          <div className="flex items-center gap-2 text-xs text-[#1FAA6E] font-semibold bg-[#1FAA6E]/10 px-2.5 py-1 rounded-full border border-[#1FAA6E]/20">
+            <span className="w-2 h-2 rounded-full bg-[#1FAA6E] animate-pulse"></span>
+            <span>status: 200_OK</span>
           </div>
         </div>
 
-        {/* Footer Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#E7E6E2]/60 text-xs text-[#64666E]">
-          <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} {developerConfig.name}.</span>
-            <span className="text-[#9E9EA7]">•</span>
-            <span>Crafted with zero-runtime design tokens &amp; accessible semantic HTML.</span>
+        {/* Metric Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-xs">
+          <div>
+            <span className="block text-[#14151A]/50 mb-1">build_hash:</span>
+            <code className="text-[#14151A] font-bold">git@8f4a21e</code>
           </div>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="#hero-section"
-              onClick={scrollToTop}
-              className="flex items-center gap-1 text-[#14151A] hover:text-[#2F5CFF] transition-colors"
-            >
-              <span>back_to_top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </a>
+          <div>
+            <span className="block text-[#14151A]/50 mb-1">runtime:</span>
+            <span className="text-[#14151A] font-bold">React 19 + Vite 6</span>
+          </div>
+          <div>
+            <span className="block text-[#14151A]/50 mb-1">bundle_weight:</span>
+            <span className="text-[#2F5CFF] font-bold">24.2 kB (brotli)</span>
+          </div>
+          <div>
+            <span className="block text-[#14151A]/50 mb-1">lighthouse_a11y:</span>
+            <span className="text-[#1FAA6E] font-bold">100 / 100</span>
           </div>
         </div>
+      </div>
+
+      {/* Bottom Copyright & Back-to-Top Row */}
+      <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#14151A]/60 gap-4 pt-4 border-t border-[#14151A]/10 font-mono">
+        <p>
+          © 2026 {developerConfig.name}. • Crafted with zero-runtime design tokens &amp; accessible semantic HTML.
+        </p>
+        <button
+          id="footer-back-to-top-btn"
+          onClick={scrollToTop}
+          className="hover:text-[#2F5CFF] transition-colors flex items-center gap-1 group cursor-pointer"
+        >
+          <span>back_to_top</span>
+          <span className="group-hover:-translate-y-0.5 transition-transform">↑</span>
+        </button>
       </div>
     </footer>
   );

@@ -2,13 +2,11 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   ArrowUpRight,
   Github,
-  ExternalLink,
   ChevronRight,
   Search,
   X,
-  Sparkles,
   SlidersHorizontal,
-  Tag,
+  FolderCode,
 } from 'lucide-react';
 import { Project } from '../types';
 import { projectsData } from '../data/portfolioData';
@@ -191,31 +189,31 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
   };
 
   return (
-    <section id="projects" className="py-16 border-b border-[#E7E6E2]">
+    <section id="projects" className="py-24 sm:py-28 md:py-32 border-b border-[#E7E6E2]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Metadata Motif */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[#E7E6E2]">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider mb-2">
-              <span className="text-[#2F5CFF]">02.</span>
+        {/* Section Header with Clear Typography and mb-14 spacing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-14 border-b border-[#E7E6E2]">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider">
+              <span className="text-[#2F5CFF] font-bold">02.</span>
               <span>FEATURED_PROJECTS</span>
               <span className="text-[#9E9EA7]">//</span>
-              <span>CLIENT_SIDE_UTILITIES_&amp;_DASHBOARDS</span>
+              <span>CLIENT_SIDE_UTILITIES_&amp;_ENGINES</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
               Featured projects &amp; web utilities.
             </h2>
           </div>
-          <p className="text-sm text-[#64666E] max-w-md font-sans">
-            Deep-dives into Brand Identity Generator, Toolkit Pro, App Tool Shopping Hub, and client-side browser engines.
+          <p className="text-base text-[#555761] max-w-md font-sans leading-relaxed">
+            Deep-dives into Brand Identity Generator, Toolkit Pro, App Tool Shopping Hub, and off-thread browser engines.
           </p>
         </div>
 
         {/* Filter & Fuzzy Search Toolbar */}
-        <div className="py-6 space-y-4">
+        <div className="mb-10 space-y-4">
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
             {/* Category Chips */}
-            <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Filter projects by category">
+            <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter projects by category">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -237,7 +235,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             {/* Fuzzy Search Input Field */}
             <div className="relative w-full lg:w-80">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#64666E]">
-                <Search className="w-3.5 h-3.5 text-[#64666E]" />
+                <Search className="w-4 h-4 text-[#64666E]" />
               </div>
               <input
                 ref={searchInputRef}
@@ -246,10 +244,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Fuzzy search title, stack, keyword..."
-                className="w-full pl-9 pr-16 py-2 text-xs font-mono bg-white border border-[#D5D4CE] rounded-lg text-[#14151A] placeholder:text-[#9E9EA7] focus:outline-hidden focus:border-[#2F5CFF] focus:ring-1 focus:ring-[#2F5CFF] transition-all shadow-2xs"
+                className="w-full pl-9 pr-16 py-2.5 text-xs font-mono bg-white border border-[#D5D4CE] rounded-lg text-[#14151A] placeholder:text-[#9E9EA7] focus:outline-hidden focus:border-[#2F5CFF] focus:ring-1 focus:ring-[#2F5CFF] transition-all shadow-2xs"
                 aria-label="Fuzzy search projects by title, stack, or keywords"
               />
-              <div className="absolute inset-y-0 right-0 pr-2 flex items-center gap-1">
+              <div className="absolute inset-y-0 right-0 pr-2.5 flex items-center gap-1">
                 {searchQuery ? (
                   <button
                     id="clear-project-search-btn"
@@ -269,8 +267,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
           </div>
 
           {/* Quick Keyword Suggestion Chips */}
-          <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono">
-            <span className="text-[#64666E] text-[11px] flex items-center gap-1 mr-1">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+            <span className="text-[#64666E] text-xs flex items-center gap-1 mr-1">
               <SlidersHorizontal className="w-3 h-3 text-[#2F5CFF]" />
               <span>Quick tags:</span>
             </span>
@@ -278,7 +276,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               <button
                 key={kw}
                 onClick={() => setSearchQuery(kw)}
-                className={`px-2 py-0.5 rounded text-[11px] border transition-colors ${
+                className={`px-2.5 py-1 rounded-md text-xs border transition-colors ${
                   searchQuery.toLowerCase() === kw.toLowerCase()
                     ? 'bg-[#2F5CFF] text-white border-[#2F5CFF]'
                     : 'bg-white text-[#44464F] border-[#E7E6E2] hover:bg-[#F4F3EF] hover:text-[#14151A]'
@@ -290,7 +288,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             {(searchQuery || selectedCategory !== 'All') && (
               <button
                 onClick={handleClearFilters}
-                className="ml-auto text-[11px] text-[#2F5CFF] hover:underline font-mono"
+                className="ml-auto text-xs text-[#2F5CFF] hover:underline font-mono font-medium"
               >
                 reset_filters
               </button>
@@ -300,7 +298,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
 
         {/* Results Counter & Search Indicator */}
         {(hasSearch || selectedCategory !== 'All') && (
-          <div className="pb-3 flex items-center justify-between text-xs font-mono text-[#64666E]">
+          <div className="pb-4 flex items-center justify-between text-xs font-mono text-[#64666E]">
             <div>
               <span>Found </span>
               <span className="font-bold text-[#14151A]">{filteredProjects.length}</span>
@@ -313,12 +311,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               )}
             </div>
             {filteredProjects.length > 0 && hasSearch && (
-              <span className="text-[11px] text-[#1FAA6E]">✓ Sorted by relevance</span>
+              <span className="text-xs text-[#1FAA6E] font-medium">✓ Sorted by relevance</span>
             )}
           </div>
         )}
 
-        {/* Editorial Project Rows List */}
+        {/* Editorial Project Rows List (Clean Typography, Aligned Metadata, Right-Pushed Live CTAs) */}
         <div className="divide-y divide-[#E7E6E2] border-y border-[#E7E6E2]">
           {filteredProjects.length === 0 ? (
             <div className="py-16 text-center space-y-3 font-mono">
@@ -332,7 +330,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                 <button
                   id="reset-search-empty-btn"
                   onClick={handleClearFilters}
-                  className="px-3.5 py-1.5 rounded-md bg-[#14151A] text-white text-xs font-mono hover:bg-[#2F5CFF] transition-colors"
+                  className="px-4 py-2 rounded-lg bg-[#14151A] text-white text-xs font-mono hover:bg-[#2F5CFF] transition-colors"
                 >
                   Clear all filters
                 </button>
@@ -343,40 +341,40 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               <article
                 key={project.id}
                 id={`project-row-${project.id}`}
-                className="group py-8 sm:py-10 transition-colors hover:bg-[#F4F3EF]/40 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-lg"
+                className="group py-8 sm:py-10 transition-colors hover:bg-[#F4F3EF]/50 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-xl"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                  {/* Left Column: Metadata Motif */}
-                  <div className="lg:col-span-3 space-y-2 font-mono text-xs text-[#64666E]">
+                  {/* Left Column: Metadata Tags & Year (JetBrains Mono text-sm) */}
+                  <div className="lg:col-span-3 space-y-2.5 font-mono text-sm text-[#64666E]">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded bg-[#EAE8E2] text-[#14151A] font-semibold text-[11px]">
+                      <span className="px-2.5 py-0.5 rounded bg-[#EAE8E2] text-[#14151A] font-bold text-xs">
                         {project.year}
                       </span>
-                      <span className="text-[#2F5CFF] font-medium">{project.category}</span>
+                      <span className="text-[#2F5CFF] font-semibold text-xs">{project.category}</span>
                     </div>
 
-                    <div className="space-y-1 pt-1">
+                    <div className="space-y-1.5 pt-1 text-xs">
                       <div>
                         <span className="text-[#9E9EA7]">role: </span>
-                        <span className="text-[#14151A]">{project.role}</span>
+                        <span className="text-[#14151A] font-medium">{project.role}</span>
                       </div>
                       <div>
                         <span className="text-[#9E9EA7]">context: </span>
-                        <span className="text-[#14151A]">{project.clientOrContext}</span>
+                        <span className="text-[#14151A] font-medium">{project.clientOrContext}</span>
                       </div>
                       <div>
                         <span className="text-[#9E9EA7]">status: </span>
-                        <span className="text-[#1FAA6E]">validated</span>
+                        <span className="text-[#1FAA6E] font-semibold">● validated</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Center Column: Project Narrative & Metrics */}
-                  <div className="lg:col-span-6 space-y-3">
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#14151A] group-hover:text-[#2F5CFF] transition-colors">
+                  {/* Center Column: Project Title (text-xl font-semibold) & Body Copy (text-base font-sans) */}
+                  <div className="lg:col-span-5 space-y-3">
+                    <h3 className="text-xl font-semibold tracking-tight text-[#14151A] group-hover:text-[#2F5CFF] transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-[#44464F] leading-relaxed font-sans">
+                    <p className="text-base text-[#44464F] leading-relaxed font-sans">
                       {project.tagline}
                     </p>
 
@@ -385,7 +383,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       {project.metrics.map((metric, i) => (
                         <div
                           key={i}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white border border-[#E7E6E2] text-xs font-mono"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white border border-[#E7E6E2] text-xs font-mono shadow-2xs"
                         >
                           <span className="text-[#64666E]">{metric.label}:</span>
                           <span className="font-bold text-[#14151A]">{metric.value}</span>
@@ -403,7 +401,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                             setSearchQuery(tech);
                           }}
                           title={`Filter projects by ${tech}`}
-                          className={`px-2 py-0.5 text-[11px] font-mono rounded transition-colors ${
+                          className={`px-2.5 py-0.5 text-xs font-mono rounded-md transition-colors ${
                             searchQuery.toLowerCase() === tech.toLowerCase()
                               ? 'bg-[#2F5CFF] text-white'
                               : 'text-[#64666E] bg-[#EAE8E2] hover:bg-[#D5D4CE] hover:text-[#14151A]'
@@ -415,43 +413,47 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                     </div>
                   </div>
 
-                  {/* Right Column: Interactive Deep-Dive Actions */}
-                  <div className="lg:col-span-3 flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-3 pt-2">
+                  {/* Right Column: Pushed Effortless CTAs (Live Demo 🚀, GitHub 💻, Case Study) */}
+                  <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-stretch lg:items-end justify-between lg:justify-start gap-2.5 pt-1">
+                    {/* Primary Live Demo CTA (Electric Cobalt Button with ↗ Icon) */}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#2F5CFF] text-white text-xs sm:text-sm font-mono font-bold hover:bg-[#254BD8] transition-colors shadow-2xs group/demo w-full sm:w-auto"
+                        title="Open Live Application Demo"
+                      >
+                        <span>Live Demo</span>
+                        <span aria-hidden="true">🚀</span>
+                        <ArrowUpRight className="w-4 h-4 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5 transition-transform" />
+                      </a>
+                    )}
+
+                    {/* GitHub Code Repository CTA with Octocat Icon */}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white border border-[#D5D4CE] text-[#14151A] text-xs font-mono font-semibold hover:bg-[#F4F3EF] hover:border-[#14151A] transition-colors shadow-2xs w-full sm:w-auto"
+                        title="View Source Code on GitHub"
+                      >
+                        <Github className="w-4 h-4 text-[#14151A]" />
+                        <span>GitHub Code</span>
+                        <span aria-hidden="true">💻</span>
+                      </a>
+                    )}
+
+                    {/* Inspect Deep-Dive Case Study Button */}
                     <button
                       id={`inspect-case-study-${project.id}`}
                       onClick={() => onSelectProject(project)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#14151A] text-white text-xs font-mono font-medium hover:bg-[#2F5CFF] transition-colors shadow-2xs group/btn"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono text-[#64666E] hover:text-[#2F5CFF] hover:bg-white transition-colors w-full sm:w-auto"
                     >
                       <span>inspect_case_study</span>
-                      <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </button>
-
-                    <div className="flex items-center gap-2">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 text-xs font-mono text-[#64666E] hover:text-[#14151A] hover:bg-white rounded border border-transparent hover:border-[#E7E6E2] transition-colors inline-flex items-center gap-1"
-                          title="View Repository"
-                        >
-                          <Github className="w-3.5 h-3.5" />
-                          <span className="hidden sm:inline">github</span>
-                        </a>
-                      )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 text-xs font-mono text-[#64666E] hover:text-[#2F5CFF] hover:bg-white rounded border border-transparent hover:border-[#E7E6E2] transition-colors inline-flex items-center gap-1"
-                          title="Live Demo"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          <span className="hidden sm:inline">demo</span>
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </div>
               </article>
@@ -462,4 +464,3 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
     </section>
   );
 };
-

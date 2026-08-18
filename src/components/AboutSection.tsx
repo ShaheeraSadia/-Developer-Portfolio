@@ -1,104 +1,115 @@
 import React from 'react';
-import { Shield, Cpu, Zap, Sparkles, Terminal } from 'lucide-react';
-import { aboutMeData } from '../data/portfolioData';
+import { Terminal, CheckCircle2, ShieldCheck, Zap, Layers, Sparkles, Award, ArrowUpRight } from 'lucide-react';
+import { aboutMeData, developerConfig } from '../data/portfolioData';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 sm:py-28 md:py-32 border-b border-[#E7E6E2]">
+    <section id="about" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Clear Hierarchy and mb-14 spacing */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-14 border-b border-[#E7E6E2]">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#64666E] uppercase tracking-wider">
-              <span className="text-[#2F5CFF] font-bold">01.</span>
-              <span>ABOUT_DEVELOPER</span>
-              <span className="text-[#9E9EA7]">//</span>
-              <span>BACKGROUND_&amp;_SPECIALIZATION</span>
+            <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
+              <span className="font-bold">01. ABOUT ME</span>
+              <span className="text-gray-500">//</span>
+              <span>ENGINEERING JOURNEY &amp; PHILOSOPHY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#14151A]">
-              Crafting fast, user-centric web &amp; mobile tools.
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Building Web Apps with <span className="text-[#00eeff] text-glow-cyan">Speed, Clarity &amp; Precision</span>
             </h2>
           </div>
-          <p className="text-base text-[#555761] max-w-md font-sans leading-relaxed">
-            5+ years of translating complex user workflows into intuitive, zero-jank client-side applications.
-          </p>
+          <div className="flex items-center gap-2 font-mono text-xs text-gray-400">
+            <span>location:</span>
+            <span className="text-[#00eeff] font-semibold">{developerConfig.location} ({developerConfig.timezone})</span>
+          </div>
         </div>
 
-        {/* About Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Main Narrative (Left) */}
+        {/* Two-Column Grid: Bio & Milestones */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Full Biography Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="p-6 sm:p-8 rounded-xl border border-[#E7E6E2] bg-white space-y-6 shadow-2xs">
-              <div className="flex items-center gap-2 text-xs font-mono text-[#2F5CFF] font-semibold border-b border-[#E7E6E2] pb-3">
-                <Terminal className="w-4 h-4" />
-                <span>// developer_statement.md</span>
+            <div className="bg-[#323946] p-7 rounded-2xl border border-[#323946] hover:border-[#00eeff]/40 transition-all space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+              <span className="text-xs font-mono text-[#00eeff] uppercase tracking-wider font-bold block">
+                // developer_profile.overview
+              </span>
+
+              <h3 className="text-xl font-bold text-white leading-snug">
+                {aboutMeData.headline}
+              </h3>
+
+              <div className="space-y-3.5 text-sm text-gray-300 font-sans leading-relaxed">
+                <p>
+                  I am a <strong className="text-white font-semibold">Web &amp; Mobile Application Developer</strong> with over 5 years of hands-on experience building user-centric interfaces, performance-driven web tools, and responsive digital products.
+                </p>
+                <p>
+                  My engineering journey began on freeCodeCamp in 2021, and since then I have specialized in <strong className="text-white font-semibold">React</strong>, <strong className="text-white font-semibold">JavaScript (ES6+)</strong>, and <strong className="text-white font-semibold">Tailwind CSS</strong>. I focus heavily on client-side browser capabilities—such as <strong className="text-[#00eeff]">Web Workers</strong> and in-browser state algorithms—to create lightning-fast utilities with zero server latency and radical user privacy.
+                </p>
               </div>
 
-              <div className="space-y-4 text-base text-[#34353E] font-sans leading-relaxed">
-                <p>
-                  I am a <strong className="text-[#14151A] font-semibold">Front-End Developer with over 5 years of experience</strong> building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. My journey started on <span className="font-medium text-[#14151A] bg-[#F4F3EF] px-2 py-0.5 rounded border border-[#E7E6E2]">freeCodeCamp in 2021</span>, and since then, I&apos;ve focused heavily on translating complex user tasks into smooth, intuitive UI designs.
-                </p>
-
-                <p>
-                  I specialize in <strong className="text-[#14151A] font-semibold">React, JavaScript (ES6+), and modern CSS architectures</strong>, with a strong emphasis on client-side browser capabilities (<strong className="text-[#2F5CFF] font-semibold">WebAssembly &amp; Web Workers</strong>) to build lightning-fast web utilities that require zero server latency and guarantee total user privacy.
-                </p>
+              {/* Core Tenets Checklist */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-[#1f242d]">
+                <div className="flex items-center gap-2 text-xs font-mono text-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#00eeff] shrink-0" />
+                  <span>100% Client-Side Computing</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#00eeff] shrink-0" />
+                  <span>WCAG 2.1 AAA Accessibility</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#00eeff] shrink-0" />
+                  <span>Zero-Jank 60 FPS Layouts</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-mono text-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#00eeff] shrink-0" />
+                  <span>Sub-Second Response SLAs</span>
+                </div>
               </div>
+            </div>
 
-              {/* Core Pillars Pills */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-                <div className="p-3 bg-[#F4F3EF] rounded-lg border border-[#E7E6E2] flex items-center gap-2.5">
-                  <Zap className="w-4 h-4 text-[#2F5CFF] shrink-0" />
-                  <span className="text-[#14151A] font-semibold">100% Client-Side Compute</span>
-                </div>
-                <div className="p-3 bg-[#F4F3EF] rounded-lg border border-[#E7E6E2] flex items-center gap-2.5">
-                  <Shield className="w-4 h-4 text-[#1FAA6E] shrink-0" />
-                  <span className="text-[#14151A] font-semibold">Guaranteed User Privacy</span>
-                </div>
-                <div className="p-3 bg-[#F4F3EF] rounded-lg border border-[#E7E6E2] flex items-center gap-2.5">
-                  <Sparkles className="w-4 h-4 text-[#2F5CFF] shrink-0" />
-                  <span className="text-[#14151A] font-semibold">WCAG 2.1 AAA Contrast</span>
-                </div>
-                <div className="p-3 bg-[#F4F3EF] rounded-lg border border-[#E7E6E2] flex items-center gap-2.5">
-                  <Cpu className="w-4 h-4 text-[#14151A] shrink-0" />
-                  <span className="text-[#14151A] font-semibold">Zero-Jank Web Workers</span>
-                </div>
+            {/* Quick Experience Stats Card */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+                <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">5+</span>
+                <span className="text-[11px] text-gray-400 font-mono block">Years Dev</span>
+              </div>
+              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+                <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">3+</span>
+                <span className="text-[11px] text-gray-400 font-mono block">Live SaaS Tools</span>
+              </div>
+              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+                <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">100%</span>
+                <span className="text-[11px] text-gray-400 font-mono block">Browser Privacy</span>
               </div>
             </div>
           </div>
 
-          {/* Chronological Milestones (Right) */}
+          {/* Right Column: Interactive Career Milestones Timeline */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 sm:p-7 rounded-xl border border-[#E7E6E2] bg-white space-y-5 shadow-2xs">
-              <div className="flex items-center justify-between border-b border-[#E7E6E2] pb-3">
-                <span className="text-xs font-mono uppercase font-bold text-[#14151A]">
-                  // career_timeline_milestones
+            <div className="bg-[#323946] p-6 sm:p-7 rounded-2xl border border-[#323946] space-y-4">
+              <div className="flex items-center justify-between border-b border-[#1f242d] pb-3">
+                <span className="text-xs font-mono text-[#00eeff] uppercase tracking-wider font-bold">
+                  // career_milestones.log
                 </span>
-                <span className="text-xs font-mono text-[#64666E]">2021 — 2026</span>
+                <span className="text-[11px] font-mono text-gray-400">2021 — 2026</span>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 pt-1">
                 {aboutMeData.milestones.map((m, idx) => (
-                  <div key={idx} className="relative pl-6 pb-3 last:pb-0 group">
-                    {/* Vertical Connecting Line */}
-                    {idx !== aboutMeData.milestones.length - 1 && (
-                      <span className="absolute left-2.5 top-3 bottom-0 w-px bg-[#E7E6E2]" />
-                    )}
-                    {/* Bullet Indicator */}
-                    <span className="absolute left-1.5 top-1.5 w-2 h-2 rounded-full bg-[#2F5CFF] ring-4 ring-white" />
-
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-[#14151A]">
-                          {m.title}
-                        </span>
-                        <span className="text-[11px] font-mono text-[#2F5CFF] px-1.5 py-0.2 rounded bg-[#F4F3EF] border border-[#E7E6E2] font-semibold">
-                          {m.year}
-                        </span>
-                      </div>
-                      <p className="text-xs text-[#555761] font-sans leading-relaxed">
-                        {m.description}
-                      </p>
+                  <div key={idx} className="relative pl-6 border-l-2 border-[#00eeff]/40 space-y-1 group">
+                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-[#1f242d] border-2 border-[#00eeff] group-hover:bg-[#00eeff] group-hover:shadow-[0_0_8px_#00eeff] transition-all"></span>
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-bold text-white group-hover:text-[#00eeff] transition-colors">
+                        {m.title}
+                      </h4>
+                      <span className="text-[11px] font-mono text-[#00eeff] font-semibold bg-[#1f242d] px-2 py-0.5 rounded border border-[#00eeff]/20">
+                        {m.year}
+                      </span>
                     </div>
+                    <p className="text-xs text-gray-300 font-sans leading-relaxed">
+                      {m.description}
+                    </p>
                   </div>
                 ))}
               </div>

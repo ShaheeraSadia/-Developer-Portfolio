@@ -3,44 +3,97 @@
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --color-paper: #FAFAF8;
-  --color-ink: #14151A;
-  --color-cobalt: #2F5CFF;
-  --color-emerald-status: #1FAA6E;
-  --color-subtle-border: #E7E6E2;
-  --color-subtle-bg: #F4F3EF;
-  --color-muted-text: #64666E;
+  --color-bg-dark: #1f242d;
+  --color-card-dark: #323946;
+  --color-accent-cyan: #00eeff;
+  --color-cyan-glow: rgba(0, 238, 255, 0.4);
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    background-color: #1f242d;
+    color: #ffffff;
+    scroll-behavior: smooth;
   }
 
-  /* Custom subtle scrollbar */
+  body {
+    background-color: #1f242d;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  /* Custom Neon Scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #FAFAF8;
+    background: #1f242d;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D5D4CE;
+    background: #323946;
     border-radius: 9999px;
+    border: 2px solid #1f242d;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #B6B5AE;
+    background: #00eeff;
+    box-shadow: 0 0 10px #00eeff;
   }
 }
 
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.75; transform: scale(1.08); }
+@keyframes pulse-cyan {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 238, 255, 0.4), inset 0 0 10px rgba(0, 238, 255, 0.2);
+    border-color: #00eeff;
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 238, 255, 0.8), inset 0 0 15px rgba(0, 238, 255, 0.4);
+    border-color: #55f3ff;
+  }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-pulse-cyan {
+  animation: pulse-cyan 3s infinite ease-in-out;
+}
+
+@keyframes nav-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 238, 255, 0.5), 0 0 20px rgba(0, 238, 255, 0.25);
+    border-color: rgba(0, 238, 255, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 238, 255, 0.85), 0 0 28px rgba(0, 238, 255, 0.45);
+    border-color: #55f3ff;
+  }
+}
+
+.animate-nav-glow {
+  animation: nav-glow-pulse 2.2s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float-slow 4s infinite ease-in-out;
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 12px rgba(0, 238, 255, 0.6);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35);
+}
+
+.box-glow-cyan-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.6);
+  border-color: #00eeff;
 }

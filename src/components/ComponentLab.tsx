@@ -102,10 +102,10 @@ export const ComponentLab: React.FC = () => {
   };
 
   return (
-    <section id="component-lab" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
+    <section id="component-lab" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Clear Hierarchy */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -123,9 +123,9 @@ export const ComponentLab: React.FC = () => {
         </div>
 
         {/* Workbench Container */}
-        <div className="rounded-2xl border border-[#323946] bg-[#323946] overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.25)]">
+        <div className="rounded-2xl border border-[#2a3245] bg-[#1b202c] overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.3)]">
           {/* Top Bar with Lab Switchers */}
-          <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-b border-[#1f242d] bg-[#1f242d]/80 gap-2">
+          <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-b border-[#2a3245] bg-[#12161f] gap-2">
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4 text-[#00eeff]" />
               <span className="text-xs font-mono font-bold text-white">
@@ -141,8 +141,8 @@ export const ComponentLab: React.FC = () => {
                 onClick={() => setActiveLabTab('tokens')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activeLabTab === 'tokens'
-                    ? 'bg-[#00eeff] text-[#1f242d] font-bold shadow-[0_0_10px_#00eeff]'
-                    : 'text-gray-300 hover:text-white hover:bg-[#323946]'
+                    ? 'bg-[#00eeff] text-[#12161f] font-bold shadow-[0_0_10px_#00eeff]'
+                    : 'text-gray-300 hover:text-white hover:bg-[#1b202c]'
                 }`}
               >
                 <Sliders className="w-3 h-3" />
@@ -156,8 +156,8 @@ export const ComponentLab: React.FC = () => {
                 onClick={() => setActiveLabTab('perf')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activeLabTab === 'perf'
-                    ? 'bg-[#00eeff] text-[#1f242d] font-bold shadow-[0_0_10px_#00eeff]'
-                    : 'text-gray-300 hover:text-white hover:bg-[#323946]'
+                    ? 'bg-[#00eeff] text-[#12161f] font-bold shadow-[0_0_10px_#00eeff]'
+                    : 'text-gray-300 hover:text-white hover:bg-[#1b202c]'
                 }`}
               >
                 <Activity className="w-3 h-3" />
@@ -171,8 +171,8 @@ export const ComponentLab: React.FC = () => {
                 onClick={() => setActiveLabTab('fsm')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activeLabTab === 'fsm'
-                    ? 'bg-[#00eeff] text-[#1f242d] font-bold shadow-[0_0_10px_#00eeff]'
-                    : 'text-gray-300 hover:text-white hover:bg-[#323946]'
+                    ? 'bg-[#00eeff] text-[#12161f] font-bold shadow-[0_0_10px_#00eeff]'
+                    : 'text-gray-300 hover:text-white hover:bg-[#1b202c]'
                 }`}
               >
                 <Cpu className="w-3 h-3" />
@@ -198,7 +198,7 @@ export const ComponentLab: React.FC = () => {
                   </div>
 
                   {/* Sliders */}
-                  <div className="space-y-4 font-mono text-xs bg-[#1f242d] p-4 rounded-xl border border-[#323946]">
+                  <div className="space-y-4 font-mono text-xs bg-[#12161f] p-4 rounded-xl border border-[#2a3245]">
                     <div className="space-y-1.5">
                       <div className="flex justify-between">
                         <span className="text-gray-400">base_grid_unit:</span>
@@ -258,7 +258,7 @@ export const ComponentLab: React.FC = () => {
                   </div>
 
                   {/* Live Rendered Typography Preview */}
-                  <div className="p-4 bg-[#1f242d] rounded-xl border border-[#323946] space-y-2">
+                  <div className="p-4 bg-[#12161f] rounded-xl border border-[#2a3245] space-y-2">
                     <span className="text-xs font-mono text-gray-400 uppercase">Live Typographic Hierarchy Preview:</span>
                     <div className="space-y-1 text-white">
                       <p style={{ fontSize: `${(1 * modularRatio * modularRatio * modularRatio).toFixed(2)}rem` }} className="font-bold tracking-tight">
@@ -275,19 +275,19 @@ export const ComponentLab: React.FC = () => {
                 </div>
 
                 {/* Right: Code Output */}
-                <div className="lg:col-span-6 bg-[#1f242d] p-6 rounded-xl border border-[#323946] space-y-4">
-                  <div className="flex items-center justify-between border-b border-[#323946] pb-3 font-mono text-xs">
+                <div className="lg:col-span-6 bg-[#12161f] p-6 rounded-xl border border-[#2a3245] space-y-4">
+                  <div className="flex items-center justify-between border-b border-[#2a3245] pb-3 font-mono text-xs">
                     <span className="text-gray-400">tokens.generated.css</span>
                     <button
                       onClick={handleCopyTokens}
-                      className="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-[#323946] text-[#00eeff] hover:bg-[#00eeff] hover:text-[#1f242d] transition-colors cursor-pointer"
+                      className="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-[#1b202c] text-[#00eeff] hover:bg-[#00eeff] hover:text-[#12161f] transition-colors cursor-pointer"
                     >
                       {tokenCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                       <span>{tokenCopied ? 'Copied' : 'Copy Tokens'}</span>
                     </button>
                   </div>
 
-                  <pre className="font-mono text-xs text-[#00eeff] overflow-x-auto p-3 bg-[#181d25] rounded-xl border border-[#323946] leading-relaxed">
+                  <pre className="font-mono text-xs text-[#00eeff] overflow-x-auto p-3 bg-[#0d1017] rounded-xl border border-[#2a3245] leading-relaxed">
                     <code>{generatedCss}</code>
                   </pre>
                 </div>
@@ -307,7 +307,7 @@ export const ComponentLab: React.FC = () => {
                     <button
                       onClick={runBenchmark}
                       disabled={isRendering}
-                      className="px-4 py-2 rounded-xl bg-[#00eeff] text-[#1f242d] font-mono text-xs font-bold hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                      className="px-4 py-2 rounded-xl bg-[#00eeff] text-[#12161f] font-mono text-xs font-bold hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                     >
                       <Play className="w-3.5 h-3.5" />
                       <span>{isRendering ? 'Benchmarking...' : 'Execute Benchmark'}</span>
@@ -316,15 +316,15 @@ export const ComponentLab: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 bg-[#1f242d] rounded-xl border border-[#323946] space-y-2">
+                  <div className="p-4 bg-[#12161f] rounded-xl border border-[#2a3245] space-y-2">
                     <span className="text-xs font-mono text-gray-400">Execution Strategy</span>
                     <div className="flex gap-2">
                       <button
                         onClick={() => setRenderMode('raf-batched')}
                         className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                           renderMode === 'raf-batched'
-                            ? 'bg-[#00eeff] text-[#1f242d] font-bold'
-                            : 'bg-[#323946] text-gray-300'
+                            ? 'bg-[#00eeff] text-[#12161f] font-bold'
+                            : 'bg-[#1b202c] text-gray-300'
                         }`}
                       >
                         RAF Batched (Non-blocking)
@@ -334,7 +334,7 @@ export const ComponentLab: React.FC = () => {
                         className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                           renderMode === 'naive-sync'
                             ? 'bg-rose-500 text-white font-bold'
-                            : 'bg-[#323946] text-gray-300'
+                            : 'bg-[#1b202c] text-gray-300'
                         }`}
                       >
                         Naive Sync (Blocking)
@@ -342,7 +342,7 @@ export const ComponentLab: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-4 bg-[#1f242d] rounded-xl border border-[#323946] space-y-1">
+                  <div className="p-4 bg-[#12161f] rounded-xl border border-[#2a3245] space-y-1">
                     <span className="text-xs font-mono text-gray-400">Last Execution Latency:</span>
                     <div className="text-2xl font-mono font-bold text-[#00eeff]">
                       {lastRenderTime !== null ? `${lastRenderTime} ms` : 'Awaiting trigger'}
@@ -350,7 +350,7 @@ export const ComponentLab: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-4 bg-[#181d25] rounded-xl border border-[#323946] font-mono text-xs space-y-1 text-[#00eeff]">
+                <div className="p-4 bg-[#0d1017] rounded-xl border border-[#2a3245] font-mono text-xs space-y-1 text-[#00eeff]">
                   <span className="text-gray-400 block mb-2">// telemetry_event_stream:</span>
                   {perfLog.map((log, i) => (
                     <div key={i} className="flex items-start gap-2">
@@ -372,7 +372,7 @@ export const ComponentLab: React.FC = () => {
 
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-xs font-mono text-gray-400">Current State:</span>
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00eeff] text-[#1f242d] shadow-[0_0_10px_#00eeff]">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00eeff] text-[#12161f] shadow-[0_0_10px_#00eeff]">
                     {fsmState}
                   </span>
                 </div>
@@ -380,31 +380,31 @@ export const ComponentLab: React.FC = () => {
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => triggerFsmTransition('FETCH')}
-                    className="px-3.5 py-1.5 bg-[#1f242d] text-white hover:text-[#00eeff] hover:border-[#00eeff] border border-[#323946] rounded-lg text-xs font-mono transition-all cursor-pointer"
+                    className="px-3.5 py-1.5 bg-[#12161f] text-white hover:text-[#00eeff] hover:border-[#00eeff] border border-[#2a3245] rounded-lg text-xs font-mono transition-all cursor-pointer"
                   >
                     Action: FETCH
                   </button>
                   <button
                     onClick={() => triggerFsmTransition('RESOLVE')}
-                    className="px-3.5 py-1.5 bg-[#1f242d] text-white hover:text-[#00eeff] hover:border-[#00eeff] border border-[#323946] rounded-lg text-xs font-mono transition-all cursor-pointer"
+                    className="px-3.5 py-1.5 bg-[#12161f] text-white hover:text-[#00eeff] hover:border-[#00eeff] border border-[#2a3245] rounded-lg text-xs font-mono transition-all cursor-pointer"
                   >
                     Action: RESOLVE (Success)
                   </button>
                   <button
                     onClick={() => triggerFsmTransition('REJECT')}
-                    className="px-3.5 py-1.5 bg-[#1f242d] text-white hover:text-rose-400 hover:border-rose-400 border border-[#323946] rounded-lg text-xs font-mono transition-all cursor-pointer"
+                    className="px-3.5 py-1.5 bg-[#12161f] text-white hover:text-rose-400 hover:border-rose-400 border border-[#2a3245] rounded-lg text-xs font-mono transition-all cursor-pointer"
                   >
                     Action: REJECT (Error)
                   </button>
                   <button
                     onClick={() => triggerFsmTransition('RESET')}
-                    className="px-3.5 py-1.5 bg-[#323946] text-gray-300 hover:text-white rounded-lg text-xs font-mono transition-all cursor-pointer"
+                    className="px-3.5 py-1.5 bg-[#1b202c] text-gray-300 hover:text-white rounded-lg text-xs font-mono transition-all cursor-pointer"
                   >
                     Action: RESET
                   </button>
                 </div>
 
-                <div className="p-4 bg-[#181d25] rounded-xl border border-[#323946] font-mono text-xs space-y-1">
+                <div className="p-4 bg-[#0d1017] rounded-xl border border-[#2a3245] font-mono text-xs space-y-1">
                   <span className="text-gray-400 block mb-2">// state_transition_log:</span>
                   {fsmHistory.map((h, i) => (
                     <div key={i} className="flex justify-between text-gray-300">

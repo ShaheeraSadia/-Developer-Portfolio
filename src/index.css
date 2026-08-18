@@ -3,22 +3,23 @@
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --color-bg-dark: #1f242d;
-  --color-card-dark: #323946;
-  --color-accent-cyan: #00eeff;
-  --color-cyan-glow: rgba(0, 238, 255, 0.4);
+  --color-dark-bg: #12161f;
+  --color-dark-card: #1b202c;
+  --color-dark-border: #2a3245;
+  --color-cyan-glow: #00eeff;
+  --color-cyan-dark: #008b99;
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
-    background-color: #1f242d;
+    background-color: #12161f;
     color: #ffffff;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #1f242d;
+    background-color: #12161f;
     color: #ffffff;
     overflow-x: hidden;
   }
@@ -29,12 +30,12 @@
     height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #1f242d;
+    background: #12161f;
   }
   ::-webkit-scrollbar-thumb {
-    background: #323946;
+    background: #1b202c;
     border-radius: 9999px;
-    border: 2px solid #1f242d;
+    border: 2px solid #12161f;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #00eeff;

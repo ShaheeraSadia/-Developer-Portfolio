@@ -4,10 +4,10 @@ import { experienceData } from '../data/portfolioData';
 
 export const ExperienceTimeline: React.FC = () => {
   return (
-    <section id="experience" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
+    <section id="experience" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Clear Hierarchy */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -30,9 +30,9 @@ export const ExperienceTimeline: React.FC = () => {
             <div
               key={exp.id}
               id={`experience-item-${exp.id}`}
-              className="p-6 sm:p-8 rounded-2xl border border-[#323946] bg-[#323946] hover:border-[#00eeff] transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(0,238,255,0.15)]"
+              className="p-6 sm:p-8 rounded-2xl border border-[#2a3245] bg-[#1b202c] hover:border-[#00eeff] transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(0,238,255,0.15)]"
             >
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 border-b border-[#1f242d] pb-6">
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 border-b border-[#12161f] pb-6">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2.5">
                     <h3 className="text-xl font-bold text-white">
@@ -42,7 +42,7 @@ export const ExperienceTimeline: React.FC = () => {
                       @ {exp.company}
                     </span>
                     {exp.statsBadge && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#1f242d] border border-[#00eeff]/30 text-xs font-mono font-bold text-[#00eeff]">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#12161f] border border-[#00eeff]/30 text-xs font-mono font-bold text-[#00eeff]">
                         {exp.statsBadge}
                       </span>
                     )}
@@ -81,12 +81,12 @@ export const ExperienceTimeline: React.FC = () => {
               </div>
 
               {/* Tech Stack Badges */}
-              <div className="mt-6 pt-4 border-t border-[#1f242d] flex flex-wrap items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-[#12161f] flex flex-wrap items-center gap-1.5">
                 <span className="text-xs font-mono text-gray-400 mr-1">// stack:</span>
                 {exp.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-0.5 rounded-md text-xs font-mono bg-[#1f242d] text-gray-200 border border-[#323946]"
+                    className="px-2.5 py-0.5 rounded-md text-xs font-mono bg-[#12161f] text-gray-200 border border-[#2a3245]"
                   >
                     {tech}
                   </span>

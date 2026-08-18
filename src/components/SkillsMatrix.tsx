@@ -14,10 +14,10 @@ import { skillCategories, featuredToolsData } from '../data/portfolioData';
 
 export const SkillsMatrix: React.FC = () => {
   return (
-    <section id="skills-matrix" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
+    <section id="skills-matrix" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with Clear Hierarchy */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -36,15 +36,15 @@ export const SkillsMatrix: React.FC = () => {
 
         {/* Featured Applications & Tools Table */}
         <div className="mb-12">
-          <div className="rounded-2xl border border-[#323946] bg-[#323946] overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.2)]">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#1f242d] bg-[#1f242d]/80">
+          <div className="rounded-2xl border border-[#2a3245] bg-[#1b202c] overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a3245] bg-[#12161f]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#00eeff]" />
                 <h3 className="text-sm font-mono uppercase font-bold text-white">
                   // featured_applications_&amp;_production_tools
                 </h3>
               </div>
-              <span className="text-xs font-mono text-[#00eeff] font-semibold bg-[#323946] px-2.5 py-1 rounded-full border border-[#00eeff]/20">
+              <span className="text-xs font-mono text-[#00eeff] font-semibold bg-[#1b202c] px-2.5 py-1 rounded-full border border-[#00eeff]/20">
                 Verified Deployments
               </span>
             </div>
@@ -52,16 +52,16 @@ export const SkillsMatrix: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse font-sans text-xs sm:text-sm">
                 <thead>
-                  <tr className="border-b border-[#1f242d] bg-[#1f242d]/50 text-gray-400 font-mono text-xs uppercase">
+                  <tr className="border-b border-[#2a3245] bg-[#12161f]/50 text-gray-400 font-mono text-xs uppercase">
                     <th className="py-3 px-4 sm:px-6 font-semibold">Application</th>
                     <th className="py-3 px-4 sm:px-6 font-semibold">Core Focus</th>
                     <th className="py-3 px-4 sm:px-6 font-semibold">Key Tech</th>
                     <th className="py-3 px-4 sm:px-6 font-semibold text-right">Live Link &amp; Code</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1f242d]">
+                <tbody className="divide-y divide-[#2a3245]">
                   {featuredToolsData.map((tool, idx) => (
-                    <tr key={idx} className="hover:bg-[#1f242d]/40 transition-colors">
+                    <tr key={idx} className="hover:bg-[#12161f]/60 transition-colors">
                       <td className="py-4 px-4 sm:px-6 font-bold text-white">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-[#00eeff]"></span>
@@ -112,10 +112,10 @@ export const SkillsMatrix: React.FC = () => {
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
-              className="bg-[#323946] p-6 rounded-2xl border border-[#323946] hover:border-[#00eeff] transition-all space-y-4 hover:shadow-[0_0_20px_rgba(0,238,255,0.15)] flex flex-col justify-between"
+              className="bg-[#1b202c] p-6 rounded-2xl border border-[#2a3245] hover:border-[#00eeff] transition-all space-y-4 hover:shadow-[0_0_20px_rgba(0,238,255,0.15)] flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="flex items-center justify-between pb-3 border-b border-[#1f242d]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#12161f]">
                   <span className="text-xs font-mono font-bold text-[#00eeff] uppercase">
                     {category.category}
                   </span>
@@ -130,7 +130,7 @@ export const SkillsMatrix: React.FC = () => {
                         <span className="text-gray-400 text-[11px]">{skill.experienceYears}</span>
                       </div>
                       {/* Visual progress track */}
-                      <div className="w-full h-1.5 bg-[#1f242d] rounded-full overflow-hidden">
+                      <div className="w-full h-1.5 bg-[#12161f] rounded-full overflow-hidden">
                         <div
                           className="h-full bg-[#00eeff] rounded-full shadow-[0_0_6px_#00eeff]"
                           style={{
@@ -148,7 +148,7 @@ export const SkillsMatrix: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#1f242d] flex justify-between items-center text-[11px] font-mono text-gray-400">
+              <div className="pt-3 border-t border-[#12161f] flex justify-between items-center text-[11px] font-mono text-gray-400">
                 <span>Domain Focus</span>
                 <span className="text-[#00eeff] font-semibold">Production Ready</span>
               </div>

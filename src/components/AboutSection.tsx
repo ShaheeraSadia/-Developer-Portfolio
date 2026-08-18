@@ -4,10 +4,10 @@ import { aboutMeData, developerConfig } from '../data/portfolioData';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
+    <section id="about" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -29,7 +29,7 @@ export const AboutSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Full Biography Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="bg-[#323946] p-7 rounded-2xl border border-[#323946] hover:border-[#00eeff]/40 transition-all space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+            <div className="bg-[#1b202c] p-7 rounded-2xl border border-[#2a3245] hover:border-[#00eeff]/50 transition-all space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <span className="text-xs font-mono text-[#00eeff] uppercase tracking-wider font-bold block">
                 // developer_profile.overview
               </span>
@@ -48,7 +48,7 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Core Tenets Checklist */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-[#1f242d]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-[#12161f]">
                 <div className="flex items-center gap-2 text-xs font-mono text-gray-200">
                   <CheckCircle2 className="w-4 h-4 text-[#00eeff] shrink-0" />
                   <span>100% Client-Side Computing</span>
@@ -70,15 +70,15 @@ export const AboutSection: React.FC = () => {
 
             {/* Quick Experience Stats Card */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+              <div className="bg-[#1b202c] p-4 rounded-xl border border-[#2a3245] text-center space-y-1">
                 <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">5+</span>
                 <span className="text-[11px] text-gray-400 font-mono block">Years Dev</span>
               </div>
-              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+              <div className="bg-[#1b202c] p-4 rounded-xl border border-[#2a3245] text-center space-y-1">
                 <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">3+</span>
                 <span className="text-[11px] text-gray-400 font-mono block">Live SaaS Tools</span>
               </div>
-              <div className="bg-[#323946] p-4 rounded-xl border border-[#323946] text-center space-y-1">
+              <div className="bg-[#1b202c] p-4 rounded-xl border border-[#2a3245] text-center space-y-1">
                 <span className="text-2xl font-extrabold font-mono text-[#00eeff] block text-glow-cyan">100%</span>
                 <span className="text-[11px] text-gray-400 font-mono block">Browser Privacy</span>
               </div>
@@ -87,8 +87,8 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Column: Interactive Career Milestones Timeline */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="bg-[#323946] p-6 sm:p-7 rounded-2xl border border-[#323946] space-y-4">
-              <div className="flex items-center justify-between border-b border-[#1f242d] pb-3">
+            <div className="bg-[#1b202c] p-6 sm:p-7 rounded-2xl border border-[#2a3245] space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+              <div className="flex items-center justify-between border-b border-[#12161f] pb-3">
                 <span className="text-xs font-mono text-[#00eeff] uppercase tracking-wider font-bold">
                   // career_milestones.log
                 </span>
@@ -98,12 +98,12 @@ export const AboutSection: React.FC = () => {
               <div className="space-y-4 pt-1">
                 {aboutMeData.milestones.map((m, idx) => (
                   <div key={idx} className="relative pl-6 border-l-2 border-[#00eeff]/40 space-y-1 group">
-                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-[#1f242d] border-2 border-[#00eeff] group-hover:bg-[#00eeff] group-hover:shadow-[0_0_8px_#00eeff] transition-all"></span>
+                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-[#12161f] border-2 border-[#00eeff] group-hover:bg-[#00eeff] group-hover:shadow-[0_0_8px_#00eeff] transition-all"></span>
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-bold text-white group-hover:text-[#00eeff] transition-colors">
                         {m.title}
                       </h4>
-                      <span className="text-[11px] font-mono text-[#00eeff] font-semibold bg-[#1f242d] px-2 py-0.5 rounded border border-[#00eeff]/20">
+                      <span className="text-[11px] font-mono text-[#00eeff] font-semibold bg-[#12161f] px-2 py-0.5 rounded border border-[#00eeff]/20">
                         {m.year}
                       </span>
                     </div>

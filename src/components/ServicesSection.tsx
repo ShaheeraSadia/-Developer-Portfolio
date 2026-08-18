@@ -73,10 +73,10 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
   ];
 
   return (
-    <section id="services" className="py-20 bg-[#1f242d] text-white border-b border-[#323946] relative">
+    <section id="services" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-12 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-12 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -100,15 +100,15 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
             return (
               <div
                 key={index}
-                className="group relative bg-[#323946] rounded-2xl p-6 sm:p-7 border border-[#323946] hover:border-[#00eeff] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(0,238,255,0.25)] flex flex-col justify-between"
+                className="group relative bg-[#1b202c] rounded-2xl p-6 sm:p-7 border border-[#2a3245] hover:border-[#00eeff] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(0,238,255,0.25)] flex flex-col justify-between"
               >
                 {/* Top Badge & Icon */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-xl bg-[#1f242d] text-[#00eeff] flex items-center justify-center border border-[#00eeff]/30 group-hover:border-[#00eeff] group-hover:scale-110 transition-all duration-300 shadow-[0_0_10px_rgba(0,238,255,0.15)]">
+                    <div className="w-12 h-12 rounded-xl bg-[#12161f] text-[#00eeff] flex items-center justify-center border border-[#00eeff]/30 group-hover:border-[#00eeff] group-hover:scale-110 transition-all duration-300 shadow-[0_0_10px_rgba(0,238,255,0.15)]">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-[#1f242d] text-[#00eeff] border border-[#00eeff]/20">
+                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-[#12161f] text-[#00eeff] border border-[#00eeff]/20">
                       {service.badge}
                     </span>
                   </div>
@@ -128,7 +128,7 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
                 </div>
 
                 {/* Feature Checklist */}
-                <div className="mt-6 pt-5 border-t border-[#1f242d]/80 space-y-2">
+                <div className="mt-6 pt-5 border-t border-[#12161f] space-y-2">
                   {service.features.map((feat, fIndex) => (
                     <div key={fIndex} className="flex items-center gap-2 text-xs text-gray-300">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#00eeff] shrink-0" />

@@ -17,7 +17,9 @@ import {
   Briefcase,
   FlaskConical,
   Cpu,
-  MessageSquare
+  MessageSquare,
+  Search,
+  Command
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 
@@ -27,6 +29,7 @@ interface NavbarProps {
   onToggleConfigMode: () => void;
   activeSection?: string;
   onNavigate?: (section: string) => void;
+  onOpenCommandPalette?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -35,6 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleConfigMode,
   activeSection = 'home',
   onNavigate,
+  onOpenCommandPalette,
 }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -135,8 +139,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-navbar"
-      className={`sticky top-0 z-50 w-full transition-all duration-200 bg-[#1f242d]/95 backdrop-blur-md border-b border-[#323946] ${
-        scrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.5)] border-[#00eeff]/20' : ''
+      className={`sticky top-0 z-50 w-full transition-all duration-200 bg-[#12161f]/95 backdrop-blur-md border-b border-[#2a3245] ${
+        scrolled ? 'shadow-[0_4px_25px_rgba(0,0,0,0.7)] border-[#00eeff]/30' : ''
       }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
@@ -148,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             id="nav-logo"
             className="flex items-center gap-2 text-sm font-mono font-bold text-white hover:text-[#00eeff] transition-colors group shrink-0 cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#323946] border border-[#00eeff]/40 text-[#00eeff] flex items-center justify-center text-xs font-mono font-bold group-hover:bg-[#00eeff] group-hover:text-[#1f242d] group-hover:shadow-[0_0_12px_#00eeff] transition-all shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#1b202c] border border-[#2a3245] text-[#00eeff] flex items-center justify-center text-xs font-mono font-bold group-hover:bg-[#00eeff] group-hover:text-[#12161f] group-hover:shadow-[0_0_12px_#00eeff] transition-all shrink-0">
               SS
             </div>
             <span className="tracking-tight whitespace-nowrap text-sm sm:text-base">
@@ -156,10 +160,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          {/* Availability badge (shown on extra-wide screens only to prevent crowding) */}
+          {/* Availability badge */}
           <div
             id="nav-status-indicator"
-            className="hidden 2xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#323946] border border-[#00eeff]/30 text-xs font-mono text-gray-200 whitespace-nowrap shrink-0 shadow-sm"
+            className="hidden 2xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#1b202c] border border-[#00eeff]/30 text-xs font-mono text-gray-200 whitespace-nowrap shrink-0 shadow-sm"
           >
             <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse shrink-0 shadow-[0_0_6px_#00eeff]"></span>
             <span className="text-gray-400 text-[11px]">status:</span>
@@ -173,8 +177,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNavClick('home')}
             className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 ${
               activeSection === 'home'
-                ? 'bg-[#00eeff] text-[#1f242d] font-bold border border-[#00eeff] animate-nav-glow'
-                : 'text-gray-300 hover:text-white hover:bg-[#323946] border border-transparent'
+                ? 'bg-[#00eeff] text-[#12161f] font-bold border border-[#00eeff] shadow-[0_0_12px_#00eeff] animate-nav-glow'
+                : 'text-gray-300 hover:text-white hover:bg-[#1b202c] border border-transparent'
             }`}
           >
             <Home className="w-3.5 h-3.5" />
@@ -189,8 +193,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNavClick(link.id)}
                 className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#00eeff] text-[#1f242d] font-bold border border-[#00eeff] animate-nav-glow'
-                    : 'text-gray-300 hover:text-white hover:bg-[#323946] border border-transparent'
+                    ? 'bg-[#00eeff] text-[#12161f] font-bold border border-[#00eeff] shadow-[0_0_12px_#00eeff] animate-nav-glow'
+                    : 'text-gray-300 hover:text-[#00eeff] hover:bg-[#1b202c] border border-transparent'
                 }`}
               >
                 {link.label}
@@ -198,14 +202,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             );
           })}
 
-          {/* "More" Dropdown Menu for Experience, Lab & Principles */}
+          {/* "More" Dropdown Menu */}
           <div className="relative" ref={moreDropdownRef}>
             <button
               onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
               className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 ${
                 isSecondaryActive
-                  ? 'bg-[#00eeff] text-[#1f242d] font-bold border border-[#00eeff] animate-nav-glow'
-                  : 'text-gray-300 hover:text-white hover:bg-[#323946] border border-transparent'
+                  ? 'bg-[#00eeff] text-[#12161f] font-bold border border-[#00eeff] shadow-[0_0_12px_#00eeff] animate-nav-glow'
+                  : 'text-gray-300 hover:text-[#00eeff] hover:bg-[#1b202c] border border-transparent'
               }`}
               aria-expanded={moreDropdownOpen}
               aria-haspopup="true"
@@ -215,7 +219,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {moreDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-[#1f242d] border border-[#323946] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] py-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+              <div className="absolute right-0 mt-2 w-56 bg-[#1b202c] border border-[#2a3245] rounded-xl shadow-[0_10px_35px_rgba(0,0,0,0.7)] py-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                 {secondaryNavLinks.map((item) => {
                   const Icon = item.icon;
                   const isActive = activeSection === item.id;
@@ -225,8 +229,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => handleNavClick(item.id)}
                       className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2.5 transition-colors cursor-pointer ${
                         isActive
-                          ? 'bg-[#323946] text-[#00eeff] font-bold'
-                          : 'text-gray-300 hover:text-white hover:bg-[#323946]/80'
+                          ? 'bg-[#12161f] text-[#00eeff] font-bold border-l-2 border-[#00eeff]'
+                          : 'text-gray-300 hover:text-white hover:bg-[#12161f]/80'
                       }`}
                     >
                       <Icon className="w-4 h-4 text-[#00eeff] shrink-0" />
@@ -242,13 +246,29 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </nav>
 
-        {/* Right Action Tools: Clock, raw_json, Resume, Hamburger */}
+        {/* Right Action Tools */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          
-          {/* SF Clock (shown on wide screens) */}
+          {/* Command Palette Trigger Button */}
+          {onOpenCommandPalette && (
+            <button
+              id="open-command-palette-btn"
+              onClick={onOpenCommandPalette}
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono bg-[#1b202c] text-gray-300 border border-[#2a3245] hover:border-[#00eeff] hover:text-[#00eeff] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
+              title="Open Command Palette (Ctrl+K)"
+              aria-label="Open Command Palette"
+            >
+              <Search className="w-3.5 h-3.5 text-[#00eeff] group-hover:scale-110 transition-transform shrink-0" />
+              <span className="hidden md:inline">Search</span>
+              <kbd className="hidden sm:inline-flex items-center gap-0.5 text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#12161f] border border-[#2a3245] text-gray-400 group-hover:text-[#00eeff] group-hover:border-[#00eeff]/40 transition-colors">
+                <Command className="w-2.5 h-2.5" />K
+              </kbd>
+            </button>
+          )}
+
+          {/* SF Clock */}
           <div
             id="sf-clock-display"
-            className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono text-gray-300 bg-[#323946] rounded-lg border border-[#323946] whitespace-nowrap shrink-0"
+            className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono text-gray-300 bg-[#1b202c] rounded-lg border border-[#2a3245] whitespace-nowrap shrink-0"
             title="Current Time in San Francisco, CA (PST)"
           >
             <Clock className="w-3.5 h-3.5 text-[#00eeff] shrink-0" />
@@ -261,8 +281,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={onToggleConfigMode}
             className={`inline-flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
               isConfigMode
-                ? 'bg-[#00eeff] text-[#1f242d] font-bold border-[#00eeff] shadow-[0_0_10px_#00eeff]'
-                : 'bg-[#323946] text-gray-300 border-[#323946] hover:text-[#00eeff] hover:border-[#00eeff]/50'
+                ? 'bg-[#00eeff] text-[#12161f] font-bold border-[#00eeff] shadow-[0_0_10px_#00eeff]'
+                : 'bg-[#1b202c] text-gray-300 border-[#2a3245] hover:text-[#00eeff] hover:border-[#00eeff]/50'
             }`}
             title="Toggle between UI Mode and Raw JSON Schema View"
             aria-pressed={isConfigMode}
@@ -271,24 +291,24 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden sm:inline">{isConfigMode ? 'ui_mode' : 'raw_json'}</span>
           </button>
 
-          {/* Resume Trigger (Always High Priority & Fully Visible) */}
+          {/* Resume Trigger */}
           <button
             id="open-resume-btn"
             onClick={onOpenResume}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-mono font-bold rounded-lg bg-[#00eeff] text-[#1f242d] hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-mono font-bold rounded-lg bg-[#00eeff] text-[#12161f] hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all whitespace-nowrap shrink-0 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />
             <span>Resume</span>
           </button>
 
-          {/* Hamburger Menu Toggle Button */}
+          {/* Hamburger Menu */}
           <button
             id="mobile-menu-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-2 rounded-lg border transition-all shrink-0 flex items-center justify-center cursor-pointer ${
               mobileMenuOpen
-                ? 'bg-[#00eeff] text-[#1f242d] border-[#00eeff] shadow-[0_0_12px_#00eeff]'
-                : 'bg-[#323946] text-white border-[#323946] hover:border-[#00eeff] hover:text-[#00eeff]'
+                ? 'bg-[#00eeff] text-[#12161f] border-[#00eeff] shadow-[0_0_12px_#00eeff]'
+                : 'bg-[#1b202c] text-white border-[#2a3245] hover:border-[#00eeff] hover:text-[#00eeff]'
             }`}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -302,26 +322,38 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="border-b border-[#323946] bg-[#1f242d] px-4 sm:px-6 lg:px-8 py-5 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl"
+          className="border-b border-[#2a3245] bg-[#12161f] px-4 sm:px-6 lg:px-8 py-5 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl"
         >
           <div className="max-w-6xl mx-auto space-y-4">
-            {/* Drawer Header Info */}
-            <div className="flex flex-wrap items-center justify-between pb-3 border-b border-[#323946] text-xs font-mono gap-2">
+            <div className="flex flex-wrap items-center justify-between pb-3 border-b border-[#2a3245] text-xs font-mono gap-2">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
                 <span className="text-gray-400">explore_sections:</span>
                 <span className="font-semibold text-white">Interactive Section Hub</span>
               </div>
-              <button
-                onClick={() => handleNavClick('home')}
-                className="text-xs font-mono text-[#00eeff] font-bold hover:underline cursor-pointer flex items-center gap-1"
-              >
-                <Home className="w-3 h-3" />
-                <span>Return to Home</span>
-              </button>
+              <div className="flex items-center gap-2">
+                {onOpenCommandPalette && (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onOpenCommandPalette();
+                    }}
+                    className="text-xs font-mono text-[#00eeff] hover:underline cursor-pointer flex items-center gap-1"
+                  >
+                    <Search className="w-3 h-3" />
+                    <span>Search Index (Ctrl+K)</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => handleNavClick('home')}
+                  className="text-xs font-mono text-gray-300 hover:text-[#00eeff] cursor-pointer flex items-center gap-1"
+                >
+                  <Home className="w-3 h-3" />
+                  <span>Home</span>
+                </button>
+              </div>
             </div>
 
-            {/* Navigation Grid Links */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
               {allNavLinks.map((link) => {
                 const Icon = link.icon;
@@ -333,12 +365,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => handleNavClick(link.id)}
                     className={`group p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-[#323946] border-[#00eeff] shadow-[0_0_15px_rgba(0,238,255,0.4)] animate-nav-glow'
-                        : 'bg-[#323946]/70 border-[#323946] hover:border-[#00eeff] hover:bg-[#323946]'
+                        ? 'bg-[#1b202c] border-[#00eeff] shadow-[0_0_15px_rgba(0,238,255,0.4)] animate-nav-glow'
+                        : 'bg-[#1b202c]/70 border-[#2a3245] hover:border-[#00eeff] hover:bg-[#1b202c]'
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 rounded-lg bg-[#1f242d] border border-[#00eeff]/30 text-[#00eeff] shrink-0">
+                      <div className="p-1.5 rounded-lg bg-[#12161f] border border-[#00eeff]/30 text-[#00eeff] shrink-0">
                         <Icon className="w-3.5 h-3.5" />
                       </div>
                       <div className="space-y-0.5">
@@ -356,14 +388,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
 
-            {/* Quick Actions Footer inside Drawer */}
-            <div className="pt-3 border-t border-[#323946] flex flex-wrap items-center justify-between gap-3">
+            <div className="pt-3 border-t border-[#2a3245] flex flex-wrap items-center justify-between gap-3">
               <button
                 onClick={() => {
                   onToggleConfigMode();
                   setMobileMenuOpen(false);
                 }}
-                className="text-xs font-mono text-gray-300 hover:text-[#00eeff] flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#323946] border border-[#323946] hover:border-[#00eeff]/40 transition-colors cursor-pointer"
+                className="text-xs font-mono text-gray-300 hover:text-[#00eeff] flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1b202c] border border-[#2a3245] hover:border-[#00eeff]/40 transition-colors cursor-pointer"
               >
                 <Code2 className="w-3.5 h-3.5 text-[#00eeff]" />
                 <span>Switch to {isConfigMode ? 'UI View' : 'Raw JSON View'}</span>
@@ -371,7 +402,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <button
                 onClick={() => handleNavClick('all')}
-                className="text-xs font-mono text-gray-300 hover:text-white px-3 py-1.5 rounded-lg bg-[#323946] border border-[#323946] cursor-pointer"
+                className="text-xs font-mono text-gray-300 hover:text-white px-3 py-1.5 rounded-lg bg-[#1b202c] border border-[#2a3245] cursor-pointer"
               >
                 <span>View All Sections (Stacked)</span>
               </button>

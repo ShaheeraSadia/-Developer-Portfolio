@@ -38,10 +38,10 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#1f242d] text-white border-b border-[#323946]">
+    <section id="contact" className="py-20 bg-[#12161f] text-white border-b border-[#2a3245]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#323946]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#2a3245]">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00eeff] uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
@@ -61,13 +61,13 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
           {/* Left Column: Direct Connection & Verified Profiles Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-7 rounded-2xl border border-[#323946] bg-[#323946] space-y-5 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+            <div className="p-6 sm:p-7 rounded-2xl border border-[#2a3245] bg-[#1b202c] space-y-5 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <span className="text-xs font-mono uppercase tracking-wider text-[#00eeff] font-bold block">
                 // direct_communication_channel
               </span>
 
               {/* Direct Email Pill with Copy Button */}
-              <div className="p-4 bg-[#1f242d] rounded-xl border border-[#323946] flex items-center justify-between gap-2 group hover:border-[#00eeff]/50 transition-colors">
+              <div className="p-4 bg-[#12161f] rounded-xl border border-[#2a3245] flex items-center justify-between gap-2 group hover:border-[#00eeff]/50 transition-colors">
                 <div className="flex items-center gap-2.5 overflow-hidden">
                   <Mail className="w-4 h-4 text-[#00eeff] shrink-0" />
                   <span className="text-xs sm:text-sm font-mono font-medium text-white truncate">
@@ -78,7 +78,7 @@ export const ContactSection: React.FC = () => {
                 <button
                   id="contact-copy-email-btn"
                   onClick={handleCopyEmail}
-                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-mono rounded-lg bg-[#323946] border border-[#00eeff]/30 text-[#00eeff] hover:bg-[#00eeff] hover:text-[#1f242d] hover:shadow-[0_0_10px_#00eeff] transition-all shrink-0 cursor-pointer font-bold"
+                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-mono rounded-lg bg-[#1b202c] border border-[#00eeff]/30 text-[#00eeff] hover:bg-[#00eeff] hover:text-[#12161f] hover:shadow-[0_0_10px_#00eeff] transition-all shrink-0 cursor-pointer font-bold"
                 >
                   {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copied ? 'copied' : 'copy'}</span>
@@ -86,7 +86,7 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* Status Specs */}
-              <div className="space-y-2.5 text-xs font-mono text-gray-300 pt-2 border-t border-[#1f242d]">
+              <div className="space-y-2.5 text-xs font-mono text-gray-300 pt-2 border-t border-[#12161f]">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400">current_status:</span>
                   <span className="text-[#00eeff] font-bold flex items-center gap-1.5">
@@ -106,7 +106,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Social Media & Verified Profiles */}
-            <div className="p-6 sm:p-7 rounded-2xl border border-[#323946] bg-[#323946] space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+            <div className="p-6 sm:p-7 rounded-2xl border border-[#2a3245] bg-[#1b202c] space-y-4 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <span className="text-xs font-mono uppercase tracking-wider text-[#00eeff] font-bold block">
                 // verified_profiles
               </span>
@@ -116,7 +116,7 @@ export const ContactSection: React.FC = () => {
                   href={developerConfig.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-[#1f242d] hover:bg-[#1f242d]/80 rounded-xl border border-[#323946] hover:border-[#00eeff] flex items-center justify-between text-white transition-all group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
+                  className="p-3 bg-[#12161f] hover:bg-[#12161f]/80 rounded-xl border border-[#2a3245] hover:border-[#00eeff] flex items-center justify-between text-white transition-all group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
                 >
                   <div className="flex items-center gap-2">
                     <Github className="w-4 h-4 text-[#00eeff]" />
@@ -129,7 +129,7 @@ export const ContactSection: React.FC = () => {
                   href={developerConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-[#1f242d] hover:bg-[#1f242d]/80 rounded-xl border border-[#323946] hover:border-[#00eeff] flex items-center justify-between text-white transition-all group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
+                  className="p-3 bg-[#12161f] hover:bg-[#12161f]/80 rounded-xl border border-[#2a3245] hover:border-[#00eeff] flex items-center justify-between text-white transition-all group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
                 >
                   <div className="flex items-center gap-2">
                     <Linkedin className="w-4 h-4 text-[#00eeff]" />
@@ -142,7 +142,7 @@ export const ContactSection: React.FC = () => {
                   href="https://brand-identity-five.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-[#1f242d] hover:bg-[#1f242d]/80 rounded-xl border border-[#323946] hover:border-[#00eeff] flex items-center justify-between text-white transition-all col-span-1 sm:col-span-2 group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
+                  className="p-3 bg-[#12161f] hover:bg-[#12161f]/80 rounded-xl border border-[#2a3245] hover:border-[#00eeff] flex items-center justify-between text-white transition-all col-span-1 sm:col-span-2 group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#00eeff]"></span>
@@ -155,7 +155,7 @@ export const ContactSection: React.FC = () => {
                   href="https://toolkit-pro-chi.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-[#1f242d] hover:bg-[#1f242d]/80 rounded-xl border border-[#323946] hover:border-[#00eeff] flex items-center justify-between text-white transition-all col-span-1 sm:col-span-2 group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
+                  className="p-3 bg-[#12161f] hover:bg-[#12161f]/80 rounded-xl border border-[#2a3245] hover:border-[#00eeff] flex items-center justify-between text-white transition-all col-span-1 sm:col-span-2 group hover:shadow-[0_0_12px_rgba(0,238,255,0.2)]"
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#00eeff]"></span>
@@ -169,7 +169,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: User Inquiry Transmission Form */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl border border-[#323946] bg-[#323946] shadow-[0_0_25px_rgba(0,0,0,0.25)]">
+            <div className="p-6 sm:p-8 rounded-2xl border border-[#2a3245] bg-[#1b202c] shadow-[0_0_25px_rgba(0,0,0,0.3)]">
               {submitted ? (
                 <div className="py-12 text-center space-y-4 font-mono">
                   <div className="w-14 h-14 rounded-full bg-[#00eeff]/15 text-[#00eeff] flex items-center justify-center mx-auto shadow-[0_0_15px_rgba(0,238,255,0.3)]">
@@ -186,14 +186,14 @@ export const ContactSection: React.FC = () => {
                       setSubmitted(false);
                       setFormData({ name: '', email: '', topic: 'Web & Mobile Application Development', message: '' });
                     }}
-                    className="px-5 py-2.5 text-xs font-mono rounded-xl bg-[#00eeff] text-[#1f242d] font-bold hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all cursor-pointer"
+                    className="px-5 py-2.5 text-xs font-mono rounded-xl bg-[#00eeff] text-[#12161f] font-bold hover:bg-[#55f3ff] hover:shadow-[0_0_15px_#00eeff] transition-all cursor-pointer"
                   >
                     send_another_message
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-[#1f242d] pb-3">
+                  <div className="flex items-center justify-between border-b border-[#12161f] pb-3">
                     <span className="uppercase font-bold text-white flex items-center gap-1.5">
                       <span className="text-[#00eeff]">//</span> transmission_dispatch_form
                     </span>
@@ -212,7 +212,7 @@ export const ContactSection: React.FC = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Sarah Connor"
-                        className="w-full px-3.5 py-2.5 bg-[#1f242d] border border-[#323946] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
+                        className="w-full px-3.5 py-2.5 bg-[#12161f] border border-[#2a3245] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
                       />
                     </div>
 
@@ -227,7 +227,7 @@ export const ContactSection: React.FC = () => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. sarah@enterprise.io"
-                        className="w-full px-3.5 py-2.5 bg-[#1f242d] border border-[#323946] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
+                        className="w-full px-3.5 py-2.5 bg-[#12161f] border border-[#2a3245] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
                       />
                     </div>
                   </div>
@@ -240,7 +240,7 @@ export const ContactSection: React.FC = () => {
                       id="contact-topic"
                       value={formData.topic}
                       onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#1f242d] border border-[#323946] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
+                      className="w-full px-3.5 py-2.5 bg-[#12161f] border border-[#2a3245] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
                     >
                       <option>Web &amp; Mobile Application Development</option>
                       <option>Client-Side SaaS &amp; Web Utility Engineering</option>
@@ -265,7 +265,7 @@ export const ContactSection: React.FC = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Outline your project scope, requirements, or timeline..."
-                      className="w-full px-3.5 py-2.5 bg-[#1f242d] border border-[#323946] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
+                      className="w-full px-3.5 py-2.5 bg-[#12161f] border border-[#2a3245] rounded-xl text-white focus:outline-hidden focus:border-[#00eeff] focus:shadow-[0_0_10px_rgba(0,238,255,0.3)] transition-all font-sans text-sm"
                     />
                   </div>
 
@@ -273,7 +273,7 @@ export const ContactSection: React.FC = () => {
                     type="submit"
                     id="contact-submit-btn"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 px-4 rounded-xl bg-[#00eeff] text-[#1f242d] font-bold text-sm font-mono hover:bg-[#55f3ff] hover:shadow-[0_0_20px_#00eeff] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 px-4 rounded-xl bg-[#00eeff] text-[#12161f] font-bold text-sm font-mono hover:bg-[#55f3ff] hover:shadow-[0_0_20px_#00eeff] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
                     <span>{isSubmitting ? 'dispatching_payload...' : 'dispatch_message'}</span>

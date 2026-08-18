@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, ArrowUp, Sparkles, Activity, Play, Pause, Trash2, ShieldCheck, Cpu } from 'lucide-react';
+import {
+  Activity,
+  Play,
+  Pause,
+  Trash2,
+  BarChart2,
+  RotateCcw,
+  Sparkles,
+  TrendingUp,
+  Clock,
+  Compass
+} from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
+import { useSectionTelemetry } from '../hooks/useSectionTelemetry';
 
 interface LogEntry {
   id: string;
@@ -10,13 +22,21 @@ interface LogEntry {
   component: string;
 }
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  activeSection?: string;
+}
+
+export const Footer: React.FC<FooterProps> = ({ activeSection = 'home' }) => {
+  const telemetry = useSectionTelemetry(activeSection);
   const [isStreaming, setIsStreaming] = useState(true);
+  const logCounterRef = useRef(10);
+  const prevSectionRef = useRef(activeSection);
+
   const [logs, setLogs] = useState<LogEntry[]>(() => {
     const now = new Date();
     const pad = (n: number) => n.toString().padStart(2, '0');
     const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    
+
     return [
       {
         id: '1',
@@ -42,6 +62,31 @@ export const Footer: React.FC = () => {
     ];
   });
 
+  // When active section changes, inject real telemetry event into live logs
+  useEffect(() => {
+    if (prevSectionRef.current !== activeSection) {
+      const now = new Date();
+      const pad = (n: number) => n.toString().padStart(2, '0');
+      const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+      const visitCount = telemetry.stats[activeSection] || 1;
+      const pct = telemetry.totalVisits > 0 ? Math.round((visitCount / telemetry.totalVisits) * 100) : 100;
+
+      setLogs((prev) => [
+        {
+          id: (logCounterRef.current++).toString(),
+          timestamp: time,
+          level: 'EVENT',
+          component: 'section_telemetry',
+          message: `User transitioned to /${activeSection} (visited ${visitCount}x, ${pct}% session share).`,
+        },
+        ...prev.slice(0, 5),
+      ]);
+
+      prevSectionRef.current = activeSection;
+    }
+  }, [activeSection, telemetry.stats, telemetry.totalVisits]);
+
   const mockMessages = [
     { level: 'OK' as const, component: 'dom_engine', message: 'Main-thread INP profiled: 8ms response latency (100/100 Core Web Vital).' },
     { level: 'METRIC' as const, component: 'v8_heap', message: 'Memory allocation: 18.2 MB heap allocated. Garbage collector idle.' },
@@ -53,8 +98,6 @@ export const Footer: React.FC = () => {
     { level: 'OK' as const, component: 'security_sandbox', message: 'Zero CSP violations. Referrer-Policy and HSTS headers enforced.' },
   ];
 
-  const logCounterRef = useRef(4);
-
   useEffect(() => {
     if (!isStreaming) return;
 
@@ -62,9 +105,9 @@ export const Footer: React.FC = () => {
       const now = new Date();
       const pad = (n: number) => n.toString().padStart(2, '0');
       const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-      
+
       const randomMsg = mockMessages[Math.floor(Math.random() * mockMessages.length)];
-      
+
       setLogs((prev) => [
         {
           id: (logCounterRef.current++).toString(),
@@ -75,7 +118,7 @@ export const Footer: React.FC = () => {
         },
         ...prev.slice(0, 5), // Keep latest 6 logs
       ]);
-    }, 3800);
+    }, 4200);
 
     return () => clearInterval(interval);
   }, [isStreaming]);
@@ -84,7 +127,7 @@ export const Footer: React.FC = () => {
     const now = new Date();
     const pad = (n: number) => n.toString().padStart(2, '0');
     const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    
+
     setLogs((prev) => [
       {
         id: (logCounterRef.current++).toString(),
@@ -117,19 +160,19 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="main-footer" className="w-full bg-[#1f242d] text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-t border-[#323946]">
+    <footer id="main-footer" className="w-full bg-[#12161f] text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-t border-[#2a3245]">
       <div className="max-w-6xl mx-auto space-y-6">
-        {/* System Telemetry Manifest & Dynamic Logs Box */}
-        <div className="bg-[#323946] border border-[#323946] rounded-2xl p-5 sm:p-6 font-mono text-sm shadow-[0_0_25px_rgba(0,0,0,0.25)]">
+        {/* System Telemetry Manifest & Operational Metrics */}
+        <div className="bg-[#1b202c] border border-[#2a3245] rounded-2xl p-5 sm:p-6 font-mono text-sm shadow-[0_0_25px_rgba(0,0,0,0.3)]">
           {/* Manifest Header */}
-          <div className="flex flex-wrap items-center justify-between border-b border-[#1f242d] pb-4 mb-4 gap-3">
+          <div className="flex flex-wrap items-center justify-between border-b border-[#12161f] pb-4 mb-4 gap-3">
             <div className="flex items-center gap-2 text-white">
               <span className="text-[#00eeff] font-bold">&gt;_</span>
               <span className="font-bold">system_telemetry.manifest</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 text-xs text-[#00eeff] font-semibold bg-[#1f242d] px-3 py-1 rounded-full border border-[#00eeff]/30 shadow-[0_0_8px_rgba(0,238,255,0.2)]">
+              <div className="flex items-center gap-2 text-xs text-[#00eeff] font-semibold bg-[#12161f] px-3 py-1 rounded-full border border-[#00eeff]/30 shadow-[0_0_8px_rgba(0,238,255,0.2)]">
                 <span className="w-2 h-2 rounded-full bg-[#00eeff] animate-pulse"></span>
                 <span>telemetry_stream: ACTIVE</span>
               </div>
@@ -137,22 +180,109 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Metric Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs pb-5 border-b border-[#1f242d]">
-            <div className="bg-[#1f242d] p-3 rounded-xl border border-[#323946]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs pb-5 border-b border-[#12161f]">
+            <div className="bg-[#12161f] p-3 rounded-xl border border-[#2a3245]">
               <span className="block text-gray-400 mb-0.5 text-[11px]">build_hash:</span>
               <code className="text-[#00eeff] font-bold">git@8f4a21e</code>
             </div>
-            <div className="bg-[#1f242d] p-3 rounded-xl border border-[#323946]">
+            <div className="bg-[#12161f] p-3 rounded-xl border border-[#2a3245]">
               <span className="block text-gray-400 mb-0.5 text-[11px]">runtime:</span>
               <span className="text-white font-bold">React 19 + Vite 6</span>
             </div>
-            <div className="bg-[#1f242d] p-3 rounded-xl border border-[#323946]">
+            <div className="bg-[#12161f] p-3 rounded-xl border border-[#2a3245]">
               <span className="block text-gray-400 mb-0.5 text-[11px]">bundle_weight:</span>
               <span className="text-[#00eeff] font-bold">24.2 kB (brotli)</span>
             </div>
-            <div className="bg-[#1f242d] p-3 rounded-xl border border-[#323946]">
+            <div className="bg-[#12161f] p-3 rounded-xl border border-[#2a3245]">
               <span className="block text-gray-400 mb-0.5 text-[11px]">lighthouse_score:</span>
               <span className="text-[#00eeff] font-bold">100 / 100</span>
+            </div>
+          </div>
+
+          {/* Section Visit Frequency Telemetry Panel */}
+          <div className="py-4 border-b border-[#12161f] space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-gray-300">
+                <BarChart2 className="w-3.5 h-3.5 text-[#00eeff]" />
+                <span className="uppercase tracking-wider text-[#00eeff]">// section_visit_frequency_telemetry</span>
+                <span className="text-gray-500">•</span>
+                <span className="text-[11px] text-gray-400 font-normal">
+                  {telemetry.totalVisits} total transition{telemetry.totalVisits === 1 ? '' : 's'}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {telemetry.topSection && (
+                  <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#12161f] border border-[#00eeff]/30 text-[11px] font-mono">
+                    <TrendingUp className="w-3 h-3 text-[#00eeff]" />
+                    <span className="text-gray-400">top:</span>
+                    <span className="text-[#00eeff] font-bold">/{telemetry.topSection.id}</span>
+                    <span className="text-gray-500">({telemetry.topSection.percentage}%)</span>
+                  </div>
+                )}
+                <button
+                  onClick={telemetry.resetStats}
+                  className="px-2 py-1 bg-[#12161f] hover:bg-[#12161f]/80 text-gray-400 hover:text-[#00eeff] border border-[#2a3245] hover:border-[#00eeff]/40 rounded-lg text-[10px] font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                  title="Reset section telemetry counters"
+                >
+                  <RotateCcw className="w-2.5 h-2.5" />
+                  <span>reset_counters</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Visual Frequency Progress Matrix */}
+            <div className="bg-[#12161f] p-3 sm:p-4 rounded-xl border border-[#2a3245] space-y-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {telemetry.sortedSections.slice(0, 6).map((sec) => {
+                  const isCurrent = sec.id === activeSection;
+                  return (
+                    <div
+                      key={sec.id}
+                      className={`p-2 rounded-lg border transition-all ${
+                        isCurrent
+                          ? 'bg-[#1b202c] border-[#00eeff]/60 shadow-[0_0_10px_rgba(0,238,255,0.15)]'
+                          : 'bg-[#161a24] border-[#2a3245]/70'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between text-[11px] mb-1">
+                        <span className={`font-semibold truncate ${isCurrent ? 'text-[#00eeff]' : 'text-gray-300'}`}>
+                          {sec.label}
+                        </span>
+                        <div className="flex items-center gap-1 shrink-0 font-mono text-[10px]">
+                          <span className="text-white font-bold">{sec.count}x</span>
+                          <span className="text-gray-500">({sec.percentage}%)</span>
+                        </div>
+                      </div>
+
+                      {/* Frequency Bar */}
+                      <div className="w-full h-1.5 bg-[#0d1017] rounded-full overflow-hidden">
+                        <div
+                          className={`h-full transition-all duration-500 ${
+                            isCurrent
+                              ? 'bg-[#00eeff] shadow-[0_0_6px_#00eeff]'
+                              : 'bg-gradient-to-r from-cyan-600 to-[#00eeff]/70'
+                          }`}
+                          style={{ width: `${Math.max(sec.percentage, 4)}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {telemetry.sortedSections.length > 6 && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {telemetry.sortedSections.slice(6).map((sec) => (
+                    <span
+                      key={sec.id}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#161a24] text-gray-400 border border-[#2a3245]"
+                    >
+                      {sec.id}: <strong className="text-white">{sec.count}</strong> ({sec.percentage}%)
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -163,14 +293,14 @@ export const Footer: React.FC = () => {
                 <Activity className="w-3.5 h-3.5 text-[#00eeff]" />
                 <span className="uppercase tracking-wider text-[#00eeff]">// live_system_operational_logs</span>
                 <span className="text-gray-500">•</span>
-                <span className="text-[11px] text-gray-400 font-normal">periodic polling (3.8s)</span>
+                <span className="text-[11px] text-gray-400 font-normal">periodic polling (4.2s)</span>
               </div>
 
               {/* Log Controls */}
               <div className="flex items-center gap-1.5 text-xs">
                 <button
                   onClick={handleInjectEvent}
-                  className="px-2.5 py-1 bg-[#1f242d] hover:bg-[#1f242d]/80 text-[#00eeff] border border-[#323946] hover:border-[#00eeff]/50 rounded-lg text-[11px] font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                  className="px-2.5 py-1 bg-[#12161f] hover:bg-[#12161f]/80 text-[#00eeff] border border-[#2a3245] hover:border-[#00eeff]/50 rounded-lg text-[11px] font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   title="Inject test telemetry ping"
                 >
                   <span>+ inject_ping</span>
@@ -180,8 +310,8 @@ export const Footer: React.FC = () => {
                   onClick={() => setIsStreaming(!isStreaming)}
                   className={`px-2.5 py-1 rounded-lg text-[11px] font-mono transition-colors flex items-center gap-1 cursor-pointer border ${
                     isStreaming
-                      ? 'bg-[#1f242d] border-[#323946] text-gray-300 hover:text-white'
-                      : 'bg-[#00eeff] text-[#1f242d] font-bold border-[#00eeff]'
+                      ? 'bg-[#12161f] border-[#2a3245] text-gray-300 hover:text-white'
+                      : 'bg-[#00eeff] text-[#12161f] font-bold border-[#00eeff]'
                   }`}
                   title={isStreaming ? 'Pause streaming' : 'Resume streaming'}
                 >
@@ -200,7 +330,7 @@ export const Footer: React.FC = () => {
 
                 <button
                   onClick={handleClearLogs}
-                  className="p-1 bg-[#1f242d] hover:bg-[#1f242d]/80 text-gray-400 hover:text-rose-400 border border-[#323946] rounded-lg transition-colors cursor-pointer"
+                  className="p-1 bg-[#12161f] hover:bg-[#12161f]/80 text-gray-400 hover:text-rose-400 border border-[#2a3245] rounded-lg transition-colors cursor-pointer"
                   title="Clear log buffer"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -209,7 +339,7 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Terminal Log Console */}
-            <div className="bg-[#181d25] rounded-xl p-3.5 border border-[#1f242d] text-xs space-y-1.5 overflow-hidden">
+            <div className="bg-[#0d1017] rounded-xl p-3.5 border border-[#2a3245] text-xs space-y-1.5 overflow-hidden">
               {logs.map((log) => {
                 const levelColor =
                   log.level === 'OK'
@@ -238,7 +368,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Copyright & Back-to-Top Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4 pt-4 border-t border-[#323946] font-mono">
+        <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4 pt-4 border-t border-[#2a3245] font-mono">
           <p>
             © 2026 <span className="text-white font-bold">{developerConfig.name}</span> • Built with React, Tailwind CSS, and Vibrant Cyan Dark Architecture.
           </p>

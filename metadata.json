@@ -1,0 +1,7 @@
+{
+  "name": "Developer Portfolio",
+  "description": "A high-performance personal developer portfolio website crafted with React, Tailwind CSS, and JetBrains Mono metadata motifs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

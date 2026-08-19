@@ -10,8 +10,12 @@ import {
   Award
 } from 'lucide-react';
 import { skillCategories } from '../data/portfolioData';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const SkillsMatrix: React.FC = () => {
+  useSEO(sectionSEOConfig.skills);
+
   const [activeTab, setActiveTab] = useState<string>('All');
 
   const categories = ['All', ...skillCategories.map((c) => c.category)];

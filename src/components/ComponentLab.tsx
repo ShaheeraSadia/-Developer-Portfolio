@@ -14,8 +14,12 @@ import {
   Cpu
 } from 'lucide-react';
 import { useToast } from './Toast';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const ComponentLab: React.FC = () => {
+  useSEO(sectionSEOConfig.component_lab);
+
   const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState<'tokens' | 'perf' | 'fsm'>('tokens');
 

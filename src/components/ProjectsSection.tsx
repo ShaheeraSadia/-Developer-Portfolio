@@ -10,12 +10,16 @@ import {
 } from 'lucide-react';
 import { projectsData, featuredToolsData } from '../data/portfolioData';
 import { Project } from '../types';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 interface ProjectsSectionProps {
   onSelectProject: (project: Project) => void;
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProject }) => {
+  useSEO(sectionSEOConfig.projects);
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [

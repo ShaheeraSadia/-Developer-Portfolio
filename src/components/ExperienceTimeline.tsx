@@ -1,8 +1,12 @@
 import React from 'react';
 import { Briefcase, Calendar, MapPin, CheckCircle2, ArrowUpRight, Award } from 'lucide-react';
 import { experienceData } from '../data/portfolioData';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const ExperienceTimeline: React.FC = () => {
+  useSEO(sectionSEOConfig.experience);
+
   return (
     <section id="experience" className="py-20 bg-[#0a0d12] text-[#f8fafc] border-b border-[#1e293b]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

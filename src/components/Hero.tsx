@@ -27,6 +27,8 @@ import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
 
 import { HeroAvatarCircle } from './HeroAvatarCircle';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 interface HeroProps {
   onOpenResume?: () => void;
@@ -34,6 +36,8 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
+  useSEO(sectionSEOConfig.home);
+
   const { showToast } = useToast();
   const [emailCopied, setEmailCopied] = useState(false);
   const typedTargetRef = useRef<HTMLSpanElement>(null);
@@ -159,50 +163,50 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
           <div className="lg:col-span-7 space-y-6">
             
             {/* Top Telemetry Status Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0f172a] border border-[#3b82f6]/40 shadow-[0_0_15px_rgba(59,130,246,0.2)] text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse"></span>
-              <span className="text-[#3b82f6] font-bold tracking-wider uppercase text-[11px] sm:text-xs">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0f172a] border border-blue-500/30 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="text-blue-400 font-bold tracking-wider uppercase text-[11px] sm:text-xs">
                 INITIALIZING SYSTEM TELEMETRY
               </span>
               <span className="text-slate-600 font-mono">//</span>
-              <span className="text-[#94a3b8] text-[11px] sm:text-xs font-mono">PORTFOLIO v2.5</span>
+              <span className="text-slate-400 text-[11px] sm:text-xs font-mono">PORTFOLIO v2.5</span>
             </div>
 
             {/* Top Greeting */}
-            <p className="font-mono text-sm sm:text-base text-slate-300 tracking-wide">
+            <p className="font-mono text-sm sm:text-base text-slate-400 tracking-wide">
               Hello, I'm
             </p>
 
-            {/* Main Greeting & Name with Vibrant Royal Blue Glow */}
+            {/* Main Greeting & Name - Clean, crisp contrast without AI text-shadow glow */}
             <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#f8fafc] leading-[1.1]">
-                Shaheera <span className="text-[#3b82f6] drop-shadow-[0_0_25px_rgba(59,130,246,0.85)]">Sadia</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+                Shaheera <span className="text-blue-500">Sadia</span>
               </h1>
               
               {/* Dynamic Typed.js Headline with Royal Blue Underline */}
-              <div className="flex items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-[#f8fafc] min-h-[44px]">
-                <span className="text-[#f8fafc]">And I'm a</span>
-                <span className="text-[#3b82f6] border-b-2 sm:border-b-[3px] border-[#3b82f6] pb-0.5 inline-block">
+              <div className="flex items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white min-h-[44px]">
+                <span className="text-white">And I'm a</span>
+                <span className="text-blue-400 border-b-2 sm:border-b-[3px] border-blue-500 pb-0.5 inline-block">
                   <span ref={typedTargetRef}></span>
                 </span>
               </div>
             </div>
 
             {/* Narrative Summary */}
-            <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed max-w-xl font-normal">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl font-normal">
               Front-End &amp; Mobile Developer with over 5 years of experience building fast, accessible web applications and 100% client-side utilities with React, modern JavaScript, and high-contrast responsive interfaces.
             </p>
 
             {/* Connect Bar (Placed above CTA buttons as shown in design) */}
             <div className="flex items-center gap-3 pt-2">
-              <span className="text-xs sm:text-sm font-mono text-[#94a3b8]">// connect:</span>
+              <span className="text-xs sm:text-sm font-mono text-slate-400">// connect:</span>
               
               <a
                 href={developerConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-[#94a3b8] hover:text-[#3b82f6] hover:border-[#3b82f6]/60 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -213,7 +217,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-[#94a3b8] hover:text-[#3b82f6] hover:border-[#3b82f6]/60 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -224,7 +228,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter/X Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-[#94a3b8] hover:text-[#3b82f6] hover:border-[#3b82f6]/60 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="Twitter / X"
               >
                 <Twitter className="w-4 h-4" />
@@ -233,10 +237,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               <button
                 onClick={handleCopyEmail}
                 aria-label="Copy Email"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-[#94a3b8] hover:text-[#3b82f6] hover:border-[#3b82f6]/60 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm cursor-pointer"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm cursor-pointer"
                 title={emailCopied ? 'Email Copied!' : developerConfig.email}
               >
-                {emailCopied ? <Check className="w-4 h-4 text-[#22c55e]" /> : <Mail className="w-4 h-4" />}
+                {emailCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Mail className="w-4 h-4" />}
               </button>
             </div>
 
@@ -245,7 +249,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               <button
                 onClick={onOpenResume}
                 id="hero-cv-btn"
-                className="px-5 py-3 rounded-xl bg-[#2563eb] hover:bg-[#3b82f6] text-white font-bold text-sm sm:text-base transition-all duration-200 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm sm:text-base transition-all duration-200 shadow-md shadow-blue-900/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer"
               >
                 <FileDown className="w-4 h-4 stroke-[2.5]" />
                 <span>Download CV / Resume</span>
@@ -254,7 +258,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               <button
                 onClick={() => handleSectionClick('projects')}
                 id="hero-explore-projects-btn"
-                className="px-5 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-[#f8fafc] font-medium text-sm sm:text-base border border-[#1e293b] hover:border-[#3b82f6]/50 transition-all duration-200 flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer"
               >
                 <span>Explore Projects</span>
                 <ArrowRight className="w-4 h-4" />
@@ -262,7 +266,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
               <button
                 onClick={() => handleSectionClick('contact')}
-                className="px-3 py-3 rounded-xl bg-transparent text-[#94a3b8] hover:text-[#3b82f6] font-mono text-sm sm:text-base transition-colors cursor-pointer"
+                className="px-3 py-3 rounded-xl bg-transparent text-slate-400 hover:text-blue-400 font-mono text-sm sm:text-base transition-colors cursor-pointer"
               >
                 <span>Contact Me →</span>
               </button>

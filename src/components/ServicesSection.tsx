@@ -9,6 +9,8 @@ import {
   CheckCircle2, 
   ArrowRight
 } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 interface ServiceItem {
   icon: React.ElementType;
@@ -20,6 +22,8 @@ interface ServiceItem {
 }
 
 export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ onExploreProjects }) => {
+  useSEO(sectionSEOConfig.services);
+
   const services: ServiceItem[] = [
     {
       icon: Code,

@@ -19,6 +19,7 @@ import {
   Home
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   onOpenResume: () => void;
@@ -249,6 +250,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>SF {currentTime || '05:04 PM'}</span>
           </div>
 
+          {/* Theme Mode Switcher (Day / Midnight) */}
+          <ThemeToggle />
+
           {/* Config / Raw JSON View Switcher */}
           <button
             id="toggle-config-mode-btn"
@@ -292,6 +296,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           id="mobile-nav-drawer"
           className="lg:hidden border-b border-[#1e293b] bg-[#0a0d12] px-4 py-5 space-y-4 animate-in fade-in slide-in-from-top-2 duration-150 shadow-xl"
         >
+          {/* Mobile Theme Toggle Header */}
+          <div className="flex items-center justify-between pb-3 border-b border-[#1e293b]">
+            <span className="text-xs font-mono text-slate-400">Theme Mode:</span>
+            <ThemeToggle showLabel={true} />
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {allNavLinks.map((link) => {
               const Icon = link.icon;

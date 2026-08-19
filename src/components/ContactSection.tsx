@@ -14,8 +14,12 @@ import {
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const ContactSection: React.FC = () => {
+  useSEO(sectionSEOConfig.contact);
+
   const { showToast } = useToast();
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({

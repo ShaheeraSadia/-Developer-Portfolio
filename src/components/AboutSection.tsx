@@ -1,8 +1,12 @@
 import React from 'react';
 import { CheckCircle2, Award, ArrowUpRight, Sparkles, Code2, HeartHandshake, ShieldCheck, Zap } from 'lucide-react';
 import { aboutMeData, developerConfig } from '../data/portfolioData';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const AboutSection: React.FC = () => {
+  useSEO(sectionSEOConfig.about);
+
   return (
     <section id="about" className="py-20 bg-[#0a0d12] text-[#f8fafc] border-b border-[#1e293b]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

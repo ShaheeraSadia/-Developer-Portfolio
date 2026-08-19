@@ -32,6 +32,9 @@ import { RawConfigModal } from './components/RawConfigModal';
 import { CommandPalette } from './components/CommandPalette';
 import { TerminalDivider } from './components/TerminalDivider';
 import { Project } from './types';
+import { useSEO } from './hooks/useSEO';
+import { sectionSEOConfig } from './data/seoConfig';
+import { ThemeProvider } from './context/ThemeContext';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -39,6 +42,10 @@ export default function App() {
   const [isConfigModeOpen, setIsConfigModeOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
+
+  // Dynamically synchronize document title, meta description & OG tags based on active section
+  const currentSEO = sectionSEOConfig[activeSection] || sectionSEOConfig.home;
+  useSEO(currentSEO);
 
   const navTabs = [
     { id: 'about', label: 'About', icon: UserCheck },
@@ -70,9 +77,10 @@ export default function App() {
   };
 
   return (
-    <ToastProvider>
-      <div className="min-h-screen bg-[#0a0d12] text-[#f8fafc] flex flex-col selection:bg-blue-600/30 selection:text-[#3b82f6]">
-        {/* Navigation Header */}
+    <ThemeProvider>
+      <ToastProvider>
+        <div className="min-h-screen bg-[#0a0d12] text-[#f8fafc] flex flex-col selection:bg-blue-600/30 selection:text-[#3b82f6]">
+          {/* Navigation Header */}
         <Navbar
           onOpenResume={() => setIsResumeOpen(true)}
           isConfigMode={isConfigModeOpen}
@@ -84,50 +92,16 @@ export default function App() {
 
         {/* Main Content Area */}
         <main className="grow" id="main-content">
-          {/* If on a dedicated section view, show Top Section Breadcrumb & Switcher Bar */}
+          {/* Subtle contextual back navigation for dedicated section views (non-sticky) */}
           {activeSection !== 'home' && activeSection !== 'all' && (
-            <div className="sticky top-16 z-40 bg-[#0a0d12]/90 backdrop-blur-md border-b border-[#1e293b] py-3 px-4 sm:px-6 lg:px-8 shadow-sm">
-              <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-                {/* Back to Home Button */}
-                <button
-                  onClick={() => handleNavigate('home')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0f172a] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-[#94a3b8] hover:text-[#f8fafc] text-xs font-medium transition-all cursor-pointer"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>Return to Overview</span>
-                </button>
-
-                {/* Section Quick-Switch Pills */}
-                <div className="flex items-center gap-1.5 overflow-x-auto py-1 max-w-full">
-                  {navTabs.map((tab) => {
-                    const Icon = tab.icon;
-                    const isActive = activeSection === tab.id;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => handleNavigate(tab.id)}
-                        className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
-                          isActive
-                            ? 'bg-[#2563eb] text-white shadow-sm'
-                            : 'bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] hover:border-slate-600 border border-[#1e293b]'
-                        }`}
-                      >
-                        <Icon className="w-3 h-3" />
-                        <span>{tab.label}</span>
-                      </button>
-                    );
-                  })}
-
-                  <button
-                    onClick={() => handleNavigate('all')}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] border border-[#1e293b] hover:border-slate-600 cursor-pointer"
-                    title="Display all sections continuously on one page"
-                  >
-                    <Eye className="w-3 h-3" />
-                    <span>View All</span>
-                  </button>
-                </div>
-              </div>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+              <button
+                onClick={() => handleNavigate('home')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0f172a] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-slate-400 hover:text-white text-xs font-medium transition-all cursor-pointer shadow-sm"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>← Back to Overview</span>
+              </button>
             </div>
           )}
 
@@ -242,5 +216,6 @@ export default function App() {
         />
       </div>
     </ToastProvider>
+  </ThemeProvider>
   );
 }

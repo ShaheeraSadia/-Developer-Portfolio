@@ -27,12 +27,14 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   body {
     background-color: #0a0d12;
     color: #f8fafc;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   /* Refined, modern scrollbar */
@@ -52,12 +54,133 @@
   }
 }
 
-/* Subtle, tasteful micro-interaction utilities */
+/* Day Mode (Light Theme Variant) */
+[data-theme="day"] {
+  color-scheme: light;
+}
+
+[data-theme="day"] html,
+[data-theme="day"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="day"] ::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+[data-theme="day"] ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+[data-theme="day"] ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+[data-theme="day"] .bg-\[\#0a0d12\],
+[data-theme="day"] .bg-\[\#0b0d13\] {
+  background-color: #f8fafc !important;
+}
+
+[data-theme="day"] .bg-\[\#0f172a\] {
+  background-color: #ffffff !important;
+}
+
+[data-theme="day"] .bg-\[\#121927\] {
+  background-color: #ffffff !important;
+}
+
+[data-theme="day"] .bg-\[\#1e293b\] {
+  background-color: #f1f5f9 !important;
+}
+
+[data-theme="day"] .bg-\[\#0a0d12\]\/90,
+[data-theme="day"] .bg-\[\#0a0d12\]\/80,
+[data-theme="day"] .bg-\[\#0a0d12\]\/95,
+[data-theme="day"] .bg-\[\#0a0d12\]\/60 {
+  background-color: rgba(248, 250, 252, 0.9) !important;
+}
+
+[data-theme="day"] .bg-\[\#0f172a\]\/90,
+[data-theme="day"] .bg-\[\#0f172a\]\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="day"] .hover\:bg-\[\#1e293b\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+[data-theme="day"] .hover\:bg-\[\#182337\]:hover {
+  background-color: #e2e8f0 !important;
+}
+
+[data-theme="day"] .hover\:bg-\[\#0f172a\]:hover {
+  background-color: #e2e8f0 !important;
+}
+
+[data-theme="day"] .border-\[\#1e293b\] {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="day"] .border-\[\#334155\] {
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="day"] .text-\[\#f8fafc\],
+[data-theme="day"] .text-slate-50 {
+  color: #0f172a !important;
+}
+
+/* Headings in day mode */
+[data-theme="day"] h1.text-white,
+[data-theme="day"] h2.text-white,
+[data-theme="day"] h3.text-white,
+[data-theme="day"] h4.text-white,
+[data-theme="day"] .text-white:not(button *):not(a *):not(.bg-blue-600 *):not(.bg-\[\#2563eb\] *) {
+  color: #0f172a !important;
+}
+
+[data-theme="day"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+[data-theme="day"] .text-\[\#94a3b8\],
+[data-theme="day"] .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Ensure active badges / buttons with blue backgrounds retain crisp white text */
+[data-theme="day"] .bg-blue-600,
+[data-theme="day"] .bg-\[\#2563eb\],
+[data-theme="day"] .bg-blue-600 *,
+[data-theme="day"] .bg-\[\#2563eb\] * {
+  color: #ffffff !important;
+}
+
+/* Subtle Day mode shadow adjustments */
+[data-theme="day"] .shadow-sm {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="day"] .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="day"] .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Micro-interaction utilities */
 .glass-panel {
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="day"] .glass-panel {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: #e2e8f0 !important;
 }
 
 .glass-dropdown {
@@ -67,14 +190,29 @@
   border: 1px solid #1e293b;
 }
 
+[data-theme="day"] .glass-dropdown {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: #e2e8f0 !important;
+}
+
 .card-subtle {
   background-color: #0f172a;
   border: 1px solid #1e293b;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-theme="day"] .card-subtle {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
 .card-subtle:hover {
   background-color: #1e293b;
   border-color: #334155;
   transform: translateY(-2px);
+}
+
+[data-theme="day"] .card-subtle:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
 }

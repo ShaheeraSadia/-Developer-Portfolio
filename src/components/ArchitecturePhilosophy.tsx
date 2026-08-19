@@ -12,8 +12,12 @@ import {
   Award
 } from 'lucide-react';
 import { philosophyPillars } from '../data/portfolioData';
+import { useSEO } from '../hooks/useSEO';
+import { sectionSEOConfig } from '../data/seoConfig';
 
 export const ArchitecturePhilosophy: React.FC = () => {
+  useSEO(sectionSEOConfig.architecture);
+
   const [activePillarIndex, setActivePillarIndex] = useState(0);
   const activePillar = philosophyPillars[activePillarIndex];
 

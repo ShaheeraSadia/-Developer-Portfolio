@@ -19,12 +19,15 @@ import {
   Sparkles,
   Command,
   CornerDownLeft,
-  Home
+  Home,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { developerConfig, projectsData, experienceData, skillCategories } from '../data/portfolioData';
 import { Project } from '../types';
 import { useToast } from './Toast';
+import { useTheme } from '../context/ThemeContext';
 
 export interface CommandPaletteProps {
   isOpen: boolean;
@@ -59,6 +62,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onToggleConfigMode,
 }) => {
   const { showToast } = useToast();
+  const { theme, toggleTheme, isDay } = useTheme();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -195,6 +199,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     });
 
     items.push({
+      id: 'action-theme-toggle',
+      title: isDay ? 'Switch to Midnight Theme (Dark Mode)' : 'Switch to Day Theme (Light Mode)',
+      subtitle: `Currently active: ${isDay ? 'Day Mode' : 'Midnight Mode'}`,
+      category: 'Actions',
+      type: 'action',
+      icon: isDay ? Moon : Sun,
+      action: () => {
+        toggleTheme();
+        showToast(isDay ? 'Switched to Midnight theme' : 'Switched to Day theme');
+        onClose();
+      },
+    });
+
+    items.push({
       id: 'action-github',
       title: 'Open GitHub Profile',
       subtitle: developerConfig.github,
@@ -208,7 +226,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     });
 
     return items;
-  }, [onNavigate, onOpenProject, onOpenResume, onToggleConfigMode, onClose, showToast]);
+  }, [onNavigate, onOpenProject, onOpenResume, onToggleConfigMode, onClose, showToast, isDay, toggleTheme]);
 
   // Fuzzy filter logic
   const filteredItems = useMemo(() => {

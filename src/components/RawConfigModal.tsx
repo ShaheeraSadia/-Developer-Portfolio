@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Copy, Check, Terminal, Download } from 'lucide-react';
+import { X, Copy, Check, Terminal, Download, Code2 } from 'lucide-react';
 import { developerConfig, projectsData, experienceData, philosophyPillars, skillCategories } from '../data/portfolioData';
 import { useToast } from './Toast';
 
@@ -46,52 +46,52 @@ export const RawConfigModal: React.FC<RawConfigModalProps> = ({ isOpen, onClose 
   return (
     <div
       id="raw-config-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="raw-config-title"
     >
       <div
         id="raw-config-container"
-        className="relative w-full max-w-4xl bg-[#12161f] text-white rounded-2xl border border-[#00eeff]/40 shadow-[0_0_30px_rgba(0,238,255,0.2)] overflow-hidden my-6 max-h-[90vh] flex flex-col font-mono"
+        className="relative w-full max-w-4xl bg-[#0f172a] text-[#f8fafc] rounded-2xl border border-[#1e293b] shadow-2xl overflow-hidden my-6 max-h-[90vh] flex flex-col font-mono"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a3245] bg-[#1b202c]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#1e293b] bg-[#0a0d12]">
           <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-[#00eeff]" />
-            <h2 id="raw-config-title" className="text-sm font-bold tracking-tight text-white">
-              developer_portfolio_schema.json
+            <Code2 className="w-4 h-4 text-[#3b82f6]" />
+            <h2 id="raw-config-title" className="text-xs sm:text-sm font-semibold tracking-tight text-[#f8fafc]">
+              portfolio_schema_manifest.json
             </h2>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-xs">
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg bg-[#12161f] border border-[#2a3245] text-[#00eeff] hover:bg-[#00eeff] hover:text-[#12161f] transition-all cursor-pointer"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#0f172a] border border-[#1e293b] hover:border-slate-600 text-[#94a3b8] hover:text-[#f8fafc] transition-all cursor-pointer"
             >
-              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-[#22c55e]" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied' : 'Copy JSON'}</span>
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg bg-[#00eeff] text-[#12161f] font-bold hover:bg-[#55f3ff] hover:shadow-[0_0_10px_#00eeff] transition-all cursor-pointer"
+              className="flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white font-semibold shadow-sm transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download</span>
             </button>
             <button
               onClick={onClose}
-              className="p-1 text-gray-400 hover:text-white hover:bg-[#12161f] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a] rounded-lg transition-colors cursor-pointer"
               aria-label="Close raw JSON modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* JSON Code Viewer */}
-        <div className="p-6 overflow-y-auto text-xs font-mono max-h-[calc(90vh-120px)] bg-[#0d1017]">
-          <pre className="text-[#00eeff] leading-relaxed">
+        <div className="p-6 overflow-y-auto text-xs font-mono max-h-[calc(90vh-120px)] bg-[#0a0d12]">
+          <pre className="text-[#f8fafc] leading-relaxed">
             <code>{jsonString}</code>
           </pre>
         </div>

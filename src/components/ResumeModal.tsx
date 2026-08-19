@@ -21,8 +21,8 @@ GitHub: ${developerConfig.github} | LinkedIn: ${developerConfig.linkedin}
 
 ---
 
-## Executive Summary
-Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. Starting on freeCodeCamp in 2021, specialized in React, JavaScript (ES6+), modern CSS architectures, and client-side browser capabilities (Web Workers & WebAssembly) delivering zero server latency and total privacy.
+## Summary
+Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. Specialized in React, JavaScript (ES6+), modern CSS architectures, and client-side browser capabilities (Web Workers) delivering zero server latency and total privacy.
 
 ---
 
@@ -63,42 +63,42 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
   return (
     <div
       id="resume-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="resume-modal-title"
     >
       <div
         id="resume-modal-content"
-        className="relative w-full max-w-4xl bg-[#12161f] text-white rounded-2xl border border-[#00eeff]/40 shadow-[0_0_40px_rgba(0,238,255,0.2)] overflow-hidden my-8 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-[#0f172a] text-[#f8fafc] rounded-2xl border border-[#1e293b] shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a3245] bg-[#1b202c]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#1e293b] bg-[#0a0d12]">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-[#12161f] rounded-xl border border-[#00eeff]/30 text-[#00eeff]">
+            <div className="p-2 bg-[#0f172a] rounded-xl border border-[#1e293b] text-[#3b82f6]">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h2 id="resume-modal-title" className="text-base font-bold font-mono tracking-tight text-white">
-                cv_shaheera_sadia_developer.pdf
+              <h2 id="resume-modal-title" className="text-sm sm:text-base font-bold text-[#f8fafc]">
+                Shaheera Sadia — Curriculum Vitae
               </h2>
-              <p className="text-xs text-gray-300">Verified Web &amp; Mobile Developer • React &amp; Client-Side Architectures</p>
+              <p className="text-xs text-[#94a3b8]">Front-End Developer • React &amp; Client-Side Architectures</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-xs">
             <button
               id="copy-resume-markdown-btn"
               onClick={handleCopyMarkdown}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg border border-[#2a3245] bg-[#12161f] text-gray-200 hover:text-[#00eeff] hover:border-[#00eeff] transition-colors cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] hover:border-slate-600 transition-colors cursor-pointer"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#00eeff]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied MD' : 'Copy MD'}</span>
+              {copied ? <Check className="w-3.5 h-3.5 text-[#22c55e]" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copied ? 'Copied MD' : 'Copy Markdown'}</span>
             </button>
             <button
               id="print-resume-btn"
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold rounded-lg bg-[#00eeff] text-[#12161f] hover:bg-[#55f3ff] hover:shadow-[0_0_12px_#00eeff] transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Print / PDF</span>
@@ -106,7 +106,7 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
             <button
               id="close-resume-modal-btn"
               onClick={onClose}
-              className="p-1.5 text-gray-400 hover:text-white hover:bg-[#12161f] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a] rounded-lg transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -115,58 +115,61 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
         </div>
 
         {/* Modal Body / Printable Area */}
-        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 font-sans print:p-0 bg-[#12161f]">
+        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 font-sans print:p-0 bg-[#0f172a]">
           {/* Header */}
-          <div className="border-b border-[#2a3245] pb-6">
+          <div className="border-b border-[#1e293b] pb-6">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f8fafc]">
                   {developerConfig.name}
                 </h1>
-                <p className="text-base text-[#00eeff] font-mono mt-1 font-bold">
+                <p className="text-sm text-[#3b82f6] font-semibold mt-0.5">
                   {developerConfig.role}
                 </p>
               </div>
-              <div className="text-xs sm:text-sm font-mono text-gray-300 space-y-0.5">
+              <div className="text-xs text-[#94a3b8] space-y-0.5 font-mono">
                 <p>{developerConfig.location}</p>
-                <p className="text-[#00eeff]">{developerConfig.email}</p>
-                <p>{developerConfig.github} • {developerConfig.linkedin}</p>
+                <p className="text-[#3b82f6]">{developerConfig.email}</p>
+                <p className="text-[#94a3b8]">{developerConfig.github}</p>
               </div>
             </div>
-            <p className="text-sm text-gray-300 mt-4 leading-relaxed max-w-3xl">
+            <p className="text-sm text-[#94a3b8] mt-4 leading-relaxed max-w-3xl font-sans">
               Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. Journey began on freeCodeCamp in 2021 with continuous dedication to fast, accessible, privacy-first web utilities.
             </p>
           </div>
 
           {/* Professional Experience Section */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-2 text-sm font-mono text-[#00eeff] uppercase font-bold">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#3b82f6] uppercase tracking-wider font-bold">
               <Briefcase className="w-4 h-4" />
               <span>Professional Experience</span>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {experienceData.map((exp) => (
-                <div key={exp.id} className="space-y-2 bg-[#1b202c] p-5 rounded-xl border border-[#2a3245]">
+                <div key={exp.id} className="space-y-2 bg-[#0a0d12] p-5 rounded-xl border border-[#1e293b]">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <h3 className="text-base font-bold text-white">
-                      {exp.role} <span className="text-[#00eeff]">@ {exp.company}</span>
+                    <h3 className="text-sm sm:text-base font-bold text-[#f8fafc]">
+                      {exp.role} <span className="text-[#3b82f6] font-normal">@ {exp.company}</span>
                     </h3>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-[#94a3b8]">
                       {exp.period} | {exp.location}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-300 leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed font-sans">
                     {exp.summary}
                   </p>
-                  <ul className="list-disc list-inside text-xs text-gray-300 space-y-1 pt-1 font-sans">
+                  <div className="space-y-1 pt-1 font-sans">
                     {exp.achievements.map((ach, i) => (
-                      <li key={i}>{ach}</li>
+                      <div key={i} className="text-xs text-[#94a3b8] flex items-start gap-2">
+                        <span className="text-[#3b82f6]">•</span>
+                        <span className="text-[#f8fafc]">{ach}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                   <div className="pt-2 flex flex-wrap gap-1">
                     {exp.technologies.map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#12161f] text-[#00eeff] border border-[#00eeff]/20">
+                      <span key={t} className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#0f172a] text-[#94a3b8] border border-[#1e293b]">
                         {t}
                       </span>
                     ))}

@@ -71,7 +71,7 @@ export default function App() {
 
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-[#12161f] text-white flex flex-col selection:bg-[#00eeff]/20 selection:text-[#00eeff]">
+      <div className="min-h-screen bg-[#0a0d12] text-[#f8fafc] flex flex-col selection:bg-blue-600/30 selection:text-[#3b82f6]">
         {/* Navigation Header */}
         <Navbar
           onOpenResume={() => setIsResumeOpen(true)}
@@ -86,15 +86,15 @@ export default function App() {
         <main className="grow" id="main-content">
           {/* If on a dedicated section view, show Top Section Breadcrumb & Switcher Bar */}
           {activeSection !== 'home' && activeSection !== 'all' && (
-            <div className="sticky top-16 z-40 bg-[#12161f]/95 backdrop-blur-md border-b border-[#2a3245] py-3 px-4 sm:px-6 lg:px-8 shadow-lg">
+            <div className="sticky top-16 z-40 bg-[#0a0d12]/90 backdrop-blur-md border-b border-[#1e293b] py-3 px-4 sm:px-6 lg:px-8 shadow-sm">
               <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
                 {/* Back to Home Button */}
                 <button
                   onClick={() => handleNavigate('home')}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1b202c] border border-[#00eeff]/40 text-[#00eeff] hover:bg-[#00eeff] hover:text-[#12161f] text-xs font-mono font-bold transition-all shadow-[0_0_10px_rgba(0,238,255,0.2)] cursor-pointer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0f172a] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-[#94a3b8] hover:text-[#f8fafc] text-xs font-medium transition-all cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>← Return to Home Overview</span>
+                  <span>Return to Overview</span>
                 </button>
 
                 {/* Section Quick-Switch Pills */}
@@ -106,10 +106,10 @@ export default function App() {
                       <button
                         key={tab.id}
                         onClick={() => handleNavigate(tab.id)}
-                        className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                        className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                           isActive
-                            ? 'bg-[#00eeff] text-[#12161f] font-bold border border-[#00eeff] animate-nav-glow'
-                            : 'bg-[#1b202c] text-gray-300 hover:text-white hover:border-[#00eeff]/50 border border-[#2a3245]'
+                            ? 'bg-[#2563eb] text-white shadow-sm'
+                            : 'bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] hover:border-slate-600 border border-[#1e293b]'
                         }`}
                       >
                         <Icon className="w-3 h-3" />
@@ -120,7 +120,7 @@ export default function App() {
 
                   <button
                     onClick={() => handleNavigate('all')}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap bg-[#1b202c] text-gray-400 hover:text-white border border-[#2a3245] cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] border border-[#1e293b] hover:border-slate-600 cursor-pointer"
                     title="Display all sections continuously on one page"
                   >
                     <Eye className="w-3 h-3" />
@@ -135,11 +135,11 @@ export default function App() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              exit={{ opacity: 0, y: -6 }}
               transition={{
-                duration: 0.28,
+                duration: 0.22,
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
@@ -172,38 +172,38 @@ export default function App() {
 
               {activeSection === 'contact' && <ContactSection />}
 
-              {/* Full Page Stacked View if user selects "View All" */}
+              {/* Full Continuous Stacked View if user selects "View All" */}
               {activeSection === 'all' && (
                 <div>
-                  <div className="bg-[#1b202c] border-b border-[#00eeff]/30 py-3 px-4 text-center">
+                  <div className="bg-[#0f172a] border-b border-[#1e293b] py-2.5 px-4 text-center">
                     <div className="max-w-6xl mx-auto flex items-center justify-between">
-                      <span className="text-xs font-mono text-[#00eeff]">
-                        // FULL_CONTINUOUS_VIEW_MODE
+                      <span className="text-xs font-mono text-[#94a3b8]">
+                        Full Continuous View Mode
                       </span>
                       <button
                         onClick={() => handleNavigate('home')}
-                        className="text-xs font-mono text-[#00eeff] hover:underline cursor-pointer"
+                        className="text-xs font-medium text-[#3b82f6] hover:text-blue-300 cursor-pointer"
                       >
-                        ← Back to Modular Home
+                        ← Return to Overview
                       </button>
                     </div>
                   </div>
                   <Hero onOpenResume={() => setIsResumeOpen(true)} onNavigate={handleNavigate} />
-                  <TerminalDivider label="SYS.01 // ABOUT_ME" />
+                  <TerminalDivider label="About &amp; Background" />
                   <AboutSection />
-                  <TerminalDivider label="SYS.02 // CORE_SERVICES" />
+                  <TerminalDivider label="Services &amp; Offerings" />
                   <ServicesSection onExploreProjects={() => handleNavigate('projects')} />
-                  <TerminalDivider label="SYS.03 // FEATURED_PROJECTS" />
+                  <TerminalDivider label="Featured Projects" />
                   <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
-                  <TerminalDivider label="SYS.04 // ARCHITECTURE_LAB" />
+                  <TerminalDivider label="Interactive Lab" />
                   <ComponentLab />
-                  <TerminalDivider label="SYS.05 // CORE_PILLARS" />
+                  <TerminalDivider label="Architecture Principles" />
                   <ArchitecturePhilosophy />
-                  <TerminalDivider label="SYS.06 // CAREER_TIMELINE" />
+                  <TerminalDivider label="Career Experience" />
                   <ExperienceTimeline />
-                  <TerminalDivider label="SYS.07 // SKILLS_MATRIX" />
+                  <TerminalDivider label="Technical Skills" />
                   <SkillsMatrix />
-                  <TerminalDivider label="SYS.08 // TRANSMISSION_PORT" />
+                  <TerminalDivider label="Contact" />
                   <ContactSection />
                 </div>
               )}
@@ -211,7 +211,7 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        {/* Footer with Dynamic Operational Telemetry */}
+        {/* Footer with Session Activity Telemetry */}
         <Footer activeSection={activeSection} />
 
         {/* Global Command Palette (Ctrl+K) */}

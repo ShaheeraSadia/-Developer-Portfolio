@@ -7,7 +7,7 @@ export interface SectionVisitStats {
 export interface SectionTelemetrySummary {
   stats: SectionVisitStats;
   totalVisits: number;
-  topSection: { id: string; count: number; percentage: number } | null;
+  topSection: { id: string; label: string; count: number; percentage: number } | null;
   sortedSections: Array<{ id: string; label: string; count: number; percentage: number }>;
   lastVisited: string | null;
   lastVisitedTimestamp: string | null;

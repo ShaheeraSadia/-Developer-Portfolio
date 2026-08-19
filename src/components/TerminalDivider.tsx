@@ -10,23 +10,12 @@ export const TerminalDivider: React.FC<TerminalDividerProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`relative w-full max-w-6xl mx-auto my-2 px-4 sm:px-6 lg:px-8 ${className}`}>
-      {/* Subtle Glowing Cyan Line */}
+    <div className={`relative w-full max-w-6xl mx-auto my-6 px-4 sm:px-6 lg:px-8 ${className}`}>
       <div className="relative flex items-center justify-center">
-        {/* Glow backdrop layer */}
-        <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00eeff]/60 to-transparent blur-[1px]"></div>
-        {/* Crisp line */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00eeff]/40 to-transparent"></div>
-
-        {/* Center Terminal Node Badge */}
-        {label ? (
-          <div className="absolute px-3 py-0.5 bg-[#12161f] border border-[#00eeff]/40 rounded-full text-[10px] font-mono text-[#00eeff] tracking-widest uppercase flex items-center gap-1.5 shadow-[0_0_12px_rgba(0,238,255,0.35)] select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00eeff] animate-pulse shadow-[0_0_6px_#00eeff]"></span>
-            <span>{label}</span>
-          </div>
-        ) : (
-          <div className="absolute w-2.5 h-2.5 rotate-45 bg-[#12161f] border border-[#00eeff] shadow-[0_0_8px_#00eeff] flex items-center justify-center">
-            <div className="w-1 h-1 bg-[#00eeff]"></div>
+        <div className="w-full h-px bg-[#1e293b]"></div>
+        {label && (
+          <div className="absolute px-3 py-1 bg-[#0a0d12] border border-[#1e293b] rounded-full text-[11px] font-mono text-[#94a3b8] select-none">
+            {label}
           </div>
         )}
       </div>

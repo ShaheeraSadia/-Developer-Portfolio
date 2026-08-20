@@ -81,14 +81,14 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-12 border-b border-[#1e293b]">
           <div className="space-y-1">
-            <span className="text-xs font-mono text-[#3b82f6] uppercase tracking-wider block">
+            <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block">
               What I Offer
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
               Services &amp; Capabilities
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#94a3b8] max-w-md leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-slate-300 max-w-md leading-relaxed font-sans">
             Delivering clean code, fast interfaces, and robust client-side software architectures tailored to modern web standards.
           </p>
         </div>
@@ -105,24 +105,24 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
                 {/* Top Badge & Icon */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-xl bg-[#0a0d12] text-[#3b82f6] flex items-center justify-center border border-[#1e293b] group-hover:border-blue-500/30 transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-[#0a0d12] text-blue-400 flex items-center justify-center border border-[#1e293b] group-hover:border-blue-500/30 transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-[#0a0d12] text-[#94a3b8] border border-[#1e293b]">
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-[#0a0d12] text-slate-300 border border-[#1e293b]">
                       {service.badge}
                     </span>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-xs font-mono text-[#3b82f6] block">
+                    <span className="text-xs font-mono text-blue-400 block">
                       {service.category}
                     </span>
-                    <h3 className="text-lg font-bold text-[#f8fafc] group-hover:text-[#3b82f6] transition-colors">
+                    <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
                       {service.title}
                     </h3>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                     {service.description}
                   </p>
                 </div>
@@ -130,8 +130,8 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
                 {/* Feature Checklist */}
                 <div className="mt-6 pt-5 border-t border-[#1e293b] space-y-2">
                   {service.features.map((feat, fIndex) => (
-                    <div key={fIndex} className="flex items-center gap-2 text-xs text-[#94a3b8]">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#3b82f6] shrink-0" />
+                    <div key={fIndex} className="flex items-center gap-2 text-xs text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -141,7 +141,7 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
                 <div className="mt-6 pt-3">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#3b82f6] hover:text-blue-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     <span>Discuss this service</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

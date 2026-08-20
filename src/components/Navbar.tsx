@@ -151,10 +151,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         <nav className="hidden lg:flex items-center gap-1 text-xs font-medium shrink-0">
           <button
             onClick={() => handleNavClick('home')}
-            className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1.5 font-medium ${
               activeSection === 'home'
-                ? 'bg-[#2563eb] text-[#f8fafc] font-semibold shadow-sm'
-                : 'text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a]'
+                ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
+                : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
             }`}
           >
             <Home className="w-3.5 h-3.5" />
@@ -167,10 +167,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer font-medium ${
                   isActive
-                    ? 'bg-[#2563eb] text-[#f8fafc] font-semibold shadow-sm'
-                    : 'text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a]'
+                    ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
+                    : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
                 }`}
               >
                 {link.label}
@@ -182,10 +182,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="relative" ref={moreDropdownRef}>
             <button
               onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 ${
+              className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
                 isSecondaryActive
-                  ? 'bg-[#2563eb] text-[#f8fafc] font-semibold shadow-sm'
-                  : 'text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a]'
+                  ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
+                  : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
               }`}
               aria-expanded={moreDropdownOpen}
               aria-haspopup="true"
@@ -203,16 +203,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       key={item.id}
                       onClick={() => handleNavClick(item.id)}
-                      className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2.5 transition-colors cursor-pointer ${
+                      className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2.5 transition-colors duration-200 cursor-pointer ${
                         isActive
-                          ? 'bg-[#1e293b] text-[#3b82f6] font-semibold'
-                          : 'text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1e293b]'
+                          ? 'bg-[#1e293b] text-blue-400 font-semibold'
+                          : 'text-slate-100 hover:text-blue-400 hover:bg-[#1e293b]'
                       }`}
                     >
-                      <Icon className="w-4 h-4 text-[#3b82f6] shrink-0" />
+                      <Icon className="w-4 h-4 text-blue-400 shrink-0" />
                       <div>
-                        <div className="text-xs font-semibold text-[#f8fafc]">{item.label}</div>
-                        <div className="text-[10px] text-[#94a3b8]">{item.desc}</div>
+                        <div className="text-xs font-semibold text-white">{item.label}</div>
+                        <div className="text-[10px] text-slate-300">{item.desc}</div>
                       </div>
                     </button>
                   );
@@ -320,8 +320,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-[#f8fafc]">{link.label}</div>
-                    <div className="text-[10px] text-[#94a3b8]">{link.desc}</div>
+                    <div className="text-xs font-semibold text-slate-100 group-hover:text-blue-400">{link.label}</div>
+                    <div className="text-[10px] text-slate-300">{link.desc}</div>
                   </div>
                 </button>
               );

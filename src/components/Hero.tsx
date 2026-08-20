@@ -283,20 +283,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
         {/* Highlight Metrics Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-[#0f172a] rounded-2xl border border-[#1e293b] mt-12">
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#f8fafc] font-mono block">5+ Yrs</span>
-            <p className="text-xs text-[#94a3b8] font-sans">Front-End Development</p>
+            <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">5+ Yrs</span>
+            <p className="text-xs text-slate-300 font-sans font-medium">Front-End Development</p>
           </div>
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#3b82f6] font-mono block">3</span>
-            <p className="text-xs text-[#94a3b8] font-sans">Live Production Tools</p>
+            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">3</span>
+            <p className="text-xs text-slate-300 font-sans font-medium">Live Production Tools</p>
           </div>
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#f8fafc] font-mono block">100%</span>
-            <p className="text-xs text-[#94a3b8] font-sans">In-Browser Privacy</p>
+            <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">100%</span>
+            <p className="text-xs text-slate-300 font-sans font-medium">In-Browser Privacy</p>
           </div>
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#22c55e] font-mono block">WCAG AA</span>
-            <p className="text-xs text-[#94a3b8] font-sans">Accessible Contrast</p>
+            <span className="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono block">WCAG AA</span>
+            <p className="text-xs text-slate-300 font-sans font-medium">Accessible Contrast</p>
           </div>
         </div>
 
@@ -304,14 +304,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
         <div className="mt-14 space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#1e293b] pb-4">
             <div>
-              <span className="text-xs font-mono text-[#3b82f6] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block mb-1">
                 Explore Portfolio
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#f8fafc] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Jump to a Section
               </h2>
             </div>
-            <p className="text-xs text-[#94a3b8] font-sans">
+            <p className="text-xs text-slate-300 font-sans">
               Select any card to navigate directly to that section
             </p>
           </div>
@@ -329,28 +329,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="p-2 rounded-xl bg-[#0a0d12] border border-[#1e293b] text-[#94a3b8] group-hover:text-[#3b82f6] group-hover:border-blue-500/30 transition-colors">
+                      <div className="p-2 rounded-xl bg-[#0a0d12] border border-[#1e293b] text-slate-300 group-hover:text-blue-400 group-hover:border-blue-500/30 transition-colors">
                         <IconComp className="w-4 h-4" />
                       </div>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-[#94a3b8] bg-[#0a0d12] border border-[#1e293b]">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-300 bg-[#0a0d12] border border-[#1e293b]">
                         {card.badge}
                       </span>
                     </div>
 
                     <div>
-                      <span className="text-[11px] font-mono text-slate-500 block">
+                      <span className="text-[11px] font-mono text-slate-400 block">
                         {card.num}
                       </span>
-                      <h3 className="text-base font-bold text-[#f8fafc] group-hover:text-[#3b82f6] transition-colors mt-0.5">
+                      <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mt-0.5">
                         {card.title}
                       </h3>
-                      <p className="text-xs text-[#94a3b8] mt-1.5 leading-relaxed font-sans">
+                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed font-sans">
                         {card.desc}
                       </p>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-[#1e293b] flex items-center justify-between text-xs font-medium text-[#94a3b8] group-hover:text-[#3b82f6] transition-colors">
+                  <div className="pt-3 border-t border-[#1e293b] flex items-center justify-between text-xs font-medium text-slate-300 group-hover:text-blue-400 transition-colors">
                     <span>View details</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>

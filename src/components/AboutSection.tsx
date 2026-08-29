@@ -1,8 +1,9 @@
 import React from 'react';
-import { CheckCircle2, Award, ArrowUpRight, Sparkles, Code2, HeartHandshake, ShieldCheck, Zap } from 'lucide-react';
-import { aboutMeData, developerConfig } from '../data/portfolioData';
+import { CheckCircle2, Award, ArrowUpRight, Sparkles, Code2, HeartHandshake, ShieldCheck, Zap, GraduationCap } from 'lucide-react';
+import { aboutMeData, developerConfig, educationCertificationsData } from '../data/portfolioData';
 import { useSEO } from '../hooks/useSEO';
 import { sectionSEOConfig } from '../data/seoConfig';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
 export const AboutSection: React.FC = () => {
   useSEO(sectionSEOConfig.about);
@@ -111,6 +112,60 @@ export const AboutSection: React.FC = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Education & Certifications Showcase */}
+        <div className="mt-12 pt-10 border-t border-[#1e293b] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-blue-400 uppercase tracking-wider font-bold">
+                <GraduationCap className="w-4 h-4" />
+                <span>Accredited Credentials</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                Education &amp; Certifications
+              </h3>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="hidden md:inline text-xs font-mono text-slate-300">
+                600+ Coursework Hours
+              </span>
+              <ResumeDownloadButton variant="outline" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {educationCertificationsData.map((cert) => (
+              <div
+                key={cert.id}
+                className="bg-[#0f172a] p-5 rounded-2xl border border-[#1e293b] hover:border-slate-600 transition-all space-y-3 shadow-sm flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <span className="text-[11px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                      {cert.issuer}
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                      {cert.badge}
+                    </span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white leading-snug">
+                    {cert.title}
+                  </h4>
+                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                    {cert.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-[#1e293b] flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span>Issued: {cert.issuedDate}</span>
+                  {cert.hours && (
+                    <span className="text-blue-400 font-medium">{cert.hours}</span>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

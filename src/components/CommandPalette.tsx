@@ -21,10 +21,19 @@ import {
   CornerDownLeft,
   Home,
   Sun,
-  Moon
+  Moon,
+  GraduationCap,
+  Download
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { developerConfig, projectsData, experienceData, skillCategories } from '../data/portfolioData';
+import {
+  developerConfig,
+  projectsData,
+  experienceData,
+  skillCategories,
+  educationCertificationsData
+} from '../data/portfolioData';
+import { downloadResume } from '../utils/resumeDownload';
 import { Project } from '../types';
 import { useToast } from './Toast';
 import { useTheme } from '../context/ThemeContext';
@@ -38,7 +47,7 @@ export interface CommandPaletteProps {
   onToggleConfigMode: () => void;
 }
 
-type ItemType = 'section' | 'project' | 'skill' | 'experience' | 'action';
+type ItemType = 'section' | 'project' | 'skill' | 'experience' | 'certification' | 'action';
 
 interface SearchItem {
   id: string;
@@ -157,7 +166,70 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       });
     });
 
-    // 5. Actions & Quick Utilities
+    // 5. Education & Certifications
+    educationCertificationsData.forEach((cert) => {
+      items.push({
+        id: `cert-${cert.id}`,
+        title: `${cert.title} — ${cert.issuer}`,
+        subtitle: `${cert.hours ? `${cert.hours} • ` : ''}Issued: ${cert.issuedDate} (${cert.badge})`,
+        category: 'Certifications',
+        type: 'certification',
+        icon: GraduationCap,
+        tags: [cert.issuer, 'Certification', 'Credentials', cert.hours || '', cert.title],
+        metaBadge: cert.issuer,
+        action: () => {
+          onNavigate('about');
+          onClose();
+        },
+      });
+    });
+
+    // 6. Actions & Quick Utilities
+    items.push({
+      id: 'action-download-ats-resume',
+      title: 'Download Resume (ATS Plain Text .txt)',
+      subtitle: 'Instantly download ATS-optimized plain text resume ready for job portals',
+      category: 'Actions',
+      type: 'action',
+      icon: Download,
+      tags: ['resume', 'cv', 'download', 'ats', 'txt', 'job', 'hire'],
+      action: () => {
+        downloadResume('txt');
+        showToast('Downloaded Shaheera_Sadia_Resume_ATS.txt');
+        onClose();
+      },
+    });
+
+    items.push({
+      id: 'action-download-md-resume',
+      title: 'Download Resume (Markdown .md)',
+      subtitle: 'Instantly download structured developer Markdown resume',
+      category: 'Actions',
+      type: 'action',
+      icon: Download,
+      tags: ['resume', 'cv', 'download', 'markdown', 'md'],
+      action: () => {
+        downloadResume('md');
+        showToast('Downloaded Shaheera_Sadia_Resume.md');
+        onClose();
+      },
+    });
+
+    items.push({
+      id: 'action-print-pdf-resume',
+      title: 'Print / Save Resume as PDF',
+      subtitle: 'Open browser print dialog formatted for print or Save as PDF',
+      category: 'Actions',
+      type: 'action',
+      icon: Download,
+      tags: ['resume', 'cv', 'print', 'pdf', 'export'],
+      action: () => {
+        downloadResume('pdf');
+        showToast('Opening print dialog for PDF export...');
+        onClose();
+      },
+    });
+
     items.push({
       id: 'action-resume',
       title: 'View Verified Resume & Credentials',
@@ -165,6 +237,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       category: 'Actions',
       type: 'action',
       icon: FileText,
+      tags: ['resume', 'cv', 'view', 'modal', 'credentials'],
       action: () => {
         onOpenResume();
         onClose();

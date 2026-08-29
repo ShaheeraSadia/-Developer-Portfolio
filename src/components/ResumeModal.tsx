@@ -1,6 +1,34 @@
-import React, { useState } from 'react';
-import { X, Download, Copy, Check, FileText, Briefcase, GraduationCap, Award } from 'lucide-react';
-import { developerConfig, experienceData, skillCategories } from '../data/portfolioData';
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  X,
+  Download,
+  Copy,
+  Check,
+  FileText,
+  Briefcase,
+  GraduationCap,
+  Award,
+  ExternalLink,
+  Code2,
+  CheckCircle2,
+  Mail,
+  Github,
+  Linkedin,
+  MapPin,
+  Clock,
+  ChevronDown,
+  FileDown,
+  Printer,
+  FileCheck
+} from 'lucide-react';
+import {
+  developerConfig,
+  experienceData,
+  skillCategories,
+  educationCertificationsData,
+  resumeSummary
+} from '../data/portfolioData';
+import { downloadResume } from '../utils/resumeDownload';
 import { useToast } from './Toast';
 
 interface ResumeModalProps {
@@ -10,33 +38,77 @@ interface ResumeModalProps {
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
   const { showToast } = useToast();
-  const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'formatted' | 'ats_text'>('formatted');
+  const [copiedType, setCopiedType] = useState<'none' | 'ats' | 'md'>('none');
+  const [downloadDropdownOpen, setDownloadDropdownOpen] = useState(false);
+  const downloadDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (downloadDropdownRef.current && !downloadDropdownRef.current.contains(e.target as Node)) {
+        setDownloadDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  const handleDownloadFormat = (format: 'txt' | 'md' | 'html' | 'pdf') => {
+    downloadResume(format);
+    setDownloadDropdownOpen(false);
+    if (format === 'pdf') {
+      showToast('Opening print dialog to Save as PDF...');
+    } else {
+      const ext = format === 'txt' ? '_ATS.txt' : `.${format}`;
+      showToast(`Resume downloaded: Shaheera_Sadia_Resume${ext}`);
+    }
+  };
 
   if (!isOpen) return null;
 
-  const handleCopyMarkdown = () => {
-    const markdown = `# ${developerConfig.name}
-**${developerConfig.role}** | ${developerConfig.location} | ${developerConfig.email}
-GitHub: ${developerConfig.github} | LinkedIn: ${developerConfig.linkedin}
+  const atsPlainText = `Shaheera Sadia
+Web & Mobile Application Developer | Remote
+
+Email: ${developerConfig.email} | GitHub: github.com/shaheerasadia | LinkedIn: linkedin.com/in/shaheerasadia
+
+Summary
+${resumeSummary.summary}
+
+Core Skills
+${skillCategories
+  .map(
+    (cat) =>
+      `${cat.category}: ${cat.skills.map((s) => `${s.name} (${s.level}, ${s.experienceYears})`).join(', ')}`
+  )
+  .join('\n')}
+
+Professional Experience
+${experienceData
+  .map(
+    (exp) => `${exp.role} — ${exp.company}
+${exp.period} | ${exp.location}
+
+${exp.achievements.map((a) => `- ${a}`).join('\n')}
+
+Tech Stack: ${exp.technologies.join(', ')}`
+  )
+  .join('\n\n')}
+
+Education & Certifications
+${educationCertificationsData
+  .map((cert) => `- ${cert.title} — ${cert.issuer} (Issued ${cert.issuedDate})`)
+  .join('\n')}
+`;
+
+  const markdownContent = `# ${developerConfig.name}
+**${developerConfig.role}** | ${developerConfig.location}
+
+**Email:** ${developerConfig.email} | **GitHub:** ${developerConfig.github} | **LinkedIn:** ${developerConfig.linkedin}
 
 ---
 
 ## Summary
-Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. Specialized in React, JavaScript (ES6+), modern CSS architectures, and client-side browser capabilities (Web Workers) delivering zero server latency and total privacy.
-
----
-
-## Experience
-${experienceData
-  .map(
-    (exp) => `### ${exp.role} — ${exp.company}
-*${exp.period} | ${exp.location}*
-${exp.summary}
-${exp.achievements.map((a) => `- ${a}`).join('\n')}
-**Key Technologies:** ${exp.technologies.join(', ')}
-`
-  )
-  .join('\n\n')}
+${resumeSummary.summary}
 
 ---
 
@@ -44,16 +116,48 @@ ${exp.achievements.map((a) => `- ${a}`).join('\n')}
 ${skillCategories
   .map(
     (cat) => `### ${cat.category}
-${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s.focus}`).join('\n')}
-`
+${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s.focus}`).join('\n')}`
   )
-  .join('\n')}
+  .join('\n\n')}
+
+---
+
+## Professional Experience
+${experienceData
+  .map(
+    (exp) => `### ${exp.role} — ${exp.company}
+*${exp.period} | ${exp.location}*
+
+${exp.achievements.map((a) => `- ${a}`).join('\n')}
+
+**Tech Stack:** ${exp.technologies.join(', ')}`
+  )
+  .join('\n\n')}
+
+---
+
+## Education & Certifications
+${educationCertificationsData
+  .map(
+    (cert) => `### ${cert.title}
+*${cert.issuer} | Issued: ${cert.issuedDate}*
+${cert.description}`
+  )
+  .join('\n\n')}
 `;
 
-    navigator.clipboard.writeText(markdown);
-    setCopied(true);
+  const handleCopyATS = () => {
+    navigator.clipboard.writeText(atsPlainText);
+    setCopiedType('ats');
+    showToast('ATS Plain Text copied to clipboard');
+    setTimeout(() => setCopiedType('none'), 2500);
+  };
+
+  const handleCopyMarkdown = () => {
+    navigator.clipboard.writeText(markdownContent);
+    setCopiedType('md');
     showToast('Resume copied to clipboard in Markdown format');
-    setTimeout(() => setCopied(false), 2500);
+    setTimeout(() => setCopiedType('none'), 2500);
   };
 
   const handlePrint = () => {
@@ -63,50 +167,164 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
   return (
     <div
       id="resume-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto print:p-0 print:bg-white print:static"
       role="dialog"
       aria-modal="true"
       aria-labelledby="resume-modal-title"
     >
       <div
         id="resume-modal-content"
-        className="relative w-full max-w-4xl bg-[#0f172a] text-[#f8fafc] rounded-2xl border border-[#1e293b] shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-[#0f172a] text-[#f8fafc] rounded-2xl border border-[#1e293b] shadow-2xl overflow-hidden my-4 sm:my-8 max-h-[92vh] flex flex-col print:border-none print:shadow-none print:max-h-none print:w-full print:my-0 print:rounded-none print:bg-white print:text-black"
       >
-        {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#1e293b] bg-[#0a0d12]">
+        {/* Header Control Bar (Hidden on Print) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between px-5 py-4 border-b border-[#1e293b] bg-[#0a0d12] gap-3 print:hidden shrink-0">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-[#0f172a] rounded-xl border border-[#1e293b] text-[#3b82f6]">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h2 id="resume-modal-title" className="text-sm sm:text-base font-bold text-[#f8fafc]">
-                Shaheera Sadia — Curriculum Vitae
-              </h2>
-              <p className="text-xs text-[#94a3b8]">Front-End Developer • React &amp; Client-Side Architectures</p>
+              <div className="flex items-center gap-2">
+                <h2 id="resume-modal-title" className="text-sm sm:text-base font-bold text-white">
+                  {developerConfig.name} — Curriculum Vitae
+                </h2>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  ATS Ready
+                </span>
+              </div>
+              <p className="text-xs text-slate-300">Front-End Developer • 5+ Years Experience • Remote</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            {/* View Mode Toggle */}
+            <div className="inline-flex p-0.5 rounded-lg bg-[#0f172a] border border-[#1e293b]">
+              <button
+                type="button"
+                onClick={() => setActiveTab('formatted')}
+                className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer font-medium ${
+                  activeTab === 'formatted'
+                    ? 'bg-[#2563eb] text-white shadow-sm'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                Styled CV
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('ats_text')}
+                className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer font-medium ${
+                  activeTab === 'ats_text'
+                    ? 'bg-[#2563eb] text-white shadow-sm'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                ATS Raw Text
+              </button>
+            </div>
+
             <button
-              id="copy-resume-markdown-btn"
-              onClick={handleCopyMarkdown}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-[#94a3b8] hover:text-[#f8fafc] hover:border-slate-600 transition-colors cursor-pointer"
+              id="copy-ats-text-btn"
+              onClick={handleCopyATS}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-300 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
+              title="Copy plain ATS-formatted text for job portals"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#22c55e]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied MD' : 'Copy Markdown'}</span>
+              {copiedType === 'ats' ? (
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+              ) : (
+                <Copy className="w-3.5 h-3.5" />
+              )}
+              <span>{copiedType === 'ats' ? 'Copied ATS' : 'Copy ATS'}</span>
             </button>
-            <button
-              id="print-resume-btn"
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Print / PDF</span>
-            </button>
+
+            {/* Primary Download Resume Split Dropdown */}
+            <div className="relative inline-flex items-center" ref={downloadDropdownRef}>
+              <div className="inline-flex rounded-lg overflow-hidden border border-blue-500/40 bg-blue-600">
+                <button
+                  type="button"
+                  id="modal-download-resume-btn"
+                  onClick={() => handleDownloadFormat('txt')}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 font-semibold text-white hover:bg-blue-500 transition-colors cursor-pointer shadow-sm"
+                  title="Download ATS Plain Text Resume"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download Resume</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDownloadDropdownOpen(!downloadDropdownOpen)}
+                  className="px-2 py-1.5 bg-blue-700 hover:bg-blue-600 text-white border-l border-blue-500/50 transition-colors cursor-pointer"
+                  aria-label="Select download format"
+                  title="Select format (.txt, .md, .html, PDF)"
+                >
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${downloadDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
+
+              {downloadDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-72 bg-[#0f172a] border border-[#1e293b] rounded-xl shadow-2xl p-2 z-50 animate-in fade-in duration-100">
+                  <div className="px-2 py-1 text-[10px] font-mono uppercase text-slate-400 border-b border-[#1e293b] mb-1">
+                    Select Download Format
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('txt')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="font-semibold">ATS Plain Text (.txt)</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                      Standard
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('md')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Code2 className="w-3.5 h-3.5 text-purple-400" />
+                      <span className="font-semibold">Markdown (.md)</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-purple-400 bg-purple-500/10 px-1.5 py-0.5 rounded">
+                      Dev
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('html')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileText className="w-3.5 h-3.5 text-amber-400" />
+                      <span className="font-semibold">Standalone HTML (.html)</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded">
+                      Web
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('pdf')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Printer className="w-3.5 h-3.5 text-blue-400" />
+                      <span className="font-semibold">Print / Save as PDF</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">
+                      PDF
+                    </span>
+                  </button>
+                </div>
+              )}
+            </div>
+
             <button
               id="close-resume-modal-btn"
               onClick={onClose}
-              className="p-1.5 text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#0f172a] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-slate-400 hover:text-white hover:bg-[#0f172a] rounded-lg transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -114,69 +332,252 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
           </div>
         </div>
 
-        {/* Modal Body / Printable Area */}
-        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 font-sans print:p-0 bg-[#0f172a]">
-          {/* Header */}
-          <div className="border-b border-[#1e293b] pb-6">
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        {/* ATS Raw Text Tab */}
+        {activeTab === 'ats_text' ? (
+          <div className="p-6 sm:p-8 overflow-y-auto space-y-4 font-mono text-xs leading-relaxed bg-[#0a0d12]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1e293b]">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f8fafc]">
-                  {developerConfig.name}
-                </h1>
-                <p className="text-sm text-[#3b82f6] font-semibold mt-0.5">
-                  {developerConfig.role}
+                <span className="text-blue-400 font-bold uppercase tracking-wider block">
+                  ATS Formatted Text Stream
+                </span>
+                <p className="text-slate-400 text-[11px] font-sans">
+                  Clean unformatted text designed to pass applicant tracking systems (Workday, Greenhouse, Lever, Taleo).
                 </p>
               </div>
-              <div className="text-xs text-[#94a3b8] space-y-0.5 font-mono">
-                <p>{developerConfig.location}</p>
-                <p className="text-[#3b82f6]">{developerConfig.email}</p>
-                <p className="text-[#94a3b8]">{developerConfig.github}</p>
-              </div>
+              <button
+                onClick={handleCopyATS}
+                className="px-3 py-1.5 rounded-lg bg-[#2563eb] hover:bg-blue-500 text-white font-sans font-semibold text-xs flex items-center gap-1.5 cursor-pointer"
+              >
+                {copiedType === 'ats' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>Copy Full Text</span>
+              </button>
             </div>
-            <p className="text-sm text-[#94a3b8] mt-4 leading-relaxed max-w-3xl font-sans">
-              Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. Journey began on freeCodeCamp in 2021 with continuous dedication to fast, accessible, privacy-first web utilities.
-            </p>
+            <pre className="whitespace-pre-wrap font-mono text-slate-200 bg-[#0f172a] p-5 rounded-xl border border-[#1e293b] select-all overflow-x-auto text-[11.5px] leading-6">
+              {atsPlainText}
+            </pre>
           </div>
-
-          {/* Professional Experience Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#3b82f6] uppercase tracking-wider font-bold">
-              <Briefcase className="w-4 h-4" />
-              <span>Professional Experience</span>
-            </div>
-
-            <div className="space-y-4">
-              {experienceData.map((exp) => (
-                <div key={exp.id} className="space-y-2 bg-[#0a0d12] p-5 rounded-xl border border-[#1e293b]">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <h3 className="text-sm sm:text-base font-bold text-[#f8fafc]">
-                      {exp.role} <span className="text-[#3b82f6] font-normal">@ {exp.company}</span>
-                    </h3>
-                    <span className="text-xs font-mono text-[#94a3b8]">
-                      {exp.period} | {exp.location}
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed font-sans">
-                    {exp.summary}
+        ) : (
+          /* Styled CV View / Printable Area */
+          <div className="p-6 sm:p-10 overflow-y-auto space-y-8 font-sans print:p-8 print:overflow-visible print:bg-white print:text-black bg-[#0f172a]">
+            {/* Candidate Header */}
+            <div className="border-b border-[#1e293b] print:border-neutral-300 pb-6">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white print:text-black">
+                    {developerConfig.name}
+                  </h1>
+                  <p className="text-sm sm:text-base text-blue-400 print:text-blue-700 font-semibold">
+                    {developerConfig.role}
                   </p>
-                  <div className="space-y-1 pt-1 font-sans">
-                    {exp.achievements.map((ach, i) => (
-                      <div key={i} className="text-xs text-[#94a3b8] flex items-start gap-2">
-                        <span className="text-[#3b82f6]">•</span>
-                        <span className="text-[#f8fafc]">{ach}</span>
-                      </div>
-                    ))}
+                </div>
+                <div className="text-xs text-slate-300 print:text-neutral-700 space-y-1 font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
+                    <a href={`mailto:${developerConfig.email}`} className="hover:underline">
+                      {developerConfig.email}
+                    </a>
                   </div>
-                  <div className="pt-2 flex flex-wrap gap-1">
-                    {exp.technologies.map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#0f172a] text-[#94a3b8] border border-[#1e293b]">
-                        {t}
-                      </span>
-                    ))}
+                  <div className="flex items-center gap-1.5">
+                    <Github className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
+                    <a href={developerConfig.github} target="_blank" rel="noreferrer" className="hover:underline">
+                      github.com/shaheerasadia
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Linkedin className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
+                    <a href={developerConfig.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
+                      linkedin.com/in/shaheerasadia
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-slate-400 print:text-neutral-500">
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
+                    <span>Remote • 5+ Years Experience</span>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Summary Section */}
+              <div className="mt-5 pt-4 border-t border-[#1e293b]/60 print:border-neutral-200">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-blue-400 print:text-blue-800 font-bold mb-2">
+                  Professional Summary
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 print:text-neutral-800 leading-relaxed font-sans">
+                  {resumeSummary.summary}
+                </p>
+              </div>
             </div>
+
+            {/* Core Skills Section */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono text-blue-400 print:text-blue-800 uppercase tracking-wider font-bold">
+                <Award className="w-4 h-4" />
+                <span>Core Skills &amp; Proficiencies</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 print:grid-cols-2">
+                {skillCategories.map((cat) => (
+                  <div
+                    key={cat.category}
+                    className="p-3.5 rounded-xl bg-[#0a0d12] print:bg-neutral-50 border border-[#1e293b] print:border-neutral-200 space-y-1.5"
+                  >
+                    <h4 className="text-xs font-bold text-white print:text-black font-mono">
+                      {cat.category}
+                    </h4>
+                    <ul className="space-y-1 text-xs text-slate-300 print:text-neutral-700">
+                      {cat.skills.map((skill) => (
+                        <li key={skill.name} className="flex items-baseline justify-between gap-2">
+                          <span className="font-medium text-slate-200 print:text-black">
+                            {skill.name}
+                          </span>
+                          <span className="text-[11px] font-mono text-blue-400 print:text-blue-700 shrink-0">
+                            {skill.level} ({skill.experienceYears})
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Professional Experience Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-blue-400 print:text-blue-800 uppercase tracking-wider font-bold">
+                <Briefcase className="w-4 h-4" />
+                <span>Professional Experience</span>
+              </div>
+
+              <div className="space-y-4">
+                {experienceData.map((exp) => (
+                  <div
+                    key={exp.id}
+                    className="space-y-3 bg-[#0a0d12] print:bg-neutral-50 p-5 rounded-xl border border-[#1e293b] print:border-neutral-200"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                      <div>
+                        <h3 className="text-sm sm:text-base font-bold text-white print:text-black">
+                          {exp.role}
+                        </h3>
+                        <p className="text-xs sm:text-sm font-semibold text-blue-400 print:text-blue-700">
+                          {exp.company}
+                        </p>
+                      </div>
+                      <span className="text-xs font-mono text-slate-400 print:text-neutral-600">
+                        {exp.period} | {exp.location}
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 pt-1 font-sans">
+                      {exp.achievements.map((ach, i) => (
+                        <div key={i} className="text-xs text-slate-300 print:text-neutral-800 flex items-start gap-2">
+                          <span className="text-blue-400 print:text-blue-700 shrink-0 mt-0.5">•</span>
+                          <span className="leading-relaxed">{ach}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                      <span className="text-[11px] font-mono text-slate-400 print:text-neutral-600 mr-1">
+                        Tech Stack:
+                      </span>
+                      {exp.technologies.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0f172a] print:bg-neutral-200 text-slate-300 print:text-black border border-[#1e293b] print:border-neutral-300"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Education & Certifications Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-blue-400 print:text-blue-800 uppercase tracking-wider font-bold">
+                <GraduationCap className="w-4 h-4" />
+                <span>Education &amp; Certifications</span>
+              </div>
+
+              <div className="space-y-3">
+                {educationCertificationsData.map((cert) => (
+                  <div
+                    key={cert.id}
+                    className="bg-[#0a0d12] print:bg-neutral-50 p-4 rounded-xl border border-[#1e293b] print:border-neutral-200 flex flex-col sm:flex-row sm:items-start justify-between gap-3"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h4 className="text-sm font-bold text-white print:text-black">
+                          {cert.title}
+                        </h4>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-400 print:text-blue-700 border border-blue-500/20">
+                          {cert.badge}
+                        </span>
+                      </div>
+                      <p className="text-xs text-blue-400 print:text-blue-700 font-semibold font-mono">
+                        {cert.issuer}
+                      </p>
+                      <p className="text-xs text-slate-300 print:text-neutral-700 leading-relaxed font-sans pt-1">
+                        {cert.description}
+                      </p>
+                    </div>
+
+                    <div className="text-left sm:text-right shrink-0">
+                      <span className="text-xs font-mono text-slate-400 print:text-neutral-600 block">
+                        Issued {cert.issuedDate}
+                      </span>
+                      {cert.hours && (
+                        <span className="text-[11px] font-mono text-emerald-400 print:text-emerald-700 block">
+                          {cert.hours} Accredited
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Bottom Export Toolbar (Print-Hidden) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between px-5 py-3.5 border-t border-[#1e293b] bg-[#0a0d12] gap-3 print:hidden shrink-0">
+          <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
+            <FileCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>ATS Compliant Resume • 5+ Years Experience • Remote</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <button
+              type="button"
+              id="footer-download-ats-btn"
+              onClick={() => handleDownloadFormat('txt')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-sm transition-all cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download ATS (.txt)</span>
+            </button>
+
+            <button
+              type="button"
+              id="footer-download-md-btn"
+              onClick={() => handleDownloadFormat('md')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-200 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
+            >
+              <Code2 className="w-3.5 h-3.5 text-purple-400" />
+              <span>Markdown (.md)</span>
+            </button>
+
+            <button
+              type="button"
+              id="footer-print-pdf-btn"
+              onClick={() => handleDownloadFormat('pdf')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-200 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
+            >
+              <Printer className="w-3.5 h-3.5 text-blue-400" />
+              <span>Print / PDF</span>
+            </button>
           </div>
         </div>
       </div>

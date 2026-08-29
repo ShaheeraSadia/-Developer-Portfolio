@@ -50,6 +50,17 @@ export interface ExperienceItem {
   statsBadge?: string;
 }
 
+export interface EducationCertification {
+  id: string;
+  title: string;
+  issuer: string;
+  hours?: string;
+  issuedDate: string;
+  credentialUrl?: string;
+  badge: string;
+  description: string;
+}
+
 export interface PhilosophyPillar {
   id: string;
   title: string;

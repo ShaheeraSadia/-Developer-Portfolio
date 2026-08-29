@@ -1,4 +1,4 @@
-import { DeveloperConfig, Project, ExperienceItem, PhilosophyPillar, SkillCategory } from '../types';
+import { DeveloperConfig, Project, ExperienceItem, PhilosophyPillar, SkillCategory, EducationCertification } from '../types';
 
 export const developerConfig: DeveloperConfig = {
   name: 'Shaheera Sadia',
@@ -32,6 +32,13 @@ export const developerConfig: DeveloperConfig = {
     'Responsive mobile/web design with snappy :active touch feedback',
     'Zero-jank UI performance offloading tasks to Web Workers',
   ],
+};
+
+export const resumeSummary = {
+  headline: 'Web & Mobile Application Developer | Remote',
+  summary:
+    'Performance-focused Front-End Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), modern CSS architectures, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.',
+  availability: 'Available for opportunities | Remote | Student & Part-Time Developer | 5+ Years Experience',
 };
 
 export const aboutMeData = {
@@ -330,13 +337,13 @@ export const experienceData: ExperienceItem[] = [
     summary:
       'Engineered and scaled 100% client-side web utility platforms and brand identity engines featuring browser-based media compression, format converters, automated CSS token generators, and AI video studios.',
     achievements: [
-      'Architected 100% client-side Web Worker pipeline for off-thread image compression, brand asset generation, and format conversions, eliminating server computing costs entirely.',
-      'Engineered real-time WCAG 2.1 AA color contrast evaluators and multi-format CSS/Tailwind design token export pipelines.',
-      'Optimized initial page load times using lightweight analytics and zero-runtime asset compilation on Vercel.',
-      'Configured AdSense/Monetag monetization and RSS distribution feeds with zero Cumulative Layout Shift (CLS).',
-      'Designed responsive mobile-first UI with accessible touch feedback and dark/light mode balance.',
+      'Architected a 100% client-side Web Worker execution pipeline for off-thread media compression and asset conversion, eliminating cloud compute costs by 100% while guaranteeing user data privacy.',
+      'Spearheaded real-time WCAG 2.1 AA color contrast evaluators and multi-format CSS/Tailwind design token export pipelines used by digital creators and developers.',
+      'Reduced initial page load speeds and achieved sub-100ms interaction latency by deploying zero-runtime asset compilation on Vercel.',
+      'Integrated privacy-compliant AdSense/Monetag ad revenue models and RSS distribution feeds while maintaining 0 Cumulative Layout Shift (CLS) for optimal core web vitals.',
+      'Designed accessible mobile-first interfaces with snappy :active touch feedback and automatic dark/light mode balance across all viewports.',
     ],
-    technologies: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Web Workers', 'Canvas API', 'Vercel'],
+    technologies: ['React', 'JavaScript (ES6+)', 'Web Workers', 'Canvas API', 'Tailwind CSS', 'Vercel'],
     statsBadge: '100% Client-Side',
   },
   {
@@ -349,28 +356,29 @@ export const experienceData: ExperienceItem[] = [
     summary:
       'Built responsive e-commerce web applications, shopping tools, and interactive utilities with accessible touch controls and real-time client state management.',
     achievements: [
-      'Engineered client-side shopping cart architectures with instant state updates and localStorage persistence.',
-      'Designed accessible touch interfaces and snappy micro-interactions (:active touch feedback) across desktop and mobile.',
-      'Enforced WCAG 2.1 contrast standards across all product catalogs, badges, and checkout flows.',
+      'Developed responsive e-commerce web applications, interactive web utilities, and shopping platforms reaching global mobile and desktop users.',
+      'Engineered client-side shopping cart state architectures using localized persistence models, achieving instant UI updates with zero database query overhead.',
+      'Standardized design tokens and enforced strict WCAG 2.1 AA contrast requirements across product catalog grids, interactive badges, and checkout flows.',
+      'Refactored touch interface interactions across low-end mobile hardware to deliver smooth 60fps scrolling and responsive tap targets.',
     ],
-    technologies: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Responsive UI', 'Vercel', 'Git'],
+    technologies: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'LocalStorage API', 'Git', 'Vercel'],
     statsBadge: 'Responsive Web Tools',
   },
   {
     id: 'exp-3',
     role: 'Web & Mobile Application Developer',
-    company: 'Client-Side Engineering & freeCodeCamp Journey',
+    company: 'Independent Projects',
     period: '2021 — 2023',
     location: 'Remote',
     type: 'Full-time',
     summary:
       'Built user-centric interfaces, performance-driven web tools, and full-stack local development environments from foundations started on freeCodeCamp in 2021.',
     achievements: [
-      'Developed 20+ responsive web applications translating complex user tasks into smooth, intuitive UI designs.',
-      'Managed local and database architectures using XAMPP, phpMyAdmin, LocalWP, and WordPress.',
-      'Maintained automated deployment workflows using Git, GitHub, cPanel, and Vercel.',
+      'Built and launched 20+ custom web applications, translating complex client workflows into intuitive, user-friendly front-end interfaces.',
+      'Configured local server setups and database management environments using XAMPP, phpMyAdmin, LocalWP, and custom WordPress implementations.',
+      'Established automated deployment pipelines using Git version control, GitHub repositories, and automated edge hosting on Vercel and cPanel.',
     ],
-    technologies: ['React', 'JavaScript', 'HTML5', 'CSS3', 'XAMPP', 'WordPress', 'Git'],
+    technologies: ['React', 'JavaScript', 'HTML5/CSS3', 'WordPress', 'MySQL', 'Git'],
     statsBadge: '5+ Yrs Experience',
   },
 ];
@@ -473,32 +481,65 @@ export const skillCategories: SkillCategory[] = [
       { name: 'React', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Hooks, Functional Components, Component Architecture' },
       { name: 'JavaScript (ES6+)', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Async/Await, Web Workers, ArrayBuffers, DOM APIs' },
       { name: 'HTML5 & CSS3', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Semantic HTML, Flexbox, CSS Grid, Responsive Design' },
-      { name: 'Tailwind CSS', level: 'Expert', experienceYears: '4+ yrs', focus: 'Zero-runtime utilities, Custom themes, Dark mode' },
+      { name: 'Tailwind CSS', level: 'Expert', experienceYears: '4+ yrs', focus: 'Zero-runtime utilities, Custom design tokens, Dark mode' },
     ],
   },
   {
-    category: 'Performance & UI/UX',
+    category: 'Performance & Accessibility',
     skills: [
-      { name: 'Client-Side Web Workers', level: 'Specialist', experienceYears: '4+ yrs', focus: 'Off-thread media compression & compute' },
-      { name: 'WCAG 2.1 Contrast Standards', level: 'Expert', experienceYears: '5+ yrs', focus: 'AAA Contrast, Accessible touch targets, A11y' },
-      { name: 'Responsive Web Design', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Mobile-first, :active micro-interactions' },
-      { name: 'Chart.js & Data Viz', level: 'Expert', experienceYears: '3+ yrs', focus: 'Data-dense dark dashboards, 60fps rendering' },
+      { name: 'Client-Side Web Workers', level: 'Specialist', experienceYears: '4+ yrs', focus: 'Off-thread media compression, asset pipelines & zero-jank compute' },
+      { name: 'WCAG 2.1 AA Standards', level: 'Expert', experienceYears: '5+ yrs', focus: 'AAA Contrast, Accessible touch targets, Radical A11y' },
+      { name: 'Responsive UI/UX Design', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Mobile-first architectures, :active micro-interactions' },
+      { name: 'Chart.js / Data Viz', level: 'Expert', experienceYears: '3+ yrs', focus: 'Data-dense dark dashboards, 60fps rendering' },
     ],
   },
   {
-    category: 'Database & Local Setup',
+    category: 'Tooling & Deployment',
     skills: [
-      { name: 'XAMPP & LocalWP', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Local server environment & configuration' },
-      { name: 'phpMyAdmin & MySQL', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Database schema, queries, local testing' },
-      { name: 'WordPress', level: 'Advanced', experienceYears: '4+ yrs', focus: 'Theme customization, CMS management' },
+      { name: 'Git & GitHub', level: 'Expert', experienceYears: '5+ yrs', focus: 'Version control, Branching workflows, Repository management' },
+      { name: 'Vercel & Web Analytics', level: 'Expert', experienceYears: '4+ yrs', focus: 'Edge deployments, Core Web Vitals, zero-runtime compilation' },
+      { name: 'cPanel & Web Hosting', level: 'Proficient', experienceYears: '4+ yrs', focus: 'DNS management, SSL, FTP, Domain routing' },
+      { name: 'Vite & Webpack', level: 'Expert', experienceYears: '4+ yrs', focus: 'Fast bundling, HMR, Module federation, Asset pipelines' },
     ],
   },
   {
-    category: 'Deployment & Tooling',
+    category: 'Database & Environments',
     skills: [
-      { name: 'Git & GitHub', level: 'Expert', experienceYears: '5+ yrs', focus: 'Version control, Branching, CI/CD integrations' },
-      { name: 'Vercel & Analytics', level: 'Expert', experienceYears: '4+ yrs', focus: 'Edge deployments, Vercel Web Analytics' },
-      { name: 'cPanel & Web Hosting', level: 'Proficient', experienceYears: '4+ yrs', focus: 'DNS, SSL, FTP, Domain routing' },
+      { name: 'XAMPP & LocalWP', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Local server environment & development stack' },
+      { name: 'phpMyAdmin & MySQL', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Relational schemas, Query optimization, Data migration' },
+      { name: 'WordPress', level: 'Advanced', experienceYears: '4+ yrs', focus: 'Theme engineering, Headless CMS, Template architecture' },
     ],
+  },
+];
+
+export const educationCertificationsData: EducationCertification[] = [
+  {
+    id: 'fcc-js-v8',
+    title: 'JavaScript Algorithms and Data Structures V8 (300 Hours)',
+    issuer: 'freeCodeCamp',
+    hours: '300 Hours',
+    issuedDate: 'August 19, 2025',
+    credentialUrl: 'https://www.freecodecamp.org/certification/shaheerasadia/javascript-algorithms-and-data-structures-v8',
+    badge: 'Verified Credential',
+    description: 'Algorithmic problem solving, ES6+ features, functional programming, OOP, and complex data structure implementations across 300 hours of coursework and certification projects.',
+  },
+  {
+    id: 'fcc-rwd-v8',
+    title: 'Responsive Web Design V8 (300 Hours)',
+    issuer: 'freeCodeCamp',
+    hours: '300 Hours',
+    issuedDate: 'July 5, 2025',
+    credentialUrl: 'https://www.freecodecamp.org/certification/shaheerasadia/responsive-web-design-v8',
+    badge: 'Verified Credential',
+    description: 'Modern HTML5 semantic architecture, advanced CSS3 Flexbox and Grid, media query breakpoints, and strict WCAG accessibility compliance across 300 hours of coursework and web design projects.',
+  },
+  {
+    id: 'codeorg-ai-oceans',
+    title: 'AI for Oceans: Hour of Code',
+    issuer: 'Code.org',
+    issuedDate: 'Completed',
+    credentialUrl: 'https://code.org/oceans',
+    badge: 'Certificate of Completion',
+    description: 'Practical training in machine learning classification models, ethical training data curation, bias reduction, and computer vision classification.',
   },
 ];

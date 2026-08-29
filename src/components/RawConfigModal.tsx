@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, Terminal, Download, Code2 } from 'lucide-react';
-import { developerConfig, projectsData, experienceData, philosophyPillars, skillCategories } from '../data/portfolioData';
+import {
+  developerConfig,
+  projectsData,
+  experienceData,
+  philosophyPillars,
+  skillCategories,
+  educationCertificationsData
+} from '../data/portfolioData';
 import { useToast } from './Toast';
 
 interface RawConfigModalProps {
@@ -18,6 +25,7 @@ export const RawConfigModal: React.FC<RawConfigModalProps> = ({ isOpen, onClose 
     developerConfig,
     projects: projectsData,
     experience: experienceData,
+    educationAndCertifications: educationCertificationsData,
     philosophyPillars,
     skills: skillCategories,
     generatedAt: new Date().toISOString(),

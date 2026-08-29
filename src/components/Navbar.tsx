@@ -16,10 +16,12 @@ import {
   MessageSquare,
   Search,
   Command,
-  Home
+  Home,
+  Download
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { ThemeToggle } from './ThemeToggle';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
 interface NavbarProps {
   onOpenResume: () => void;
@@ -268,14 +270,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden sm:inline">{isConfigMode ? 'UI' : 'JSON'}</span>
           </button>
 
-          {/* Resume Trigger */}
+          {/* Resume Download Action Button */}
+          <ResumeDownloadButton
+            variant="compact"
+            onOpenModal={onOpenResume}
+          />
+
+          {/* Resume Modal Trigger */}
           <button
             id="open-resume-btn"
             onClick={onOpenResume}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            title="Open Interactive Resume Modal"
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />
-            <span>Resume</span>
+            <span>View CV</span>
           </button>
 
           {/* Hamburger Menu (Mobile) */}
@@ -300,6 +309,28 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center justify-between pb-3 border-b border-[#1e293b]">
             <span className="text-xs font-mono text-slate-400">Theme Mode:</span>
             <ThemeToggle showLabel={true} />
+          </div>
+
+          {/* Mobile Resume Quick Download & View Bar */}
+          <div className="grid grid-cols-2 gap-2 pb-2">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
+              className="p-2.5 rounded-xl bg-[#2563eb] hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+            >
+              <FileText className="w-4 h-4" />
+              <span>View CV</span>
+            </button>
+            <ResumeDownloadButton
+              variant="outline"
+              className="w-full justify-center"
+              onOpenModal={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

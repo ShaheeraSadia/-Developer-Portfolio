@@ -20,11 +20,13 @@ import {
   UserCheck,
   FolderGit2,
   Check,
-  Cpu
+  Cpu,
+  Eye
 } from 'lucide-react';
 import Typed from 'typed.js';
 import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
 import { HeroAvatarCircle } from './HeroAvatarCircle';
 import { useSEO } from '../hooks/useSEO';
@@ -246,13 +248,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 pt-3">
+              {/* Dedicated Resume Download Button with Direct Download & Format Dropdown */}
+              <ResumeDownloadButton
+                variant="hero"
+                onOpenModal={onOpenResume}
+                showPreviewOption={true}
+              />
+
+              {/* View Interactive CV Modal Button */}
               <button
                 onClick={onOpenResume}
-                id="hero-cv-btn"
-                className="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm sm:text-base transition-all duration-200 shadow-md shadow-blue-900/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 cursor-pointer"
+                id="hero-view-cv-btn"
+                className="px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
+                title="Open interactive curriculum vitae on screen"
               >
-                <FileDown className="w-4 h-4 stroke-[2.5]" />
-                <span>Download CV / Resume</span>
+                <Eye className="w-4 h-4 text-blue-400" />
+                <span>View CV</span>
               </button>
 
               <button

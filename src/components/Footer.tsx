@@ -10,16 +10,19 @@ import {
   Mail,
   CheckCircle2,
   Sparkles,
-  Compass
+  Compass,
+  FileText
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { useSectionTelemetry } from '../hooks/useSectionTelemetry';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
 interface FooterProps {
   activeSection?: string;
+  onOpenResume?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ activeSection = 'home' }) => {
+export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenResume }) => {
   const telemetry = useSectionTelemetry(activeSection);
 
   const scrollToTop = () => {
@@ -122,13 +125,15 @@ export const Footer: React.FC<FooterProps> = ({ activeSection = 'home' }) => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#1e293b] text-xs text-[#94a3b8]">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span>© {new Date().getFullYear()}</span>
             <span className="text-[#f8fafc] font-semibold">{developerConfig.name}</span>
             <span>— Front-End &amp; Mobile Developer</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <ResumeDownloadButton variant="outline" onOpenModal={onOpenResume} />
+
             <div className="flex items-center gap-2">
               <a
                 href={developerConfig.github}

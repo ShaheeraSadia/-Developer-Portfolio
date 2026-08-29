@@ -1,10 +1,15 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, CheckCircle2, ArrowUpRight, Award } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, CheckCircle2, ArrowUpRight, Award, FileText, Download } from 'lucide-react';
 import { experienceData } from '../data/portfolioData';
 import { useSEO } from '../hooks/useSEO';
 import { sectionSEOConfig } from '../data/seoConfig';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
-export const ExperienceTimeline: React.FC = () => {
+interface ExperienceTimelineProps {
+  onOpenResume?: () => void;
+}
+
+export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ onOpenResume }) => {
   useSEO(sectionSEOConfig.experience);
 
   return (
@@ -60,16 +65,16 @@ export const ExperienceTimeline: React.FC = () => {
 
               {/* Summary & Highlights */}
               <div className="pt-6 space-y-4">
-                <p className="text-sm sm:text-base text-[#94a3b8] font-sans leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
                   {item.summary}
                 </p>
 
                 {/* Highlights / Achievements list */}
                 <div className="space-y-2 pt-2">
                   {item.achievements.map((h, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#94a3b8] font-sans">
-                      <CheckCircle2 className="w-4 h-4 text-[#3b82f6] shrink-0 mt-0.5" />
-                      <span className="leading-relaxed text-[#f8fafc]">{h}</span>
+                    <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm font-sans">
+                      <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                      <span className="leading-relaxed text-slate-100">{h}</span>
                     </div>
                   ))}
                 </div>
@@ -79,7 +84,7 @@ export const ExperienceTimeline: React.FC = () => {
                   {item.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0a0d12] text-[#94a3b8] border border-[#1e293b]"
+                      className="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0a0d12] text-slate-300 border border-[#1e293b]"
                     >
                       {tech}
                     </span>
@@ -88,6 +93,36 @@ export const ExperienceTimeline: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Career History Export Banner */}
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-[#0f172a] border border-[#1e293b] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-1 max-w-xl">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <FileText className="w-5 h-5 text-blue-400" />
+              <span>Need the complete official CV for your hiring pipeline?</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300">
+              Download the ATS-formatted resume or developer Markdown file directly, or view the complete interactive breakdown.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 shrink-0 w-full md:w-auto">
+            <ResumeDownloadButton
+              variant="hero"
+              onOpenModal={onOpenResume}
+              showPreviewOption={true}
+            />
+            {onOpenResume && (
+              <button
+                type="button"
+                onClick={onOpenResume}
+                className="px-4 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-xs sm:text-sm border border-[#1e293b] hover:border-slate-600 transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                <FileText className="w-4 h-4 text-blue-400" />
+                <span>View Full CV</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>

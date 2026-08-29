@@ -138,7 +138,9 @@ export default function App() {
 
               {activeSection === 'skills' && <SkillsMatrix />}
 
-              {activeSection === 'experience' && <ExperienceTimeline />}
+              {activeSection === 'experience' && (
+                <ExperienceTimeline onOpenResume={() => setIsResumeOpen(true)} />
+              )}
 
               {activeSection === 'component_lab' && <ComponentLab />}
 
@@ -174,7 +176,7 @@ export default function App() {
                   <TerminalDivider label="Architecture Principles" />
                   <ArchitecturePhilosophy />
                   <TerminalDivider label="Career Experience" />
-                  <ExperienceTimeline />
+                  <ExperienceTimeline onOpenResume={() => setIsResumeOpen(true)} />
                   <TerminalDivider label="Technical Skills" />
                   <SkillsMatrix />
                   <TerminalDivider label="Contact" />
@@ -186,7 +188,7 @@ export default function App() {
         </main>
 
         {/* Footer with Session Activity Telemetry */}
-        <Footer activeSection={activeSection} />
+        <Footer activeSection={activeSection} onOpenResume={() => setIsResumeOpen(true)} />
 
         {/* Global Command Palette (Ctrl+K) */}
         <CommandPalette

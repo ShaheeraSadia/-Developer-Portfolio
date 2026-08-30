@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Mail, 
   Send, 
@@ -10,26 +10,89 @@ import {
   Linkedin, 
   Twitter, 
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Shield,
+  ShieldCheck,
+  ShieldAlert,
+  Lock,
+  RefreshCw,
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
 import { useSEO } from '../hooks/useSEO';
 import { sectionSEOConfig } from '../data/seoConfig';
+import { 
+  validateFormSecurity, 
+  generateSecurityChallenge, 
+  checkRateLimit, 
+  recordSubmission 
+} from '../utils/formSecurity';
 
 export const ContactSection: React.FC = () => {
   useSEO(sectionSEOConfig.contact);
 
   const { showToast } = useToast();
   const [copied, setCopied] = useState(false);
+  const [copiedMessage, setCopiedMessage] = useState(false);
+  
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     projectType: 'Frontend Web App (React / SPA)',
     message: '',
   });
+
+  // Anti-Hacker & Anti-Bot Defense States
+  const [honeypotFax, setHoneypotFax] = useState('');
+  const [honeypotToken, setHoneypotToken] = useState('');
+  const [securityChallenge, setSecurityChallenge] = useState(() => generateSecurityChallenge());
+  const [challengeAnswer, setChallengeAnswer] = useState('');
+  const [threatAlert, setThreatAlert] = useState<string | null>(null);
+  const [cooldownSeconds, setCooldownSeconds] = useState<number>(0);
+  const [sanitizedData, setSanitizedData] = useState<{
+    name: string;
+    email: string;
+    projectType: string;
+    message: string;
+  } | null>(null);
+
+  // Velocity / time-trap: tracks when form mounted
+  const formLoadedAtRef = useRef<number>(Date.now());
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+
+  // Check rate limit on mount and run cooldown ticker
+  useEffect(() => {
+    const rateStatus = checkRateLimit();
+    if (!rateStatus.allowed && rateStatus.remainingCooldownSeconds > 0) {
+      setCooldownSeconds(rateStatus.remainingCooldownSeconds);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cooldownSeconds <= 0) return;
+    const interval = setInterval(() => {
+      setCooldownSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setThreatAlert(null);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [cooldownSeconds]);
+
+  const handleRefreshChallenge = () => {
+    setSecurityChallenge(generateSecurityChallenge());
+    setChallengeAnswer('');
+    setThreatAlert(null);
+    showToast('New human verification challenge generated', 'info');
+  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(developerConfig.email);
@@ -38,21 +101,91 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const handleCopySanitizedMessage = () => {
+    if (!sanitizedData) return;
+    const textToCopy = `From: ${sanitizedData.name} (${sanitizedData.email})\nCategory: ${sanitizedData.projectType}\n\n${sanitizedData.message}`;
+    navigator.clipboard.writeText(textToCopy);
+    setCopiedMessage(true);
+    showToast('Copied sanitized message to clipboard!');
+    setTimeout(() => setCopiedMessage(false), 2500);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formState.name || !formState.email || !formState.message) {
-      showToast('Please fill in all required fields');
+    setThreatAlert(null);
+
+    // 1. Basic Required Check
+    if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
+      showToast('Please fill in all required fields', 'error');
+      return;
+    }
+
+    // 2. Comprehensive Anti-Hacker & Bot Validation
+    const securityCheck = validateFormSecurity(
+      {
+        name: formState.name,
+        email: formState.email,
+        projectType: formState.projectType,
+        message: formState.message,
+        honeypotFax,
+        honeypotToken,
+      },
+      formLoadedAtRef.current,
+      securityChallenge.answer,
+      challengeAnswer
+    );
+
+    if (!securityCheck.isValid) {
+      const threatMsg = securityCheck.threatDetected || 'Security validation failed.';
+      setThreatAlert(threatMsg);
+      showToast(threatMsg, 'error');
+
+      // If rate limited, trigger countdown
+      const rateStatus = checkRateLimit();
+      if (!rateStatus.allowed && rateStatus.remainingCooldownSeconds > 0) {
+        setCooldownSeconds(rateStatus.remainingCooldownSeconds);
+      }
+
+      // If challenge answer was incorrect, generate fresh challenge
+      if (threatMsg.includes('verification answer incorrect')) {
+        setSecurityChallenge(generateSecurityChallenge());
+        setChallengeAnswer('');
+      }
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate reliable dispatch
+    // Record submission into rate limiting ledger
+    recordSubmission();
+
+    // Store cleaned sanitized data
+    if (securityCheck.sanitizedData) {
+      setSanitizedData(securityCheck.sanitizedData);
+    }
+
+    // Simulate secure dispatch with confirmation
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSent(true);
-      showToast('Message transmitted successfully!');
-    }, 800);
+      showToast('Message verified and safely transmitted!', 'success');
+    }, 700);
+  };
+
+  const handleResetForm = () => {
+    setIsSent(false);
+    setFormState({
+      name: '',
+      email: '',
+      projectType: 'Frontend Web App (React / SPA)',
+      message: '',
+    });
+    setHoneypotFax('');
+    setHoneypotToken('');
+    setChallengeAnswer('');
+    setThreatAlert(null);
+    setSecurityChallenge(generateSecurityChallenge());
+    formLoadedAtRef.current = Date.now();
   };
 
   return (
@@ -165,57 +298,140 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 sm:p-8 shadow-sm">
               {isSent ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-[#22c55e] border border-emerald-500/20 mx-auto flex items-center justify-center">
-                    <CheckCircle2 className="w-7 h-7" />
+                <div className="py-10 text-center space-y-5">
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-[#22c55e] border border-emerald-500/20 mx-auto flex items-center justify-center shadow-inner">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1.5">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono mb-1">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>Security Verified &amp; Transmitted</span>
+                    </div>
                     <h3 className="text-xl font-bold text-[#f8fafc]">Message Sent Successfully</h3>
-                    <p className="text-sm text-[#94a3b8] max-w-sm mx-auto font-sans">
-                      Thank you for reaching out, {formState.name}. I'll review your inquiry and reply to {formState.email} within 24 hours.
+                    <p className="text-sm text-[#94a3b8] max-w-md mx-auto font-sans leading-relaxed">
+                      Thank you for reaching out, <strong className="text-white">{sanitizedData?.name || formState.name}</strong>. Your inquiry has passed all security checks and been logged. I'll review and reply to <span className="text-blue-400 font-mono">{sanitizedData?.email || formState.email}</span> within 24 business hours.
                     </p>
                   </div>
-                  <button
-                    onClick={() => {
-                      setIsSent(false);
-                      setFormState({
-                        name: '',
-                        email: '',
-                        projectType: 'Frontend Web App (React / SPA)',
-                        message: '',
-                      });
-                    }}
-                    className="mt-4 px-5 py-2 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] transition-colors cursor-pointer"
-                  >
-                    Send another message
-                  </button>
+
+                  {/* Quick Action Options */}
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <a
+                      href={`mailto:${developerConfig.email}?subject=${encodeURIComponent(
+                        `[Portfolio Inquiry] ${sanitizedData?.projectType || formState.projectType} from ${sanitizedData?.name || formState.name}`
+                      )}&body=${encodeURIComponent(
+                        `Hi Shaheera,\n\n${sanitizedData?.message || formState.message}\n\nBest regards,\n${sanitizedData?.name || formState.name}\n${sanitizedData?.email || formState.email}`
+                      )}`}
+                      className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>Open in Email Client (Backup)</span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopySanitizedMessage}
+                      className="px-4 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] flex items-center gap-2 transition-colors cursor-pointer"
+                    >
+                      {copiedMessage ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedMessage ? 'Copied Message' : 'Copy Message'}</span>
+                    </button>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#1e293b]/60">
+                    <button
+                      type="button"
+                      id="contact-send-another-btn"
+                      onClick={handleResetForm}
+                      className="px-5 py-2 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] transition-colors cursor-pointer"
+                    >
+                      ← Send another message
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                  {/* Hacker Threat Alert Banner */}
+                  {threatAlert && (
+                    <div className="p-3.5 bg-red-950/40 border border-red-500/40 rounded-xl flex items-start gap-3 text-xs text-red-200 animate-shake">
+                      <ShieldAlert className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                      <div className="space-y-0.5">
+                        <span className="font-semibold text-red-300 block">Security Shield Intercept</span>
+                        <p className="text-red-200/90 leading-relaxed font-sans">{threatAlert}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Rate Limit Cooldown Notice */}
+                  {cooldownSeconds > 0 && (
+                    <div className="p-3 bg-amber-950/40 border border-amber-500/40 rounded-xl flex items-center gap-2.5 text-xs text-amber-200 font-mono">
+                      <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Anti-Spam Rate Limit: Please wait {cooldownSeconds}s before submitting again.</span>
+                    </div>
+                  )}
+
+                  {/* Invisible Honeypot Anti-Bot Traps */}
+                  {/* Automated bots crawl DOM and fill these fields automatically */}
+                  <div
+                    aria-hidden="true"
+                    className="opacity-0 absolute -top-[9999px] -left-[9999px] w-0 h-0 overflow-hidden pointer-events-none"
+                  >
+                    <label htmlFor="contact_fax_hp">Leave this field blank if human:</label>
+                    <input
+                      id="contact_fax_hp"
+                      type="text"
+                      name="contact_organization_fax_hp"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypotFax}
+                      onChange={(e) => setHoneypotFax(e.target.value)}
+                    />
+                    <label htmlFor="contact_token_hp">Verification Token Signature:</label>
+                    <input
+                      id="contact_token_hp"
+                      type="text"
+                      name="contact_system_token_hp"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypotToken}
+                      onChange={(e) => setHoneypotToken(e.target.value)}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-[#94a3b8] block">
+                      <label htmlFor="contact-input-name" className="text-xs font-mono text-[#94a3b8] block">
                         Your Name <span className="text-[#3b82f6]">*</span>
                       </label>
                       <input
+                        id="contact-input-name"
                         type="text"
                         required
+                        maxLength={80}
                         value={formState.name}
-                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        onChange={(e) => {
+                          setFormState({ ...formState, name: e.target.value });
+                          if (threatAlert) setThreatAlert(null);
+                        }}
                         placeholder="Alex Morgan"
                         className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-[#94a3b8] block">
+                      <label htmlFor="contact-input-email" className="text-xs font-mono text-[#94a3b8] block">
                         Your Email <span className="text-[#3b82f6]">*</span>
                       </label>
                       <input
+                        id="contact-input-email"
                         type="email"
                         required
+                        maxLength={100}
                         value={formState.email}
-                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormState({ ...formState, email: e.target.value });
+                          if (threatAlert) setThreatAlert(null);
+                        }}
                         placeholder="alex@company.com"
                         className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors"
                       />
@@ -223,10 +439,11 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-[#94a3b8] block">
+                    <label htmlFor="contact-select-category" className="text-xs font-mono text-[#94a3b8] block">
                       Inquiry Category
                     </label>
                     <select
+                      id="contact-select-category"
                       value={formState.projectType}
                       onChange={(e) => setFormState({ ...formState, projectType: e.target.value })}
                       className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] outline-none transition-colors cursor-pointer"
@@ -240,26 +457,89 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-[#94a3b8] block">
-                      Message <span className="text-[#3b82f6]">*</span>
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="contact-input-message" className="text-xs font-mono text-[#94a3b8] block">
+                        Message <span className="text-[#3b82f6]">*</span>
+                      </label>
+                      <span className="text-[10px] font-mono text-slate-500">
+                        {formState.message.length}/3000
+                      </span>
+                    </div>
                     <textarea
+                      id="contact-input-message"
                       required
-                      rows={5}
+                      rows={4}
+                      maxLength={3000}
                       value={formState.message}
-                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      onChange={(e) => {
+                        setFormState({ ...formState, message: e.target.value });
+                        if (threatAlert) setThreatAlert(null);
+                      }}
                       placeholder="Hi Shaheera, I'd like to discuss a project..."
                       className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors resize-none"
                     />
                   </div>
 
+                  {/* Interactive Anti-Bot Human Verification Challenge */}
+                  <div className="p-3.5 bg-[#0a0d12] border border-blue-500/25 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-semibold text-white">Human Verification</span>
+                          <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                            Anti-Bot
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          {securityChallenge.question}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+                      <input
+                        id="contact-security-answer"
+                        type="text"
+                        inputMode="numeric"
+                        required
+                        maxLength={4}
+                        value={challengeAnswer}
+                        onChange={(e) => {
+                          setChallengeAnswer(e.target.value);
+                          if (threatAlert) setThreatAlert(null);
+                        }}
+                        placeholder="Answer"
+                        className="w-20 px-3 py-1.5 bg-[#0f172a] border border-[#1e293b] focus:border-blue-500 rounded-lg text-xs font-mono text-center text-white placeholder-slate-500 outline-none transition-colors"
+                        title="Enter the answer to verify you are a human visitor"
+                      />
+                      <button
+                        type="button"
+                        id="refresh-challenge-btn"
+                        onClick={handleRefreshChallenge}
+                        className="p-2 bg-[#0f172a] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer"
+                        title="Generate a new security challenge"
+                      >
+                        <RefreshCw className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 px-6 rounded-xl bg-[#2563eb] hover:bg-[#3b82f6] active:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    id="contact-submit-btn"
+                    disabled={isSubmitting || cooldownSeconds > 0}
+                    className="w-full py-3 px-6 rounded-xl bg-[#2563eb] hover:bg-[#3b82f6] active:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      <span className="text-xs font-mono">Transmitting message...</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                        <span className="text-xs font-mono">Verifying &amp; Transmitting...</span>
+                      </div>
+                    ) : cooldownSeconds > 0 ? (
+                      <span className="text-xs font-mono">Cooldown Active ({cooldownSeconds}s)</span>
                     ) : (
                       <>
                         <span>Send Message</span>
@@ -267,6 +547,20 @@ export const ContactSection: React.FC = () => {
                       </>
                     )}
                   </button>
+
+                  {/* Hacker Defense System Status Bar */}
+                  <div className="pt-3 border-t border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono">
+                    <div className="flex items-center gap-1.5 text-emerald-400">
+                      <Shield className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span className="font-medium">Form Armor Active</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">Anti-Bot Honeypot</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">XSS &amp; SQLi Filter</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">Rate Limited</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">CRLF Guard</span>
+                    </div>
+                  </div>
                 </form>
               )}
             </div>

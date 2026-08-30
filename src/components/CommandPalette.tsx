@@ -186,6 +186,46 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
     // 6. Actions & Quick Utilities
     items.push({
+      id: 'action-download-pdf-resume',
+      title: 'Download Resume (PDF Document)',
+      subtitle: 'Native text vector PDF verified for LinkedIn, Workday & Greenhouse ATS',
+      category: 'Actions',
+      type: 'action',
+      icon: Download,
+      tags: ['resume', 'cv', 'pdf', 'download', 'jspdf', 'linkedin', 'ats', 'job', 'hire'],
+      action: async () => {
+        showToast('Compiling LinkedIn & ATS-verified PDF...');
+        onClose();
+        try {
+          await downloadResume('pdf');
+          showToast('Shaheera_Sadia_Resume.pdf generated & downloaded!');
+        } catch {
+          showToast('Failed to generate PDF. Please try again.');
+        }
+      },
+    });
+
+    items.push({
+      id: 'action-download-docx-resume',
+      title: 'Download Resume (Word Document .docx)',
+      subtitle: 'Native Microsoft Word document (.docx), directly supported by LinkedIn upload',
+      category: 'Actions',
+      type: 'action',
+      icon: Download,
+      tags: ['resume', 'cv', 'docx', 'word', 'linkedin', 'download', 'job', 'hire'],
+      action: async () => {
+        showToast('Generating Microsoft Word document (.docx)...');
+        onClose();
+        try {
+          await downloadResume('docx');
+          showToast('Shaheera_Sadia_Resume.docx downloaded (LinkedIn Ready)!');
+        } catch {
+          showToast('Failed to generate Word document. Please try again.');
+        }
+      },
+    });
+
+    items.push({
       id: 'action-download-ats-resume',
       title: 'Download Resume (ATS Plain Text .txt)',
       subtitle: 'Instantly download ATS-optimized plain text resume ready for job portals',
@@ -193,8 +233,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       type: 'action',
       icon: Download,
       tags: ['resume', 'cv', 'download', 'ats', 'txt', 'job', 'hire'],
-      action: () => {
-        downloadResume('txt');
+      action: async () => {
+        await downloadResume('txt');
         showToast('Downloaded Shaheera_Sadia_Resume_ATS.txt');
         onClose();
       },
@@ -208,24 +248,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       type: 'action',
       icon: Download,
       tags: ['resume', 'cv', 'download', 'markdown', 'md'],
-      action: () => {
-        downloadResume('md');
+      action: async () => {
+        await downloadResume('md');
         showToast('Downloaded Shaheera_Sadia_Resume.md');
-        onClose();
-      },
-    });
-
-    items.push({
-      id: 'action-print-pdf-resume',
-      title: 'Print / Save Resume as PDF',
-      subtitle: 'Open browser print dialog formatted for print or Save as PDF',
-      category: 'Actions',
-      type: 'action',
-      icon: Download,
-      tags: ['resume', 'cv', 'print', 'pdf', 'export'],
-      action: () => {
-        downloadResume('pdf');
-        showToast('Opening print dialog for PDF export...');
         onClose();
       },
     });

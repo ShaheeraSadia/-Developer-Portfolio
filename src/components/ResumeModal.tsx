@@ -19,7 +19,8 @@ import {
   ChevronDown,
   FileDown,
   Printer,
-  FileCheck
+  FileCheck,
+  Loader2
 } from 'lucide-react';
 import {
   developerConfig,
@@ -41,6 +42,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const [activeTab, setActiveTab] = useState<'formatted' | 'ats_text'>('formatted');
   const [copiedType, setCopiedType] = useState<'none' | 'ats' | 'md'>('none');
   const [downloadDropdownOpen, setDownloadDropdownOpen] = useState(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState('');
+  const [pdfSuccess, setPdfSuccess] = useState(false);
   const downloadDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,14 +57,44 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  const handleDownloadFormat = (format: 'txt' | 'md' | 'html' | 'pdf') => {
-    downloadResume(format);
+  const handleDownloadFormat = async (format: 'pdf' | 'docx' | 'txt' | 'md' | 'html' | 'print') => {
+    if (isGeneratingPdf) return;
+
     setDownloadDropdownOpen(false);
-    if (format === 'pdf') {
-      showToast('Opening print dialog to Save as PDF...');
-    } else {
-      const ext = format === 'txt' ? '_ATS.txt' : `.${format}`;
-      showToast(`Resume downloaded: Shaheera_Sadia_Resume${ext}`);
+
+    try {
+      if (format === 'pdf') {
+        setIsGeneratingPdf(true);
+        setGenerationProgress('Compiling native vector PDF...');
+        showToast('Compiling LinkedIn & ATS-verified PDF...');
+      } else if (format === 'docx') {
+        setIsGeneratingPdf(true);
+        setGenerationProgress('Generating .docx...');
+        showToast('Generating Microsoft Word document (.docx)...');
+      }
+
+      await downloadResume(format, {
+        onProgress: (stage) => setGenerationProgress(stage),
+      });
+
+      if (format === 'pdf') {
+        setPdfSuccess(true);
+        showToast('Shaheera_Sadia_Resume.pdf downloaded (LinkedIn & ATS Ready)!');
+        setTimeout(() => setPdfSuccess(false), 3000);
+      } else if (format === 'docx') {
+        showToast('Shaheera_Sadia_Resume.docx downloaded (LinkedIn & Word Ready)!');
+      } else if (format === 'print') {
+        showToast('Opened browser print dialog');
+      } else {
+        const ext = format === 'txt' ? '_ATS.txt' : `.${format}`;
+        showToast(`Resume downloaded: Shaheera_Sadia_Resume${ext}`);
+      }
+    } catch (err) {
+      console.error('Download error:', err);
+      showToast('Download encountered an issue. Please try again.');
+    } finally {
+      setIsGeneratingPdf(false);
+      setGenerationProgress('');
     }
   };
 
@@ -236,25 +270,41 @@ ${cert.description}`
               <span>{copiedType === 'ats' ? 'Copied ATS' : 'Copy ATS'}</span>
             </button>
 
-            {/* Primary Download Resume Split Dropdown */}
+            {/* Primary Download Resume Split Dropdown (jsPDF & html2canvas) */}
             <div className="relative inline-flex items-center" ref={downloadDropdownRef}>
               <div className="inline-flex rounded-lg overflow-hidden border border-blue-500/40 bg-blue-600">
                 <button
                   type="button"
                   id="modal-download-resume-btn"
-                  onClick={() => handleDownloadFormat('txt')}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 font-semibold text-white hover:bg-blue-500 transition-colors cursor-pointer shadow-sm"
-                  title="Download ATS Plain Text Resume"
+                  disabled={isGeneratingPdf}
+                  onClick={() => handleDownloadFormat('pdf')}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 font-semibold text-white transition-colors cursor-pointer shadow-sm ${
+                    isGeneratingPdf ? 'bg-blue-800 text-blue-200 cursor-wait' : 'hover:bg-blue-500'
+                  }`}
+                  title="Download Resume PDF (generated via jsPDF & html2canvas)"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download Resume</span>
+                  {isGeneratingPdf ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : pdfSuccess ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-300" />
+                  ) : (
+                    <Download className="w-3.5 h-3.5" />
+                  )}
+                  <span>
+                    {isGeneratingPdf
+                      ? generationProgress || 'Generating PDF...'
+                      : pdfSuccess
+                      ? 'Downloaded PDF!'
+                      : 'Download Resume (PDF)'}
+                  </span>
                 </button>
                 <button
                   type="button"
+                  disabled={isGeneratingPdf}
                   onClick={() => setDownloadDropdownOpen(!downloadDropdownOpen)}
-                  className="px-2 py-1.5 bg-blue-700 hover:bg-blue-600 text-white border-l border-blue-500/50 transition-colors cursor-pointer"
+                  className="px-2 py-1.5 bg-blue-700 hover:bg-blue-600 text-white border-l border-blue-500/50 transition-colors cursor-pointer disabled:opacity-50"
                   aria-label="Select download format"
-                  title="Select format (.txt, .md, .html, PDF)"
+                  title="Select format (PDF, .txt, .md, .html)"
                 >
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${downloadDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
@@ -265,6 +315,32 @@ ${cert.description}`
                   <div className="px-2 py-1 text-[10px] font-mono uppercase text-slate-400 border-b border-[#1e293b] mb-1">
                     Select Download Format
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('pdf')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileDown className="w-3.5 h-3.5 text-blue-400" />
+                      <span className="font-semibold">PDF Document (.pdf)</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                      LinkedIn & ATS
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDownloadFormat('docx')}
+                    className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileText className="w-3.5 h-3.5 text-blue-400" />
+                      <span className="font-semibold">Word Document (.docx)</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/20">
+                      LinkedIn Native
+                    </span>
+                  </button>
                   <button
                     type="button"
                     onClick={() => handleDownloadFormat('txt')}
@@ -306,15 +382,15 @@ ${cert.description}`
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDownloadFormat('pdf')}
+                    onClick={() => handleDownloadFormat('print')}
                     className="w-full px-2.5 py-2 rounded-lg text-left hover:bg-[#1e293b] transition-colors flex items-center justify-between text-xs text-slate-100 cursor-pointer"
                   >
                     <div className="flex items-center gap-2">
-                      <Printer className="w-3.5 h-3.5 text-blue-400" />
-                      <span className="font-semibold">Print / Save as PDF</span>
+                      <Printer className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="font-semibold">Native Print Dialog</span>
                     </div>
-                    <span className="text-[9px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">
-                      PDF
+                    <span className="text-[9px] font-mono text-slate-400 bg-slate-500/10 px-1.5 py-0.5 rounded">
+                      Print
                     </span>
                   </button>
                 </div>
@@ -404,6 +480,48 @@ ${cert.description}`
                 <p className="text-xs sm:text-sm text-slate-300 print:text-neutral-800 leading-relaxed font-sans">
                   {resumeSummary.summary}
                 </p>
+              </div>
+            </div>
+
+            {/* LinkedIn Upload Assistant Banner (print:hidden) */}
+            <div className="p-4 bg-gradient-to-r from-blue-950/60 to-slate-900/60 border border-blue-500/30 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs print:hidden shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400 shrink-0 mt-0.5">
+                  <Linkedin className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-semibold text-white text-sm flex flex-wrap items-center gap-2">
+                    <span>Ready for LinkedIn Profile &amp; Job Applications</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      Experience • Education • Skills Verified
+                    </span>
+                  </div>
+                  <p className="text-slate-300 text-xs mt-1 leading-relaxed">
+                    Formatted specifically with structured headings for LinkedIn&apos;s resume parser. Upload either the <strong>Native Text PDF</strong> or <strong>Word (.docx)</strong> file to auto-fill Experience, Education, and Skills.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0 self-start md:self-auto pt-1 md:pt-0">
+                <button
+                  type="button"
+                  id="banner-download-pdf-btn"
+                  onClick={() => handleDownloadFormat('pdf')}
+                  className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-sm transition-colors cursor-pointer text-xs flex items-center gap-1.5"
+                  title="Download LinkedIn & ATS-verified Native Text PDF"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download PDF</span>
+                </button>
+                <button
+                  type="button"
+                  id="banner-download-docx-btn"
+                  onClick={() => handleDownloadFormat('docx')}
+                  className="px-3.5 py-2 bg-[#1e293b] hover:bg-[#334155] border border-blue-400/30 text-blue-200 hover:text-white font-semibold rounded-lg transition-colors cursor-pointer text-xs flex items-center gap-1.5"
+                  title="Download Microsoft Word (.docx) format"
+                >
+                  <FileText className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Word (.docx)</span>
+                </button>
               </div>
             </div>
 
@@ -551,17 +669,53 @@ ${cert.description}`
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <button
               type="button"
-              id="footer-download-ats-btn"
-              onClick={() => handleDownloadFormat('txt')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-sm transition-all cursor-pointer"
+              id="footer-download-pdf-btn"
+              disabled={isGeneratingPdf}
+              onClick={() => handleDownloadFormat('pdf')}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-semibold text-white shadow-sm transition-all cursor-pointer ${
+                isGeneratingPdf
+                  ? 'bg-blue-800 text-blue-200 cursor-wait'
+                  : 'bg-blue-600 hover:bg-blue-500'
+              }`}
+              title="Compile and download PDF via jsPDF & html2canvas"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download ATS (.txt)</span>
+              {isGeneratingPdf ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : pdfSuccess ? (
+                <Check className="w-3.5 h-3.5 text-emerald-300" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>{isGeneratingPdf ? 'Generating...' : 'Download PDF (ATS & LinkedIn)'}</span>
+            </button>
+
+            <button
+              type="button"
+              id="footer-download-docx-btn"
+              disabled={isGeneratingPdf}
+              onClick={() => handleDownloadFormat('docx')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-blue-500/30 bg-blue-950/40 text-blue-200 hover:text-white hover:bg-blue-900/60 transition-colors cursor-pointer"
+              title="Download Microsoft Word document (.docx) for LinkedIn upload"
+            >
+              <FileText className="w-3.5 h-3.5 text-blue-400" />
+              <span>Word (.docx)</span>
+            </button>
+
+            <button
+              type="button"
+              id="footer-download-ats-btn"
+              disabled={isGeneratingPdf}
+              onClick={() => handleDownloadFormat('txt')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-200 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
+            >
+              <FileCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>ATS (.txt)</span>
             </button>
 
             <button
               type="button"
               id="footer-download-md-btn"
+              disabled={isGeneratingPdf}
               onClick={() => handleDownloadFormat('md')}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-200 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
             >
@@ -572,11 +726,12 @@ ${cert.description}`
             <button
               type="button"
               id="footer-print-pdf-btn"
-              onClick={() => handleDownloadFormat('pdf')}
+              disabled={isGeneratingPdf}
+              onClick={() => handleDownloadFormat('print')}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e293b] bg-[#0f172a] text-slate-200 hover:text-white hover:border-slate-600 transition-colors cursor-pointer"
             >
-              <Printer className="w-3.5 h-3.5 text-blue-400" />
-              <span>Print / PDF</span>
+              <Printer className="w-3.5 h-3.5 text-slate-400" />
+              <span>Print Dialog</span>
             </button>
           </div>
         </div>

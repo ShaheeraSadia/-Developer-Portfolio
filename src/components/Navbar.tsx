@@ -131,16 +131,16 @@ export const Navbar: React.FC<NavbarProps> = ({
         scrolled ? 'shadow-md shadow-black/40' : ''
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 h-16 flex items-center justify-between gap-2 lg:gap-3 xl:gap-4">
         
         {/* Left Branding */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={() => handleNavClick('home')}
             id="nav-logo"
-            className="flex items-center gap-2.5 text-sm font-semibold text-[#f8fafc] hover:text-[#3b82f6] transition-colors group cursor-pointer"
+            className="flex items-center gap-2 text-sm font-semibold text-[#f8fafc] hover:text-[#3b82f6] transition-colors group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#2563eb] text-[#f8fafc] flex items-center justify-center text-xs font-bold font-mono shadow-sm group-hover:bg-[#3b82f6] transition-all shrink-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#2563eb] text-[#f8fafc] flex items-center justify-center text-xs font-bold font-mono shadow-sm group-hover:bg-[#3b82f6] transition-all shrink-0">
               SS
             </div>
             <span className="tracking-tight text-sm sm:text-base font-bold text-[#f8fafc]">
@@ -150,16 +150,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Center Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 text-xs font-medium shrink-0">
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 text-xs font-medium shrink-0">
           <button
+            id="nav-link-home"
             onClick={() => handleNavClick('home')}
-            className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1.5 font-medium ${
+            className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
               activeSection === 'home'
                 ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
                 : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
             }`}
           >
-            <Home className="w-3.5 h-3.5" />
+            <Home className="w-3.5 h-3.5 shrink-0" />
             <span>Home</span>
           </button>
 
@@ -168,8 +169,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             return (
               <button
                 key={link.id}
+                id={`nav-link-${link.id}`}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer font-medium ${
+                className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer font-medium ${
                   isActive
                     ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
                     : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
@@ -183,8 +185,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* "More" Dropdown Menu */}
           <div className="relative" ref={moreDropdownRef}>
             <button
+              id="nav-more-dropdown-btn"
               onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-              className={`px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
+              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
                 isSecondaryActive
                   ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
                   : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
@@ -204,6 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   return (
                     <button
                       key={item.id}
+                      id={`nav-secondary-${item.id}`}
                       onClick={() => handleNavClick(item.id)}
                       className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2.5 transition-colors duration-200 cursor-pointer ${
                         isActive
@@ -225,18 +229,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right Action Tools */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Command Palette Trigger Button */}
           {onOpenCommandPalette && (
             <button
               id="open-command-palette-btn"
               onClick={onOpenCommandPalette}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
+              className="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
               title="Open Command Palette (Ctrl+K)"
             >
               <Search className="w-3.5 h-3.5 text-[#94a3b8] group-hover:text-[#3b82f6] transition-colors shrink-0" />
-              <span className="hidden md:inline">Search</span>
-              <kbd className="hidden sm:inline-flex items-center gap-0.5 text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b] text-[#94a3b8]">
+              <span className="hidden xl:inline">Search</span>
+              <kbd className="hidden 2xl:inline-flex items-center gap-0.5 text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b] text-[#94a3b8]">
                 <Command className="w-2.5 h-2.5" />K
               </kbd>
             </button>
@@ -245,7 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* SF Clock */}
           <div
             id="sf-clock-display"
-            className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-[#94a3b8] bg-[#0f172a] rounded-lg border border-[#1e293b] whitespace-nowrap shrink-0"
+            className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono text-[#94a3b8] bg-[#0f172a] rounded-lg border border-[#1e293b] whitespace-nowrap shrink-0"
             title="Local Time (PST)"
           >
             <Clock className="w-3.5 h-3.5 text-[#94a3b8] shrink-0" />
@@ -259,7 +263,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="toggle-config-mode-btn"
             onClick={onToggleConfigMode}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
               isConfigMode
                 ? 'bg-[#2563eb] text-white font-semibold border-blue-500'
                 : 'bg-[#0f172a] text-[#94a3b8] border-[#1e293b] hover:text-[#f8fafc] hover:border-slate-600'
@@ -280,7 +284,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="open-resume-btn"
             onClick={onOpenResume}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
             title="Open Interactive Resume Modal"
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />

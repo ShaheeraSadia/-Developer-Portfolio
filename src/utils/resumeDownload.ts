@@ -5,6 +5,11 @@ import {
   educationCertificationsData,
   resumeSummary,
 } from '../data/portfolioData';
+import { generateResumePdf, GeneratePdfOptions } from './pdfGenerator';
+import { generateResumeDocx } from './docxGenerator';
+
+export { generateResumePdf, generateResumeDocx };
+export type { GeneratePdfOptions };
 
 /**
  * Generates ATS-optimized plain text representation of the resume.
@@ -264,12 +269,37 @@ export function generateResumeHtml(): string {
 
 /**
  * Triggers a direct browser file download for the resume in chosen format.
+ * - 'pdf': Native ATS & LinkedIn-compliant vector PDF via jsPDF
+ * - 'docx': Microsoft Word document (.docx) via docx library
+ * - 'txt': Plain text formatted for applicant tracking systems
+ * - 'md': Markdown document
+ * - 'html': Standalone HTML page
+ * - 'print': Native browser print dialog
  */
-export function downloadResume(format: 'txt' | 'md' | 'html' | 'pdf'): void {
+export async function downloadResume(
+  format: 'pdf' | 'docx' | 'txt' | 'md' | 'html' | 'print',
+  options?: GeneratePdfOptions
+): Promise<void> {
   const baseFilename = 'Shaheera_Sadia_Resume';
 
-  if (format === 'pdf') {
+  if (format === 'print') {
     window.print();
+    return;
+  }
+
+  if (format === 'pdf') {
+    await generateResumePdf({
+      filename: `${baseFilename}.pdf`,
+      sourceElement: options?.sourceElement,
+      mode: options?.mode || 'vector',
+      onProgress: options?.onProgress,
+    });
+    return;
+  }
+
+  if (format === 'docx') {
+    options?.onProgress?.('Generating Word document (.docx)...');
+    await generateResumeDocx(`${baseFilename}.docx`);
     return;
   }
 

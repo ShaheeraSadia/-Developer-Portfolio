@@ -1,10 +1,13 @@
 /**
  * Real Email Dispatch Service for Static Portfolios
- * Sends inquiries directly to shaheerasadia@gmail.com via FormSubmit AJAX API
+ * Sends inquiries directly to shaheerasadia@gmail.com via FormSubmit secure hash endpoint
  * with automatic fallback handling.
  */
 
 import { developerConfig } from '../data/portfolioData';
+
+// FormSubmit activated secure hash token (masks real email from client-side scrapers)
+const FORMSUBMIT_SECURE_TOKEN = 'ed1021c7007f98616dc38771b5953cf9';
 
 export interface SendEmailPayload {
   name: string;
@@ -20,8 +23,6 @@ export interface SendEmailResponse {
 }
 
 export async function sendContactEmail(payload: SendEmailPayload): Promise<SendEmailResponse> {
-  const recipientEmail = developerConfig.email || 'shaheerasadia@gmail.com';
-
   const formData = {
     name: payload.name,
     email: payload.email,
@@ -35,7 +36,8 @@ export async function sendContactEmail(payload: SendEmailPayload): Promise<SendE
   };
 
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+    const endpoint = `https://formsubmit.co/ajax/${FORMSUBMIT_SECURE_TOKEN}`;
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

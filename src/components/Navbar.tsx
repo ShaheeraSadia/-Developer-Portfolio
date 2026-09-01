@@ -17,7 +17,8 @@ import {
   Search,
   Command,
   Home,
-  Download
+  Download,
+  Github
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { ThemeToggle } from './ThemeToggle';
@@ -96,6 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // Secondary navigation links available in the "More" dropdown
   const secondaryNavLinks = [
+    { id: 'github', label: 'GitHub Activity', desc: 'Live commits & repo activity', icon: Github },
     { id: 'experience', label: 'Experience', desc: 'Career path & milestones', icon: Briefcase },
     { id: 'component_lab', label: 'Lab', desc: 'Interactive token & RAF profiler', icon: FlaskConical },
     { id: 'architecture', label: 'Principles', desc: 'SLA & engineering standards', icon: Cpu },
@@ -106,6 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'about', label: 'About', desc: 'Background & Story', icon: UserCheck },
     { id: 'services', label: 'Services', desc: 'Offerings & Capabilities', icon: Layers },
     { id: 'projects', label: 'Projects', desc: 'Featured Applications', icon: FolderGit2 },
+    { id: 'github', label: 'GitHub Activity', desc: 'Live Commits & Repositories', icon: Github },
     { id: 'skills', label: 'Skills', desc: 'Technologies & Matrix', icon: Wrench },
     { id: 'experience', label: 'Experience', desc: 'Career History', icon: Briefcase },
     { id: 'component_lab', label: 'Lab', desc: 'Interactive Workbench', icon: FlaskConical },

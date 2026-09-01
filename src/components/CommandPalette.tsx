@@ -23,7 +23,9 @@ import {
   Sun,
   Moon,
   GraduationCap,
-  Download
+  Download,
+  Github,
+  Calendar
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -92,6 +94,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       { id: 'component_lab', title: 'Interactive Lab', subtitle: 'Design Tokens, 60 FPS Profiler & State Machine', icon: FlaskConical },
       { id: 'architecture', title: 'Architecture Principles', subtitle: 'Zero Server Latency & SLA Standards', icon: Cpu },
       { id: 'contact', title: 'Contact', subtitle: 'Send a Message or Project Inquiry', icon: MessageSquare },
+      { id: 'github', title: 'GitHub Activity Stream', subtitle: 'Live Commits, Contribution Heatmap & Repositories', icon: Github },
       { id: 'all', title: 'Continuous Full Page View', subtitle: 'Render all sections continuously', icon: Layers },
     ];
 
@@ -265,6 +268,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       tags: ['resume', 'cv', 'view', 'modal', 'credentials'],
       action: () => {
         onOpenResume();
+        onClose();
+      },
+    });
+
+    items.push({
+      id: 'action-view-github-stream',
+      title: 'Inspect GitHub Activity Stream',
+      subtitle: 'View live commits, branch events, and active repositories telemetry',
+      category: 'Actions',
+      type: 'action',
+      icon: Github,
+      tags: ['github', 'commits', 'stream', 'telemetry', 'repos', 'git', 'activity'],
+      action: () => {
+        onNavigate('github');
         onClose();
       },
     });

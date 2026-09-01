@@ -17,7 +17,8 @@ import {
   Lock,
   RefreshCw,
   AlertTriangle,
-  ExternalLink
+  ExternalLink,
+  Info
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
@@ -29,6 +30,7 @@ import {
   checkRateLimit, 
   recordSubmission 
 } from '../utils/formSecurity';
+import { sendContactEmail, generateMailtoUrl } from '../utils/emailService';
 
 export const ContactSection: React.FC = () => {
   useSEO(sectionSEOConfig.contact);
@@ -63,6 +65,8 @@ export const ContactSection: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [firstTimeActivationNotice, setFirstTimeActivationNotice] = useState(false);
+  const [dispatchError, setDispatchError] = useState<string | null>(null);
 
   // Check rate limit on mount and run cooldown ticker
   useEffect(() => {
@@ -110,9 +114,10 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopiedMessage(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setThreatAlert(null);
+    setDispatchError(null);
 
     // 1. Basic Required Check
     if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
@@ -160,20 +165,43 @@ export const ContactSection: React.FC = () => {
     recordSubmission();
 
     // Store cleaned sanitized data
-    if (securityCheck.sanitizedData) {
-      setSanitizedData(securityCheck.sanitizedData);
-    }
+    const cleanData = securityCheck.sanitizedData || {
+      name: formState.name.trim(),
+      email: formState.email.trim(),
+      projectType: formState.projectType,
+      message: formState.message.trim(),
+    };
+    setSanitizedData(cleanData);
 
-    // Simulate secure dispatch with confirmation
-    setTimeout(() => {
+    try {
+      // Real API transmission to recipient inbox
+      const result = await sendContactEmail(cleanData);
+
       setIsSubmitting(false);
-      setIsSent(true);
-      showToast('Message verified and safely transmitted!', 'success');
-    }, 700);
+
+      if (result.success) {
+        setIsSent(true);
+        if (result.isFirstTimeActivation) {
+          setFirstTimeActivationNotice(true);
+        }
+        showToast('Inquiry delivered to inbox successfully!', 'success');
+      } else {
+        // Fallback handled smoothly
+        setDispatchError(result.message || 'Direct mail service error.');
+        showToast('Email service notice: you can also send via your email client.', 'warning');
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      const errMsg = err instanceof Error ? err.message : 'Transmission failed';
+      setDispatchError(errMsg);
+      showToast('Network issue. Click below to send via your email client.', 'error');
+    }
   };
 
   const handleResetForm = () => {
     setIsSent(false);
+    setFirstTimeActivationNotice(false);
+    setDispatchError(null);
     setFormState({
       name: '',
       email: '',
@@ -261,6 +289,24 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
+              {/* Direct Mail Client Quick Action */}
+              <div className="p-3 bg-[#0a0d12] border border-blue-500/20 rounded-xl space-y-2">
+                <div className="flex items-center gap-2 text-xs font-mono text-blue-400">
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Prefer Native Email?</span>
+                </div>
+                <p className="text-xs text-slate-400 font-sans leading-relaxed">
+                  You can click below to launch your system's default email client (Gmail, Apple Mail, Outlook).
+                </p>
+                <a
+                  href={`mailto:${developerConfig.email}?subject=${encodeURIComponent('[Inquiry] Project Discussion / Full-Time Role')}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
+                >
+                  <span>Launch Mail App</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+
               {/* Social Channels */}
               <div className="pt-2 border-t border-[#1e293b] flex items-center gap-2">
                 <a
@@ -298,29 +344,38 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 sm:p-8 shadow-sm">
               {isSent ? (
-                <div className="py-10 text-center space-y-5">
+                <div className="py-8 text-center space-y-5">
                   <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-[#22c55e] border border-emerald-500/20 mx-auto flex items-center justify-center shadow-inner">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono mb-1">
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>Security Verified &amp; Transmitted</span>
+                      <span>Transmitted to {developerConfig.email}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-[#f8fafc]">Message Sent Successfully</h3>
+                    <h3 className="text-xl font-bold text-[#f8fafc]">Message Delivered to Inbox</h3>
                     <p className="text-sm text-[#94a3b8] max-w-md mx-auto font-sans leading-relaxed">
-                      Thank you for reaching out, <strong className="text-white">{sanitizedData?.name || formState.name}</strong>. Your inquiry has passed all security checks and been logged. I'll review and reply to <span className="text-blue-400 font-mono">{sanitizedData?.email || formState.email}</span> within 24 business hours.
+                      Thank you for reaching out, <strong className="text-white">{sanitizedData?.name || formState.name}</strong>. Your inquiry has been routed directly to <span className="text-blue-400 font-mono">{developerConfig.email}</span> with a reply address set to <span className="text-emerald-400 font-mono">{sanitizedData?.email || formState.email}</span>.
                     </p>
                   </div>
+
+                  {/* One-Time Activation Reminder Banner */}
+                  {firstTimeActivationNotice && (
+                    <div className="p-3.5 bg-amber-950/40 border border-amber-500/40 rounded-xl text-left text-xs text-amber-200 space-y-1">
+                      <div className="flex items-center gap-2 font-semibold text-amber-300">
+                        <Info className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>First-Time Email Activation Required</span>
+                      </div>
+                      <p className="text-amber-200/90 font-sans leading-relaxed pl-6">
+                        FormSubmit has sent a one-time activation email to <strong className="text-white">{developerConfig.email}</strong>. Please check your inbox or spam folder and click <em>"Activate Form"</em> to receive all incoming inquiries.
+                      </p>
+                    </div>
+                  )}
 
                   {/* Quick Action Options */}
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                     <a
-                      href={`mailto:${developerConfig.email}?subject=${encodeURIComponent(
-                        `[Portfolio Inquiry] ${sanitizedData?.projectType || formState.projectType} from ${sanitizedData?.name || formState.name}`
-                      )}&body=${encodeURIComponent(
-                        `Hi Shaheera,\n\n${sanitizedData?.message || formState.message}\n\nBest regards,\n${sanitizedData?.name || formState.name}\n${sanitizedData?.email || formState.email}`
-                      )}`}
+                      href={generateMailtoUrl(sanitizedData || formState)}
                       className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
                     >
                       <Mail className="w-4 h-4" />
@@ -356,9 +411,30 @@ export const ContactSection: React.FC = () => {
                     <div className="p-3.5 bg-red-950/40 border border-red-500/40 rounded-xl flex items-start gap-3 text-xs text-red-200 animate-shake">
                       <ShieldAlert className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                       <div className="space-y-0.5">
-                        <span className="font-semibold text-red-300 block">Security Shield Intercept</span>
+                        <span className="font-semibold text-red-300 block">Security Check Notice</span>
                         <p className="text-red-200/90 leading-relaxed font-sans">{threatAlert}</p>
                       </div>
+                    </div>
+                  )}
+
+                  {/* Dispatch Error Notice with Immediate Mailto Fallback */}
+                  {dispatchError && (
+                    <div className="p-3.5 bg-amber-950/40 border border-amber-500/40 rounded-xl space-y-2 text-xs text-amber-200">
+                      <div className="flex items-center gap-2 font-semibold text-amber-300">
+                        <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>Email Transmission Note</span>
+                      </div>
+                      <p className="text-amber-200/90 leading-relaxed font-sans">
+                        {dispatchError} — You can still send your message directly using the button below:
+                      </p>
+                      <a
+                        href={generateMailtoUrl(formState)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-100 border border-amber-500/40 rounded-lg font-mono text-[11px] transition-colors cursor-pointer"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>Send via Default Email App</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
                     </div>
                   )}
 
@@ -536,7 +612,7 @@ export const ContactSection: React.FC = () => {
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                        <span className="text-xs font-mono">Verifying &amp; Transmitting...</span>
+                        <span className="text-xs font-mono">Delivering to shaheerasadia@gmail.com...</span>
                       </div>
                     ) : cooldownSeconds > 0 ? (
                       <span className="text-xs font-mono">Cooldown Active ({cooldownSeconds}s)</span>
@@ -552,13 +628,13 @@ export const ContactSection: React.FC = () => {
                   <div className="pt-3 border-t border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono">
                     <div className="flex items-center gap-1.5 text-emerald-400">
                       <Shield className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="font-medium">Form Armor Active</span>
+                      <span className="font-medium">Direct Inbox Delivery</span>
                     </div>
                     <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                       <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">Anti-Bot Honeypot</span>
-                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">XSS &amp; SQLi Filter</span>
-                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">Rate Limited</span>
-                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">CRLF Guard</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">XSS Sanitized</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">Reply-To Enabled</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[#0a0d12] border border-[#1e293b]">RFC Mail Validated</span>
                     </div>
                   </div>
                 </form>
@@ -570,3 +646,4 @@ export const ContactSection: React.FC = () => {
     </section>
   );
 };
+

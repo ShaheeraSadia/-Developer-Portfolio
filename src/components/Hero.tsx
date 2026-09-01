@@ -266,6 +266,29 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 <span>View CV</span>
               </button>
 
+              {/* Jump to GitHub Activity Stream */}
+              <button
+                onClick={() => {
+                  const el = document.getElementById('github-activity-stream');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  } else if (onNavigate) {
+                    onNavigate('home');
+                    setTimeout(() => {
+                      const streamEl = document.getElementById('github-activity-stream');
+                      if (streamEl) streamEl.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }
+                }}
+                id="hero-github-stream-btn"
+                className="px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
+                title="Jump to live GitHub activity stream & recent commits"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <Github className="w-4 h-4 text-blue-400" />
+                <span>GitHub Stream</span>
+              </button>
+
               <button
                 onClick={() => handleSectionClick('projects')}
                 id="hero-explore-projects-btn"

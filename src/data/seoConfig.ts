@@ -123,6 +123,20 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
     ],
     canonicalPath: '/#contact',
   },
+  github: {
+    title: 'Live GitHub Activity Stream & Commits | Shaheera Sadia',
+    description:
+      'Real-time commit telemetry, repository updates, and shipping activity for Shaheera Sadia powered directly by the GitHub API.',
+    keywords: [
+      'GitHub Activity',
+      'Shaheera Sadia GitHub',
+      'Recent Commits',
+      'Open Source Repositories',
+      'Git Telemetry',
+      'TypeScript Commits',
+    ],
+    canonicalPath: '/#github',
+  },
   all: {
     title: 'Full Continuous Portfolio Overview | Shaheera Sadia',
     description:

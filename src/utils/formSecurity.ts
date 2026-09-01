@@ -27,10 +27,10 @@ export interface RateLimitStatus {
 }
 
 const RATE_LIMIT_KEY = 'portfolio_contact_rate_limit';
-const MAX_ATTEMPTS_PER_WINDOW = 3;
+const MAX_ATTEMPTS_PER_WINDOW = 5;
 const WINDOW_DURATION_MS = 10 * 60 * 1000; // 10 minutes
-const MIN_COOLDOWN_MS = 20 * 1000; // 20 seconds between attempts
-const MIN_FILL_TIME_MS = 2500; // 2.5 seconds minimum for human typing
+const MIN_COOLDOWN_MS = 10 * 1000; // 10 seconds between attempts
+const MIN_FILL_TIME_MS = 500; // 500ms minimum to allow fast autofill while blocking instant headless bots
 
 /**
  * Strips dangerous HTML tags and sanitizes strings to prevent XSS.

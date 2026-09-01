@@ -25,6 +25,7 @@ import { ArchitecturePhilosophy } from './components/ArchitecturePhilosophy';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { SkillsMatrix } from './components/SkillsMatrix';
 import { ContactSection } from './components/ContactSection';
+import { GitHubActivityStream } from './components/GitHubActivityStream';
 import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ResumeModal } from './components/ResumeModal';
@@ -117,12 +118,15 @@ export default function App() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              {/* If on Home, show Hero & Section Explorer Launchpad */}
+              {/* If on Home, show Hero & Section Explorer Launchpad + Live GitHub Activity Stream */}
               {activeSection === 'home' && (
-                <Hero
-                  onOpenResume={() => setIsResumeOpen(true)}
-                  onNavigate={handleNavigate}
-                />
+                <div>
+                  <Hero
+                    onOpenResume={() => setIsResumeOpen(true)}
+                    onNavigate={handleNavigate}
+                  />
+                  <GitHubActivityStream onNavigate={handleNavigate} />
+                </div>
               )}
 
               {/* Conditional Rendering of Target Section */}
@@ -134,6 +138,10 @@ export default function App() {
 
               {activeSection === 'projects' && (
                 <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
+              )}
+
+              {activeSection === 'github' && (
+                <GitHubActivityStream onNavigate={handleNavigate} />
               )}
 
               {activeSection === 'skills' && <SkillsMatrix />}
@@ -171,6 +179,8 @@ export default function App() {
                   <ServicesSection onExploreProjects={() => handleNavigate('projects')} />
                   <TerminalDivider label="Featured Projects" />
                   <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
+                  <TerminalDivider label="Live GitHub Activity Stream" />
+                  <GitHubActivityStream onNavigate={handleNavigate} />
                   <TerminalDivider label="Interactive Lab" />
                   <ComponentLab />
                   <TerminalDivider label="Architecture Principles" />

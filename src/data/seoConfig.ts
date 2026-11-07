@@ -4,23 +4,26 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
   home: {
     title: 'Shaheera Sadia — Front-End & Mobile Application Developer',
     description:
-      'Personal portfolio of Shaheera Sadia, Front-End Developer with 5+ years of experience specializing in React, TypeScript, and fast, responsive client-side web architectures.',
+      'Front-End & Mobile Application Developer building fast React, JavaScript, and Vite web applications. Featured projects: Toolkit Pro, Brand Identity Generator, and App Tool.',
     keywords: [
       'Shaheera Sadia',
       'Front-End Developer',
-      'React Specialist',
+      'React Developer',
       'Mobile Developer',
-      'TypeScript',
       'JavaScript',
+      'Tailwind CSS',
+      'Vite',
       'Web Applications',
-      'UI/UX Architecture',
+      'Toolkit Pro',
+      'Brand Identity Generator',
     ],
     canonicalPath: '/',
+    ogImage: '/og-image.png',
   },
   about: {
-    title: 'About Shaheera Sadia | Front-End & Mobile App Specialist',
+    title: 'About Shaheera Sadia | Front-End & Mobile Application Developer',
     description:
-      'Discover Shaheera Sadia’s 5+ years background in front-end development, engineering philosophy, and dedication to zero-server-latency web applications.',
+      'Discover Shaheera Sadia’s engineering journey since 2021, core philosophy, and dedication to fast, accessible, client-side web tools.',
     keywords: [
       'About Shaheera Sadia',
       'Front-End Journey',
@@ -29,6 +32,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Web Accessibility',
     ],
     canonicalPath: '/#about',
+    ogImage: '/og-image.png',
   },
   services: {
     title: 'Services & Capabilities | Shaheera Sadia',
@@ -43,6 +47,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Client-Side Tools',
     ],
     canonicalPath: '/#services',
+    ogImage: '/og-image.png',
   },
   projects: {
     title: 'Featured Projects & Case Studies | Shaheera Sadia',
@@ -56,25 +61,27 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Client-Side Utilities',
     ],
     canonicalPath: '/#projects',
+    ogImage: '/og-image.png',
   },
   skills: {
     title: 'Technical Skills Matrix & Stack | Shaheera Sadia',
     description:
-      'Comprehensive technical skills breakdown: React 18, TypeScript, JavaScript (ES6+), Tailwind CSS, Web Workers, Canvas API, and WCAG AA accessibility standards.',
+      'Comprehensive technical skills breakdown: React, JavaScript (ES6+), Vite, Tailwind CSS, Web Workers, Canvas API, and WCAG AA accessibility standards.',
     keywords: [
       'React Skills',
-      'TypeScript Expertise',
+      'JavaScript Expertise',
       'Tailwind CSS',
       'Front-End Stack Matrix',
       'Web Performance Profiling',
       'WCAG 2.1 AA',
     ],
     canonicalPath: '/#skills',
+    ogImage: '/og-image.png',
   },
   experience: {
     title: 'Career Timeline & Milestones | Shaheera Sadia',
     description:
-      'Review the professional timeline, career milestones, key deliverables, and track record across web applications for front-end developer Shaheera Sadia.',
+      'Review the engineering progression, verified certifications, key deliverables, and track record across web applications for Shaheera Sadia.',
     keywords: [
       'Front-End Career Timeline',
       'React Developer Experience',
@@ -83,6 +90,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Web Developer Resume',
     ],
     canonicalPath: '/#experience',
+    ogImage: '/og-image.png',
   },
   component_lab: {
     title: 'Interactive Component Lab & Diagnostics | Shaheera Sadia',
@@ -96,24 +104,25 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Front-End Benchmarks',
     ],
     canonicalPath: '/#component_lab',
+    ogImage: '/og-image.png',
   },
   architecture: {
-    title: 'Engineering Principles & SLA Standards | Shaheera Sadia',
+    title: 'Engineering Principles & Standards | Shaheera Sadia',
     description:
-      'Core engineering philosophy: zero server latency, WCAG 2.1 AA mathematical accessibility, tokenized design systems, and resilient client-side state.',
+      'Core engineering philosophy: client-side processing, WCAG 2.1 AA accessibility, tokenized design systems, and resilient UI state.',
     keywords: [
       'Software Architecture',
-      'Front-End SLA',
+      'Front-End Standards',
       'Engineering Principles',
-      'Zero Server Latency',
       'Accessible UI Standards',
     ],
     canonicalPath: '/#architecture',
+    ogImage: '/og-image.png',
   },
   contact: {
     title: 'Contact & Inquiries | Shaheera Sadia',
     description:
-      'Get in touch with Shaheera Sadia for full-time front-end opportunities, contract consulting, or technical collaboration.',
+      'Get in touch with Shaheera Sadia for front-end opportunities, contract consulting, or technical collaboration.',
     keywords: [
       'Contact Shaheera Sadia',
       'Hire React Developer',
@@ -122,6 +131,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Software Engineer Contact',
     ],
     canonicalPath: '/#contact',
+    ogImage: '/og-image.png',
   },
   github: {
     title: 'Live GitHub Activity Stream & Commits | Shaheera Sadia',
@@ -133,9 +143,9 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Recent Commits',
       'Open Source Repositories',
       'Git Telemetry',
-      'TypeScript Commits',
     ],
     canonicalPath: '/#github',
+    ogImage: '/og-image.png',
   },
   all: {
     title: 'Full Continuous Portfolio Overview | Shaheera Sadia',
@@ -148,5 +158,6 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'Full Portfolio View',
     ],
     canonicalPath: '/#all',
+    ogImage: '/og-image.png',
   },
 };

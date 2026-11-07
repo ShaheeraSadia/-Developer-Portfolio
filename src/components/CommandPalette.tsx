@@ -89,7 +89,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       { id: 'about', title: 'About Me', subtitle: 'Developer Journey & Background', icon: UserCheck },
       { id: 'services', title: 'Services & Capabilities', subtitle: 'Single Page Apps, Client Tools & Mobile', icon: Layers },
       { id: 'projects', title: 'Featured Projects', subtitle: 'Production Applications & Case Studies', icon: FolderGit2 },
-      { id: 'skills', title: 'Skills & Stack Matrix', subtitle: 'React, TypeScript, Tailwind & Web Workers', icon: Wrench },
+      { id: 'skills', title: 'Skills & Stack Matrix', subtitle: 'React, JavaScript, Vite, Tailwind & Web Workers', icon: Wrench },
       { id: 'experience', title: 'Career Timeline', subtitle: 'Professional Roles & Milestones', icon: Briefcase },
       { id: 'component_lab', title: 'Interactive Lab', subtitle: 'Design Tokens, 60 FPS Profiler & State Machine', icon: FlaskConical },
       { id: 'architecture', title: 'Architecture Principles', subtitle: 'Zero Server Latency & SLA Standards', icon: Cpu },

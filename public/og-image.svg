@@ -1,0 +1,129 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with subtle dark gradients -->
+  <rect width="1200" height="630" fill="#0A0D12"/>
+  
+  <defs>
+    <radialGradient id="glowTopLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200, 100) scale(450, 450)">
+      <stop stop-color="#2563EB" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#0A0D12" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBottomRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1000, 500) scale(400, 400)">
+      <stop stop-color="#3B82F6" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#0A0D12" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#1E293B" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Glows -->
+  <rect width="1200" height="630" fill="url(#glowTopLeft)"/>
+  <rect width="1200" height="630" fill="url(#glowBottomRight)"/>
+
+  <!-- Subtle Grid Lines -->
+  <g opacity="0.07" stroke="#94A3B8" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="630"/>
+    <line x1="280" y1="0" x2="280" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="680" y1="0" x2="680" y2="630"/>
+    <line x1="880" y1="0" x2="880" y2="630"/>
+    <line x1="1080" y1="0" x2="1080" y2="630"/>
+    <line x1="0" y1="130" x2="1200" y2="130"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="430" x2="1200" y2="430"/>
+  </g>
+
+  <!-- Top Status Badge -->
+  <g transform="translate(80, 75)">
+    <rect width="320" height="34" rx="17" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <circle cx="20" cy="17" r="4" fill="#10B981"/>
+    <text x="34" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#3B82F6" letter-spacing="1">AVAILABLE FOR OPPORTUNITIES</text>
+  </g>
+
+  <!-- Main Identity Content -->
+  <text x="80" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">
+    Shaheera <tspan fill="#3B82F6">Sadia</tspan>
+  </text>
+
+  <text x="80" y="245" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#E2E8F0" letter-spacing="-0.5">
+    Front-End &amp; Mobile Application Developer
+  </text>
+
+  <text x="80" y="285" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#94A3B8">
+    Specializing in React, JavaScript, Vite, Tailwind CSS &amp; 100% Client-Side Web Utilities
+  </text>
+
+  <!-- Tech Stack Pills -->
+  <g transform="translate(80, 320)">
+    <rect x="0" y="0" width="85" height="32" rx="16" fill="#0F172A" stroke="#2563EB" stroke-width="1"/>
+    <text x="42" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#93C5FD" text-anchor="middle">React</text>
+
+    <rect x="97" y="0" width="150" height="32" rx="16" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <text x="172" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1" text-anchor="middle">JavaScript (ES6+)</text>
+
+    <rect x="259" y="0" width="75" height="32" rx="16" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <text x="296" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1" text-anchor="middle">Vite</text>
+
+    <rect x="346" y="0" width="125" height="32" rx="16" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <text x="408" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1" text-anchor="middle">Tailwind CSS</text>
+
+    <rect x="483" y="0" width="135" height="32" rx="16" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <text x="550" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1" text-anchor="middle">Web Workers</text>
+  </g>
+
+  <!-- Right Side Interactive Preview Window -->
+  <g transform="translate(740, 90)">
+    <!-- Window Outer Container -->
+    <rect width="380" height="450" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+    
+    <!-- Window Title Bar -->
+    <rect width="380" height="42" rx="16" fill="#0B0F19"/>
+    <circle cx="24" cy="21" r="5" fill="#EF4444"/>
+    <circle cx="40" cy="21" r="5" fill="#F59E0B"/>
+    <circle cx="56" cy="21" r="5" fill="#10B981"/>
+    <text x="190" y="26" font-family="monospace" font-size="11" fill="#64748B" text-anchor="middle">featured-production-work</text>
+
+    <!-- Project Card 1: Toolkit Pro -->
+    <g transform="translate(20, 60)">
+      <rect width="340" height="110" rx="12" fill="#0A0D12" stroke="#1E293B" stroke-width="1"/>
+      <circle cx="36" cy="36" r="16" fill="#2563EB" fill-opacity="0.2"/>
+      <path d="M36 28L39 34H33L36 28Z" fill="#60A5FA"/>
+      <path d="M30 42H42" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+      <text x="64" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Toolkit Pro</text>
+      <text x="64" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#3B82F6">Client-Side Media &amp; Utility SaaS</text>
+      <text x="24" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94A3B8">Browser compression • OffscreenCanvas • 0ms lag</text>
+    </g>
+
+    <!-- Project Card 2: Brand Identity Generator -->
+    <g transform="translate(20, 185)">
+      <rect width="340" height="110" rx="12" fill="#0A0D12" stroke="#1E293B" stroke-width="1"/>
+      <circle cx="36" cy="36" r="16" fill="#10B981" fill-opacity="0.2"/>
+      <circle cx="36" cy="36" r="6" fill="#34D399"/>
+      <text x="64" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Brand Identity Generator</text>
+      <text x="64" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#10B981">Palette &amp; Design Token Engine</text>
+      <text x="24" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94A3B8">WCAG 2.1 AA validation • Instant CSS variables export</text>
+    </g>
+
+    <!-- Project Card 3: App Tool -->
+    <g transform="translate(20, 310)">
+      <rect width="340" height="110" rx="12" fill="#0A0D12" stroke="#1E293B" stroke-width="1"/>
+      <circle cx="36" cy="36" r="16" fill="#8B5CF6" fill-opacity="0.2"/>
+      <rect x="30" y="30" width="12" height="12" rx="2" fill="#A78BFA"/>
+      <text x="64" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">App Tool — Shopping Hub</text>
+      <text x="64" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#A78BFA">E-Commerce &amp; Retail App Suite</text>
+      <text x="24" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94A3B8">Dynamic catalog • Persistent cart • Mobile responsive</text>
+    </g>
+  </g>
+
+  <!-- Bottom Brand & Social Bar -->
+  <g transform="translate(80, 560)">
+    <text x="0" y="0" font-family="monospace" font-size="14" font-weight="500" fill="#64748B">
+      shaheerasadia.dev <tspan fill="#334155">|</tspan> github.com/shaheerasadia <tspan fill="#334155">|</tspan> linkedin.com/in/shaheerasadia
+    </text>
+  </g>
+</svg>

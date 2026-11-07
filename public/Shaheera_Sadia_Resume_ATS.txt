@@ -1,12 +1,12 @@
 SHAHEERA SADIA
-Web & Mobile Application Developer | Remote
+Front-End & Mobile Application Developer | Remote
 Email: shaheerasadia@gmail.com | GitHub: https://github.com/shaheerasadia | LinkedIn: https://linkedin.com/in/shaheerasadia
-Location: Remote | Availability: Available for opportunities | Remote | Student & Part-Time Developer | 5+ Years Experience
+Location: Remote | Availability: Available for opportunities | Remote | Front-End & Mobile Application Developer
 
 ============================================================
 PROFESSIONAL SUMMARY
 ============================================================
-Performance-focused Front-End Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), modern CSS architectures, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.
+Performance-focused Front-End & Mobile Application Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.
 
 ============================================================
 CORE TECHNICAL PROFICIENCIES

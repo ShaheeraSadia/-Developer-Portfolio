@@ -1,11 +1,11 @@
 # Shaheera Sadia
-**Web & Mobile Application Developer**  
+**Front-End & Mobile Application Developer**  
 [Email](mailto:shaheerasadia@gmail.com) • [GitHub](https://github.com/shaheerasadia) • [LinkedIn](https://linkedin.com/in/shaheerasadia) • **Remote**
 
 ---
 
 ## Professional Summary
-Performance-focused Front-End Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), modern CSS architectures, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.
+Performance-focused Front-End & Mobile Application Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), Vite, modern CSS architectures, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.
 
 ---
 

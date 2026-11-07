@@ -111,7 +111,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
       id: 'skills',
       num: '04',
       title: 'Skills & Stack',
-      desc: 'Deep proficiency across React, TypeScript, modern JavaScript & Tailwind CSS.',
+      desc: 'Deep proficiency across React, modern JavaScript (ES6+), Vite & Tailwind CSS.',
       icon: Wrench,
       badge: 'Tech Matrix',
     },
@@ -196,7 +196,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
             {/* Narrative Summary */}
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl font-normal">
-              Front-End &amp; Mobile Developer with over 5 years of experience building fast, accessible web applications and 100% client-side utilities with React, modern JavaScript, and high-contrast responsive interfaces.
+              Front-End &amp; Mobile Application Developer specializing in React, modern JavaScript (ES6+), Vite, and high-contrast responsive interfaces with client-side performance architectures.
             </p>
 
             {/* Connect Bar (Placed above CTA buttons as shown in design) */}

@@ -3,8 +3,8 @@ import { DeveloperConfig, Project, ExperienceItem, PhilosophyPillar, SkillCatego
 export const developerConfig: DeveloperConfig = {
   name: 'Shaheera Sadia',
   handle: 'shaheerasadia.dev',
-  role: 'Web & Mobile Application Developer',
-  level: 'Front-End Developer (5+ Yrs)',
+  role: 'Front-End & Mobile Application Developer',
+  level: 'Front-End & Mobile Application Developer',
   location: 'Remote',
   timezone: 'Flexible / Global',
   status: 'available_for_opportunities',
@@ -19,10 +19,10 @@ export const developerConfig: DeveloperConfig = {
   coreStack: [
     'React',
     'JavaScript (ES6+)',
+    'Vite',
     'Tailwind CSS',
     'HTML5 & CSS3',
     'Client-Side Web Workers',
-    'Chart.js',
     'Vercel',
     'Git',
   ],
@@ -35,10 +35,10 @@ export const developerConfig: DeveloperConfig = {
 };
 
 export const resumeSummary = {
-  headline: 'Web & Mobile Application Developer | Remote',
+  headline: 'Front-End & Mobile Application Developer | Remote',
   summary:
-    'Performance-focused Front-End Developer with 5+ years of experience engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), modern CSS architectures, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.',
-  availability: 'Available for opportunities | Remote | Student & Part-Time Developer | 5+ Years Experience',
+    'Performance-focused Front-End & Mobile Application Developer engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.',
+  availability: 'Available for opportunities | Remote | Front-End & Mobile Application Developer',
 };
 
 export const aboutMeData = {

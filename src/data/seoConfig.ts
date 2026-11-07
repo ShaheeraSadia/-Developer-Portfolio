@@ -4,7 +4,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
   home: {
     title: 'Shaheera Sadia — Front-End & Mobile Application Developer',
     description:
-      'Front-End & Mobile Application Developer building fast React, JavaScript, and Vite web applications. Featured projects: Toolkit Pro, Brand Identity Generator, and App Tool.',
+      'Front-End & Mobile Application Developer building fast React, JavaScript, and Vite web applications. Featured projects: SecuLens AI, Toolkit Pro, Brand Identity Generator, and App Tool.',
     keywords: [
       'Shaheera Sadia',
       'Front-End Developer',
@@ -13,9 +13,10 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
       'JavaScript',
       'Tailwind CSS',
       'Vite',
-      'Web Applications',
+      'SecuLens AI',
       'Toolkit Pro',
       'Brand Identity Generator',
+      'Cybersecurity Auditor',
     ],
     canonicalPath: '/',
     ogImage: '/og-image.png',
@@ -52,10 +53,12 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
   projects: {
     title: 'Featured Projects & Case Studies | Shaheera Sadia',
     description:
-      'Explore live production web applications and tools built by Shaheera Sadia, including Brand Identity Generator, Toolkit Pro, and client-side utilities.',
+      'Explore live production web applications and tools built by Shaheera Sadia, including SecuLens AI, Brand Identity Generator, Toolkit Pro, and client-side utilities.',
     keywords: [
       'React Projects',
       'Front-End Portfolio',
+      'SecuLens AI',
+      'Cybersecurity Code Auditor',
       'Web Application Case Studies',
       'Production Web Apps',
       'Client-Side Utilities',

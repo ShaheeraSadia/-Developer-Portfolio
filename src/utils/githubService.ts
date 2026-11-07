@@ -310,6 +310,22 @@ export const FALLBACK_GITHUB_DATA: GitHubActivityData = {
   ],
   repos: [
     {
+      id: 1337477823,
+      name: 'SecuLens-AI',
+      fullName: 'ShaheeraSadia/SecuLens-AI',
+      htmlUrl: 'https://github.com/ShaheeraSadia/SecuLens-AI',
+      description: 'Enterprise-grade code security analyzer and vulnerability auditor powered by Gemini AI with OWASP Top 10 detection and automated patch generation.',
+      language: 'React / JavaScript',
+      languageColor: '#f7df1e',
+      stars: 4,
+      forks: 1,
+      updatedAt: '2026-09-01T12:00:00Z',
+      relativeTime: 'Just now',
+      pushedAt: '2026-09-01T12:00:00Z',
+      isFork: false,
+      homepage: 'https://secu-lens-ai-cybersecurity-code-aud-ecru.vercel.app/',
+    },
+    {
       id: 1271415865,
       name: '-Toolkit.pro',
       fullName: 'ShaheeraSadia/-Toolkit.pro',

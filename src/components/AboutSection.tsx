@@ -73,7 +73,7 @@ export const AboutSection: React.FC = () => {
                 <span className="text-xs text-slate-300 block font-medium">Years Experience</span>
               </div>
               <div className="bg-[#0f172a] p-4 rounded-xl border border-[#1e293b] text-center space-y-1">
-                <span className="text-2xl font-bold font-mono text-blue-400 block">3</span>
+                <span className="text-2xl font-bold font-mono text-blue-400 block">4</span>
                 <span className="text-xs text-slate-300 block font-medium">Live Web Tools</span>
               </div>
               <div className="bg-[#0f172a] p-4 rounded-xl border border-[#1e293b] text-center space-y-1">

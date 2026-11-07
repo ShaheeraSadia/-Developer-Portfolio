@@ -24,8 +24,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
 
   const categories = [
     { id: 'all', label: 'All Projects' },
-    { id: 'Web Utilities & Design Systems', label: 'Design Systems & Generators' },
-    { id: 'Web Utilities & SaaS Platform', label: 'Client-Side Utilities' },
+    { id: 'AI & Cybersecurity', label: 'AI & Cybersecurity' },
+    { id: 'Web Utilities & Design Systems', label: 'Design Systems & Palettes' },
+    { id: 'Web Utilities & SaaS Engine', label: 'Client-Side SaaS Utilities' },
     { id: 'E-Commerce & Interactive Utilities', label: 'E-Commerce & Portals' },
   ];
 
@@ -47,7 +48,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#94a3b8] max-w-md leading-relaxed font-sans">
-            Real production tools and web applications built with 100% client-side compute, Web Workers, and zero server latency.
+            Real production tools and web applications built with React, Vite, Gemini AI, Web Workers, and zero server latency.
           </p>
         </div>
 
@@ -63,7 +64,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-5">
             {featuredToolsData.map((tool, idx) => (
               <div
                 key={idx}

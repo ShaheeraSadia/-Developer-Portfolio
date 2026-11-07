@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
       id: 'projects',
       num: '03',
       title: 'Featured Work',
-      desc: 'Brand Identity Generator, Toolkit Pro & App Tool with live production demos.',
+      desc: 'SecuLens AI, Toolkit Pro, Brand Identity Generator & App Tool with live demos.',
       icon: FolderGit2,
       badge: 'Production',
     },

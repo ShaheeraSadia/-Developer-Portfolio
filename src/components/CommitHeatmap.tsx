@@ -64,7 +64,7 @@ export const CommitHeatmap: React.FC<CommitHeatmapProps> = ({
 
   // Generate heatmap data dynamically from commits
   const { weeks, stats } = useMemo(() => {
-    return generateContributionData(commits, new Date('2026-08-31T00:00:00Z'), weeksCount);
+    return generateContributionData(commits, new Date(), weeksCount);
   }, [commits, weeksCount]);
 
   // Theme color definitions for 0 to 4 levels
@@ -245,10 +245,10 @@ export const CommitHeatmap: React.FC<CommitHeatmapProps> = ({
 
         <div className="p-3 rounded-xl bg-[#0a0d12] border border-[#1e293b] flex items-center justify-between">
           <div>
-            <div className="text-[11px] font-mono text-slate-400">Current Streak</div>
+            <div className="text-[11px] font-mono text-slate-400">Active Days</div>
             <div className="text-lg font-bold font-mono text-emerald-400 flex items-center gap-1 mt-0.5">
               <Flame className="w-4 h-4 text-emerald-400 animate-pulse" />
-              <span>{stats.currentStreak} Days</span>
+              <span>{stats.activeDaysCount} Days</span>
             </div>
           </div>
           <div className="w-7 h-7 rounded-md bg-[#0f172a] border border-[#1e293b] flex items-center justify-center text-emerald-400">

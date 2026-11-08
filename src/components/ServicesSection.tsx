@@ -30,7 +30,7 @@ export const ServicesSection: React.FC<{ onExploreProjects?: () => void }> = ({ 
       title: 'Frontend Web Development',
       category: 'React & Modern JavaScript',
       description: 'Engineering responsive, state-driven Single Page Applications (SPAs) with clean component hierarchies, predictable data flow, and modern ES6+ standards.',
-      features: ['React 19 & Modern Component Architecture', 'TypeScript & Type-Safe Interfaces', 'Modular UI State Management', 'Cross-Browser Compatibility'],
+      features: ['React 19 & Modern Component Architecture', 'Clean Component Architecture & State Management', 'Modular UI State Patterns', 'Cross-Browser Compatibility'],
       badge: 'Core Expertise',
     },
     {

@@ -118,14 +118,18 @@ export default function App() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              {/* If on Home, show Hero & Section Explorer Launchpad + Live GitHub Activity Stream */}
+              {/* If on Home, show Hero followed immediately by Featured Projects, Skills, GitHub Stream, About & Contact */}
               {activeSection === 'home' && (
                 <div>
                   <Hero
                     onOpenResume={() => setIsResumeOpen(true)}
                     onNavigate={handleNavigate}
                   />
+                  <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
+                  <SkillsMatrix />
                   <GitHubActivityStream onNavigate={handleNavigate} />
+                  <AboutSection />
+                  <ContactSection />
                 </div>
               )}
 
@@ -197,8 +201,8 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        {/* Footer with Session Activity Telemetry */}
-        <Footer activeSection={activeSection} onOpenResume={() => setIsResumeOpen(true)} />
+        {/* Footer */}
+        <Footer activeSection={activeSection} onOpenResume={() => setIsResumeOpen(true)} onNavigate={handleNavigate} />
 
         {/* Global Command Palette (Ctrl+K) */}
         <CommandPalette

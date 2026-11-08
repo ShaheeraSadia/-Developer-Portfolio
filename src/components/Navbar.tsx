@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     const updateClock = () => {
       const now = new Date();
       const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'America/Los_Angeles',
+        timeZone: 'Asia/Karachi',
         hour: '2-digit',
         minute: '2-digit',
         hour12: true,
@@ -88,10 +88,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // Primary navigation links shown directly in the header
   const primaryNavLinks = [
-    { id: 'about', label: 'About' },
-    { id: 'services', label: 'Services' },
     { id: 'projects', label: 'Projects' },
+    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
+    { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -105,11 +105,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // All navigation links for mobile drawer
   const allNavLinks = [
-    { id: 'about', label: 'About', desc: 'Background & Story', icon: UserCheck },
-    { id: 'services', label: 'Services', desc: 'Offerings & Capabilities', icon: Layers },
+    { id: 'home', label: 'Home', desc: 'Portfolio Overview', icon: Home },
     { id: 'projects', label: 'Projects', desc: 'Featured Applications', icon: FolderGit2 },
-    { id: 'github', label: 'GitHub Activity', desc: 'Live Commits & Repositories', icon: Github },
+    { id: 'about', label: 'About', desc: 'Background & Story', icon: UserCheck },
     { id: 'skills', label: 'Skills', desc: 'Technologies & Matrix', icon: Wrench },
+    { id: 'services', label: 'Services', desc: 'Offerings & Capabilities', icon: Layers },
+    { id: 'github', label: 'GitHub Activity', desc: 'Live Commits & Repositories', icon: Github },
     { id: 'experience', label: 'Experience', desc: 'Career History', icon: Briefcase },
     { id: 'component_lab', label: 'Lab', desc: 'Interactive Workbench', icon: FlaskConical },
     { id: 'architecture', label: 'Principles', desc: 'Engineering Standards', icon: Cpu },
@@ -238,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="open-command-palette-btn"
               onClick={onOpenCommandPalette}
-              className="inline-flex items-center gap-1.5 p-2 sm:px-2.5 xl:px-3 sm:py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
+              className="hidden sm:inline-flex items-center gap-1.5 p-2 sm:px-2.5 xl:px-3 sm:py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
               title="Open Command Palette (Ctrl+K)"
               aria-label="Search"
             >
@@ -250,33 +251,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          {/* SF Clock - Displayed only on large displays */}
+          {/* PKT Clock - Displayed on xl+ displays */}
           <div
-            id="sf-clock-display"
+            id="pkt-clock-display"
             className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono text-[#94a3b8] bg-[#0f172a] rounded-lg border border-[#1e293b] whitespace-nowrap shrink-0"
-            title="Local Time (PST)"
+            title="Local Time in Pakistan (PKT, UTC+5)"
           >
-            <Clock className="w-3.5 h-3.5 text-[#94a3b8] shrink-0" />
-            <span>SF {currentTime || '05:04 PM'}</span>
+            <Clock className="w-3.5 h-3.5 text-[#3b82f6] shrink-0" />
+            <span>PKT {currentTime || '07:00 PM'}</span>
           </div>
 
           {/* Theme Mode Switcher (Day / Midnight) */}
           <ThemeToggle />
-
-          {/* Config / Raw JSON View Switcher - Displayed on tablet and desktop */}
-          <button
-            id="toggle-config-mode-btn"
-            onClick={onToggleConfigMode}
-            className={`hidden md:inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
-              isConfigMode
-                ? 'bg-[#2563eb] text-white font-semibold border-blue-500'
-                : 'bg-[#0f172a] text-[#94a3b8] border-[#1e293b] hover:text-[#f8fafc] hover:border-slate-600'
-            }`}
-            title="Toggle between UI Mode and Raw JSON Schema View"
-          >
-            <Code2 className="w-3.5 h-3.5 shrink-0" />
-            <span>{isConfigMode ? 'UI' : 'JSON'}</span>
-          </button>
 
           {/* Resume Download Action Button - Displayed on md+ screens */}
           <div className="hidden md:inline-flex">
@@ -291,7 +277,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             id="open-resume-btn"
             onClick={onOpenResume}
             className="hidden lg:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
-            title="Open Interactive Resume Modal"
+            title="Open Interactive Curriculum Vitae Modal"
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />
             <span>View CV</span>

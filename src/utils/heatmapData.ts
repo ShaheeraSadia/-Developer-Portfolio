@@ -68,7 +68,7 @@ export function formatDateISO(date: Date): string {
  */
 export function generateContributionData(
   liveCommits: GitHubCommitItem[] = [],
-  endDate: Date = new Date('2026-08-31T00:00:00Z'),
+  endDate: Date = new Date(),
   weeksCount = 52
 ): {
   weeks: HeatmapWeek[];

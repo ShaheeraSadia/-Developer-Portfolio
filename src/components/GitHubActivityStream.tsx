@@ -395,7 +395,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
                 {loading ? (
                   <span className="inline-block w-12 h-6 bg-[#1e293b] rounded animate-pulse" />
                 ) : (
-                  `${data.profile.publicRepos}+`
+                  `${data.repos.length}`
                 )}
               </div>
             </div>
@@ -427,7 +427,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
                 {loading ? (
                   <span className="inline-block w-28 h-5 bg-[#1e293b] rounded animate-pulse" />
                 ) : (
-                  'TypeScript / React'
+                  'React / JavaScript'
                 )}
               </div>
             </div>

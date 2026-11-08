@@ -56,6 +56,33 @@
   }
 }
 
+/* Midnight / Dark Mode High Contrast Text Safeguards */
+:root:not([data-theme="day"]),
+[data-theme="midnight"],
+.dark {
+  color-scheme: dark;
+}
+
+[data-theme="midnight"] .text-slate-100,
+.dark .text-slate-100 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="midnight"] .text-slate-200,
+.dark .text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="midnight"] .text-slate-300,
+.dark .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="midnight"] .text-slate-400,
+.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
 /* Day Mode (Light Theme Variant) */
 [data-theme="day"] {
   color-scheme: light;

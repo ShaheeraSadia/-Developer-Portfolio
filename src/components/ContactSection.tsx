@@ -8,7 +8,6 @@ import {
   Clock, 
   Github, 
   Linkedin, 
-  Twitter, 
   CheckCircle2,
   Sparkles,
   Shield,
@@ -23,6 +22,7 @@ import {
 import { developerConfig } from '../data/portfolioData';
 import { useToast } from './Toast';
 import { useSEO } from '../hooks/useSEO';
+import { XIcon } from './icons/XIcon';
 import { sectionSEOConfig } from '../data/seoConfig';
 import { 
   validateFormSecurity, 
@@ -333,8 +333,8 @@ export const ContactSection: React.FC = () => {
                   rel="noreferrer"
                   className="flex-1 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <Twitter className="w-4 h-4" />
-                  <span>Twitter</span>
+                  <XIcon className="w-4 h-4" />
+                  <span>X (Twitter)</span>
                 </a>
               </div>
             </div>
@@ -612,7 +612,7 @@ export const ContactSection: React.FC = () => {
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                        <span className="text-xs font-mono">Delivering to shaheerasadia@gmail.com...</span>
+                        <span className="text-xs font-mono">Delivering message securely...</span>
                       </div>
                     ) : cooldownSeconds > 0 ? (
                       <span className="text-xs font-mono">Cooldown Active ({cooldownSeconds}s)</span>

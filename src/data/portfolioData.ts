@@ -6,14 +6,14 @@ export const developerConfig: DeveloperConfig = {
   role: 'Front-End & Mobile Application Developer',
   level: 'Front-End & Mobile Application Developer',
   location: 'Remote',
-  timezone: 'Flexible / Global',
+  timezone: 'PKT (UTC+5)',
   status: 'available_for_opportunities',
   yearsOfExperience: 5,
   terminal: 'bash / zsh + git',
   editor: 'VS Code + Chrome DevTools',
   email: 'shaheerasadia@gmail.com',
   github: 'https://github.com/shaheerasadia',
-  linkedin: 'https://linkedin.com/in/shaheerasadia',
+  linkedin: 'https://linkedin.com/in/shaheera-sadia-038944374',
   twitter: 'https://x.com/shaheerasadia',
   rss: 'https://shaheerasadia.dev/rss.xml',
   coreStack: [
@@ -27,31 +27,31 @@ export const developerConfig: DeveloperConfig = {
     'Git',
   ],
   principles: [
-    '100% Client-side zero server latency architectures',
-    'WCAG 2.1 contrast standards & radical accessibility',
-    'Responsive mobile/web design with snappy :active touch feedback',
-    'Zero-jank UI performance offloading tasks to Web Workers',
+    'Fast client-side zero server latency architectures',
+    'Accessible, high-contrast UI across all viewports',
+    'Responsive mobile/web design with clean touch feedback',
+    'Smooth UI performance offloading tasks to Web Workers',
   ],
 };
 
 export const resumeSummary = {
   headline: 'Front-End & Mobile Application Developer | Remote',
   summary:
-    'Performance-focused Front-End & Mobile Application Developer engineering high-speed web applications, accessible user interfaces, and privacy-first browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and off-thread Web Worker pipelines. Proven track record of eliminating server overhead, accelerating load performance, and delivering WCAG 2.1 AA compliant digital experiences.',
+    'Front-End & Mobile Application Developer engineering fast web applications, accessible user interfaces, and client-side browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and Web Worker pipelines. Track record of delivering fast, responsive, and accessible digital experiences.',
   availability: 'Available for opportunities | Remote | Front-End & Mobile Application Developer',
 };
 
 export const aboutMeData = {
-  headline: 'I build clear, high-performance web applications centered on real user needs.',
+  headline: 'I build clean, high-performance web applications centered on real user needs.',
   subHeadline:
-    'Shaheera Sadia — Web & Mobile Application Developer specializing in React, JavaScript, and responsive client-side architectures. Building fast, accessible tools with zero-jank performance.',
+    'Shaheera Sadia — Front-End & Mobile Application Developer specializing in React, JavaScript, and responsive client-side architectures.',
   fullBio:
-    "I am a Front-End Developer with over 5 years of experience building user-centric interfaces, performance-driven web tools, and responsive mobile/web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused heavily on translating complex user tasks into smooth, intuitive UI designs.\n\nI specialize in React, JavaScript (ES6+), and modern CSS architectures, with a strong emphasis on client-side browser capabilities (WebAssembly & Web Workers) to build lightning-fast web utilities that require zero server latency and guarantee total user privacy.",
+    "I am a Front-End & Mobile Application Developer with a strong focus on building user-centric interfaces, performance-driven web tools, and responsive web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused on translating user tasks into smooth, intuitive UI designs.\n\nI specialize in React, modern JavaScript (ES6+), Vite, and Tailwind CSS, with an emphasis on browser capabilities (Web Workers and client-side compute) to build fast web utilities with instant responsiveness and total user privacy.",
   milestones: [
     { year: '2021', title: 'freeCodeCamp Genesis', description: 'Began intensive journey mastering modern JavaScript algorithms, responsive design, and component-driven front-ends.' },
     { year: '2022', title: 'Interactive Web & Dashboards', description: 'Built client-focused SPAs, responsive data interfaces, and localized WordPress/XAMPP database workflows.' },
-    { year: '2023', title: 'Interactive Web Tools & E-Commerce', description: 'Developed App Tool shopping utilities, dynamic product catalogs, and responsive client-side applications with WCAG 2.1 compliant UI.' },
-    { year: '2024 — 2026', title: 'Toolkit Pro & Brand Identity Generator', description: 'Architected 100% client-side web utilities and branding engines with off-thread Web Workers, zero server latency, and automated CSS token generation.' },
+    { year: '2023', title: 'Interactive Web Tools & Portals', description: 'Developed App Tool utilities, dynamic product catalogs, and responsive client-side applications with accessible UI.' },
+    { year: '2024 — 2026', title: 'Toolkit Pro & Brand Identity Generator', description: 'Architected client-side web utilities and branding engines with off-thread Web Workers, fast load times, and automated CSS token generation.' },
   ],
 };
 
@@ -69,38 +69,38 @@ export const featuredToolsData: FeaturedToolItem[] = [
   {
     application: 'SecuLens AI — Code Auditor',
     category: 'AI & Cybersecurity',
-    coreFocus: 'OWASP Top 10 vulnerability scanner & patch generator',
+    coreFocus: 'OWASP Top 10 vulnerability scanner & patch suggestions',
     keyTech: 'React, Vite, Gemini AI, Tailwind CSS, OWASP',
     liveUrl: 'https://secu-lens-ai-cybersecurity-code-aud-ecru.vercel.app/',
     githubUrl: 'https://github.com/shaheerasadia/secu-lens-ai',
-    description: 'Enterprise-grade code security analyzer and vulnerability auditor powered by Gemini AI. Detects OWASP Top 10 flaws, XSS, SQLi, and generates production-hardened patches.',
+    description: 'AI-powered code security analyzer and vulnerability auditor powered by Gemini AI. Detects OWASP Top 10 security flaws, XSS, and generates actionable patch suggestions.',
   },
   {
     application: 'Toolkit Pro',
-    category: 'Web Utility Suite & SaaS Engine',
+    category: 'Web Utilities & Media Suite',
     coreFocus: 'Client-side image & web utility suite',
-    keyTech: 'React, Web Workers, JavaScript, Vercel',
+    keyTech: 'React, Web Workers, JavaScript, Tailwind CSS',
     liveUrl: 'https://toolkit-pro-chi.vercel.app/',
-    githubUrl: 'https://github.com/shaheerasadia/toolkit-pro',
-    description: '100% client-side web utility platform featuring browser-based media compression, format converters, and Veo Director Studio.',
+    githubUrl: 'https://github.com/shaheerasadia/-Toolkit.pro',
+    description: 'Client-side web utility platform featuring browser-based media compression, format converters, and video prompt studio tools.',
   },
   {
     application: 'Brand Identity Generator',
-    category: 'AI & Branding Tools',
+    category: 'Design Systems & Palettes',
     coreFocus: 'Automated palette & CSS token generation',
-    keyTech: 'React, Tailwind CSS, Canvas, Web Workers',
+    keyTech: 'React, Tailwind CSS, Canvas API, Web Workers',
     liveUrl: 'https://brand-identity-five.vercel.app/',
-    githubUrl: 'https://github.com/shaheerasadia/brand-identity-generator',
-    description: 'Generates custom brand color palettes, typography scales, SVG logo presets, and social media asset guidelines in seconds with zero server delay.',
+    githubUrl: 'https://github.com/shaheerasadia/Brand-Identity-',
+    description: 'Generates custom brand color palettes, typography scales, SVG logo presets, and CSS variables in seconds with instant client-side execution.',
   },
   {
-    application: 'App Tool — Shopping Hub',
-    category: 'E-Commerce & Web Utilities',
-    coreFocus: 'Client-side product catalog, dynamic cart & checkout flow',
-    keyTech: 'JavaScript, CSS3, LocalStorage, Responsive UI, Vercel',
-    liveUrl: 'https://app-tool.vercel.app/shopping.html',
-    githubUrl: 'https://github.com/shaheerasadia/app-tool',
-    description: 'Interactive shopping web application with real-time product filtering, persistent cart calculations, and responsive mobile checkout flow.',
+    application: 'App Tool — Web Utilities & Store Hub',
+    category: 'Web Utilities & Catalog Hub',
+    coreFocus: 'Client-side utilities, product catalog & responsive layout',
+    keyTech: 'JavaScript, CSS3, LocalStorage, Responsive UI',
+    liveUrl: 'https://app-tool.vercel.app/',
+    githubUrl: 'https://github.com/shaheerasadia/App-Tool',
+    description: 'Web utility tools hub and shopping catalog application with real-time product filtering, persistent calculations, and responsive mobile interface.',
   },
 ];
 
@@ -108,7 +108,7 @@ export const projectsData: Project[] = [
   {
     id: 'secu-lens-ai',
     title: 'SecuLens AI — Cybersecurity Code Auditor',
-    tagline: 'Enterprise-grade code security analyzer and vulnerability auditor powered by Gemini AI with OWASP Top 10 detection and automated patch generation.',
+    tagline: 'AI-powered code security auditor and vulnerability analyzer powered by Gemini AI with OWASP Top 10 detection and automated patch recommendations.',
     category: 'AI & Cybersecurity',
     year: '2025 — Present',
     role: 'Lead Front-End & AI Engineer',

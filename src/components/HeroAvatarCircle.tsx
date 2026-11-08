@@ -51,31 +51,35 @@ export const HeroAvatarCircle: React.FC = () => {
         </motion.div>
 
         {/* Center Content Area */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 space-y-2 sm:space-y-3">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 space-y-2 sm:space-y-2.5">
           {/* Code Brackets Circle */}
-          <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-full bg-[#0a0d12] border border-blue-500/40 flex items-center justify-center text-blue-400 shadow-sm">
-            <span className="font-mono font-bold text-base sm:text-xl tracking-tighter">
+          <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-[#0a0d12] border border-blue-500/40 flex items-center justify-center text-blue-400 shadow-sm">
+            <span className="font-mono font-bold text-base sm:text-lg tracking-tighter">
               &lt;/&gt;
             </span>
           </div>
 
-          {/* Name */}
-          <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
-            Shaheera Sadia
-          </h2>
-
-          {/* Handle */}
-          <span className="text-[11px] sm:text-sm font-mono text-blue-400 font-medium tracking-wide">
-            @shaheerasadia.dev
+          {/* Subtitle / Focus */}
+          <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-blue-400 font-semibold">
+            Front-End &amp; Mobile
           </span>
 
-          {/* Experience Pill */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#0a0d12] border border-[#1e293b] shadow-sm">
+          {/* Availability Title */}
+          <h3 className="text-base sm:text-xl font-bold text-white tracking-tight">
+            Available for Hire
+          </h3>
+
+          {/* Availability Status Pill */}
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#0a0d12] border border-emerald-500/30 shadow-sm">
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-mono text-slate-300 font-medium whitespace-nowrap">
-              5+ Yrs Frontend Dev
+            <span className="text-[10px] sm:text-xs font-mono text-emerald-400 font-medium whitespace-nowrap">
+              5+ Yrs • Full-Time &amp; Freelance
             </span>
           </div>
+
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-300">
+            React • JavaScript • Vite
+          </span>
         </div>
       </div>
     </div>

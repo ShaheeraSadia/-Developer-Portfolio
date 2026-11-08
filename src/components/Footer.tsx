@@ -1,173 +1,189 @@
 import React from 'react';
 import {
-  BarChart2,
-  RotateCcw,
-  TrendingUp,
   ArrowUp,
   Github,
   Linkedin,
-  Twitter,
   Mail,
-  CheckCircle2,
-  Sparkles,
-  Compass,
-  FileText
+  ExternalLink,
+  Code2,
+  Sparkles
 } from 'lucide-react';
-import { developerConfig } from '../data/portfolioData';
-import { useSectionTelemetry } from '../hooks/useSectionTelemetry';
+import { developerConfig, featuredToolsData } from '../data/portfolioData';
 import { ResumeDownloadButton } from './ResumeDownloadButton';
+import { XIcon } from './icons/XIcon';
 
 interface FooterProps {
   activeSection?: string;
   onOpenResume?: () => void;
+  onNavigate?: (section: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenResume }) => {
-  const telemetry = useSectionTelemetry(activeSection);
-
+export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenResume, onNavigate }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNav = (sectionId: string) => {
+    if (onNavigate) {
+      onNavigate(sectionId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <footer id="main-footer" className="w-full bg-[#0a0d12] text-[#f8fafc] pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-t border-[#1e293b]">
-      <div className="max-w-6xl mx-auto space-y-10">
+    <footer id="main-footer" className="w-full bg-[#0a0d12] text-[#f8fafc] pt-14 pb-16 px-4 sm:px-6 lg:px-8 border-t border-[#1e293b]">
+      <div className="max-w-6xl mx-auto space-y-12">
         
-        {/* Navigation Insights / Session Activity Telemetry Panel */}
-        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 sm:p-7 space-y-6 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#1e293b]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#f8fafc]">
-              <Compass className="w-4 h-4 text-[#3b82f6]" />
-              <span>Session Navigation Activity</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-xs text-[#94a3b8] font-normal">
-                {telemetry.totalVisits} section transition{telemetry.totalVisits === 1 ? '' : 's'} recorded this visit
+        {/* Main Footer Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* Brand & Narrative */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs font-bold font-mono shadow-sm">
+                SS
+              </div>
+              <span className="text-lg font-bold tracking-tight text-white">
+                shaheerasadia<span className="text-blue-500 font-normal">.dev</span>
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              {telemetry.topSection && (
-                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0a0d12] border border-[#1e293b] text-xs font-mono">
-                  <TrendingUp className="w-3.5 h-3.5 text-[#3b82f6]" />
-                  <span className="text-[#94a3b8]">Most Explored:</span>
-                  <span className="text-[#f8fafc] font-bold">{telemetry.topSection.label}</span>
-                  <span className="text-[#3b82f6]">({telemetry.topSection.percentage}%)</span>
-                </div>
-              )}
-              <button
-                onClick={telemetry.resetStats}
-                className="px-2.5 py-1 bg-[#0a0d12] hover:bg-[#1e293b] text-[#94a3b8] hover:text-[#f8fafc] border border-[#1e293b] hover:border-slate-600 rounded-lg text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
-                title="Reset session telemetry data"
+            <p className="text-sm text-slate-300 max-w-sm leading-relaxed font-sans">
+              Front-End &amp; Mobile Application Developer engineering fast, client-side web utilities and accessible interfaces with React, JavaScript, Vite, and Tailwind CSS.
+            </p>
+
+            <div className="pt-2 flex items-center gap-2.5">
+              <a
+                href={developerConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200"
+                title="GitHub"
               >
-                <RotateCcw className="w-3 h-3" />
-                <span>Reset</span>
-              </button>
+                <Github className="w-4 h-4" />
+              </a>
+
+              <a
+                href={developerConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+
+              <a
+                href={developerConfig.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200"
+                title="X (Twitter)"
+              >
+                <XIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href={`mailto:${developerConfig.email}`}
+                className="w-9 h-9 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200"
+                title={developerConfig.email}
+              >
+                <Mail className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          {/* Activity Matrix Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {telemetry.sortedSections.slice(0, 6).map((sec) => {
-              const isCurrent = sec.id === activeSection;
-              return (
-                <div
-                  key={sec.id}
-                  className={`p-3.5 rounded-xl border transition-all ${
-                    isCurrent
-                      ? 'bg-[#1e293b] border-blue-500/50 shadow-sm'
-                      : 'bg-[#0a0d12] border-[#1e293b]'
-                  }`}
+          {/* Featured Projects Column */}
+          <div className="md:col-span-4 space-y-3">
+            <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block">
+              Featured Work
+            </span>
+            <ul className="space-y-2 text-sm text-slate-300">
+              {featuredToolsData.map((tool) => (
+                <li key={tool.application}>
+                  <a
+                    href={tool.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                  >
+                    <span>{tool.application}</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links Column */}
+          <div className="md:col-span-3 space-y-3">
+            <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block">
+              Navigation
+            </span>
+            <ul className="space-y-2 text-sm text-slate-300">
+              <li>
+                <button
+                  onClick={() => handleNav('home')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className={`font-semibold truncate ${isCurrent ? 'text-[#3b82f6]' : 'text-[#f8fafc]'}`}>
-                      {sec.label}
-                    </span>
-                    <div className="flex items-center gap-1 font-mono text-xs">
-                      <span className="text-[#f8fafc] font-bold">{sec.count}x</span>
-                      <span className="text-[#94a3b8]">({sec.percentage}%)</span>
-                    </div>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="w-full h-1.5 bg-[#0f172a] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full transition-all duration-500 ${
-                        isCurrent ? 'bg-[#3b82f6]' : 'bg-[#94a3b8]'
-                      }`}
-                      style={{ width: `${Math.max(sec.percentage, 5)}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                  Overview &amp; Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('projects')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
+                >
+                  Featured Projects
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('skills')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
+                >
+                  Skills Matrix
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('about')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
+                >
+                  About &amp; Story
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('contact')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
+                >
+                  Contact &amp; Hire
+                </button>
+              </li>
+            </ul>
           </div>
 
-          {/* Quick Architecture Metadata */}
-          <div className="pt-4 border-t border-[#1e293b] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono text-[#94a3b8]">
-            <div>
-              <span className="text-slate-500 block text-[11px]">Framework:</span>
-              <span className="text-[#f8fafc] font-semibold">React 19 + Vite</span>
-            </div>
-            <div>
-              <span className="text-slate-500 block text-[11px]">Styling:</span>
-              <span className="text-[#f8fafc] font-semibold">Tailwind CSS</span>
-            </div>
-            <div>
-              <span className="text-slate-500 block text-[11px]">Compute:</span>
-              <span className="text-[#f8fafc] font-semibold">100% Client-Side</span>
-            </div>
-            <div>
-              <span className="text-slate-500 block text-[11px]">Typography:</span>
-              <span className="text-[#f8fafc] font-semibold">Plus Jakarta Sans</span>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#1e293b] text-xs text-[#94a3b8]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#1e293b] text-xs text-slate-400">
           <div className="flex flex-wrap items-center gap-2">
             <span>© {new Date().getFullYear()}</span>
-            <span className="text-[#f8fafc] font-semibold">{developerConfig.name}</span>
-            <span>— Front-End &amp; Mobile Developer</span>
+            <span className="text-white font-semibold">{developerConfig.name}</span>
+            <span>— Front-End &amp; Mobile Application Developer</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
             <ResumeDownloadButton variant="outline" onOpenModal={onOpenResume} />
 
-            <div className="flex items-center gap-2">
-              <a
-                href={developerConfig.github}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#94a3b8] hover:text-[#f8fafc] transition-colors"
-                title="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href={developerConfig.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#94a3b8] hover:text-[#f8fafc] transition-colors"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href={developerConfig.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#94a3b8] hover:text-[#f8fafc] transition-colors"
-                title="Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-            </div>
-
             <button
               id="footer-back-to-top-btn"
               onClick={scrollToTop}
-              className="hover:text-[#3b82f6] transition-colors flex items-center gap-1 group cursor-pointer text-[#94a3b8] hover:text-[#f8fafc] font-medium"
+              className="hover:text-blue-400 transition-colors flex items-center gap-1 group cursor-pointer text-slate-300 font-medium"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />

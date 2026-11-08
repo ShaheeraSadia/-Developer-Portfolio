@@ -186,8 +186,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               </h1>
               
               {/* Dynamic Typed.js Headline with Royal Blue Underline */}
-              <div className="flex items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white min-h-[44px]">
-                <span className="text-white">And I'm a</span>
+              <div className="flex flex-wrap items-baseline gap-2 sm:gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white min-h-[44px]">
+                <span className="text-white shrink-0">And I'm a</span>
                 <span className="text-blue-400 border-b-2 sm:border-b-[3px] border-blue-500 pb-0.5 inline-block">
                   <span ref={typedTargetRef}></span>
                 </span>
@@ -208,7 +208,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -219,7 +219,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -230,7 +230,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter/X Profile"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm"
                 title="Twitter / X"
               >
                 <Twitter className="w-4 h-4" />
@@ -239,71 +239,82 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               <button
                 onClick={handleCopyEmail}
                 aria-label="Copy Email"
-                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm cursor-pointer"
+                className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-[#1e293b] flex items-center justify-center transition-all duration-200 shadow-sm cursor-pointer"
                 title={emailCopied ? 'Email Copied!' : developerConfig.email}
               >
                 {emailCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Mail className="w-4 h-4" />}
               </button>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-3">
-              {/* Dedicated Resume Download Button with Direct Download & Format Dropdown */}
-              <ResumeDownloadButton
-                variant="hero"
-                onOpenModal={onOpenResume}
-                showPreviewOption={true}
-              />
+            {/* Action Buttons - Fully responsive without overlapping */}
+            <div className="pt-3 space-y-3">
+              {/* Primary Actions Row */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                {/* Dedicated Resume Download Button with Direct Download & Format Dropdown */}
+                <div className="w-full sm:w-auto">
+                  <ResumeDownloadButton
+                    variant="hero"
+                    onOpenModal={onOpenResume}
+                    showPreviewOption={true}
+                    className="w-full sm:w-auto"
+                  />
+                </div>
 
-              {/* View Interactive CV Modal Button */}
-              <button
-                onClick={onOpenResume}
-                id="hero-view-cv-btn"
-                className="px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
-                title="Open interactive curriculum vitae on screen"
-              >
-                <Eye className="w-4 h-4 text-blue-400" />
-                <span>View CV</span>
-              </button>
+                {/* View Interactive CV Modal Button */}
+                <button
+                  onClick={onOpenResume}
+                  id="hero-view-cv-btn"
+                  className="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-100 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-500 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                  title="Open interactive curriculum vitae on screen"
+                >
+                  <Eye className="w-4 h-4 text-blue-400 shrink-0" />
+                  <span>View CV</span>
+                </button>
 
-              {/* Jump to GitHub Activity Stream */}
-              <button
-                onClick={() => {
-                  const el = document.getElementById('github-activity-stream');
-                  if (el) {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                  } else if (onNavigate) {
-                    onNavigate('home');
-                    setTimeout(() => {
-                      const streamEl = document.getElementById('github-activity-stream');
-                      if (streamEl) streamEl.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }
-                }}
-                id="hero-github-stream-btn"
-                className="px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
-                title="Jump to live GitHub activity stream & recent commits"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <Github className="w-4 h-4 text-blue-400" />
-                <span>GitHub Stream</span>
-              </button>
+                {/* Jump to GitHub Activity Stream */}
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('github-activity-stream');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    } else if (onNavigate) {
+                      onNavigate('home');
+                      setTimeout(() => {
+                        const streamEl = document.getElementById('github-activity-stream');
+                        if (streamEl) streamEl.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }}
+                  id="hero-github-stream-btn"
+                  className="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-100 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-500 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                  title="Jump to live GitHub activity stream & recent commits"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <Github className="w-4 h-4 text-blue-400 shrink-0" />
+                  <span className="whitespace-nowrap">GitHub Stream</span>
+                </button>
+              </div>
 
-              <button
-                onClick={() => handleSectionClick('projects')}
-                id="hero-explore-projects-btn"
-                className="px-5 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-600 transition-all duration-200 flex items-center gap-2 cursor-pointer"
-              >
-                <span>Explore Projects</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* Secondary Actions Row */}
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => handleSectionClick('projects')}
+                  id="hero-explore-projects-btn"
+                  className="px-5 py-2.5 sm:py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-500 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
+                >
+                  <span>Explore Projects</span>
+                  <ArrowRight className="w-4 h-4 shrink-0 text-blue-400" />
+                </button>
 
-              <button
-                onClick={() => handleSectionClick('contact')}
-                className="px-3 py-3 rounded-xl bg-transparent text-slate-400 hover:text-blue-400 font-mono text-sm sm:text-base transition-colors cursor-pointer"
-              >
-                <span>Contact Me →</span>
-              </button>
+                <button
+                  onClick={() => handleSectionClick('contact')}
+                  id="hero-contact-me-btn"
+                  className="px-5 py-2.5 sm:py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-500 transition-all cursor-pointer flex items-center gap-2 shadow-sm"
+                >
+                  <span>Contact Me</span>
+                  <span className="text-blue-400 font-bold">→</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -321,7 +332,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
             <p className="text-xs text-slate-300 font-sans font-medium">Front-End Development</p>
           </div>
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">3</span>
+            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4</span>
             <p className="text-xs text-slate-300 font-sans font-medium">Live Production Tools</p>
           </div>
           <div className="space-y-1">

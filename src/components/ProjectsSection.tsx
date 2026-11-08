@@ -27,7 +27,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
     { id: 'AI & Cybersecurity', label: 'AI & Cybersecurity' },
     { id: 'Web Utilities & Design Systems', label: 'Design Systems & Palettes' },
     { id: 'Web Utilities & SaaS Engine', label: 'Client-Side SaaS Utilities' },
-    { id: 'E-Commerce & Interactive Utilities', label: 'E-Commerce & Portals' },
+    { id: 'Web Utilities & E-Commerce', label: 'E-Commerce & Portals' },
   ];
 
   const filteredProjects = selectedCategory === 'all'
@@ -132,12 +132,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         {/* Project Table & Cards List */}
         <div className="space-y-4">
           {filteredProjects.map((project) => {
-            const liveUrl =
-              project.id === 'brand-identity-generator'
-                ? 'https://brand-identity-five.vercel.app/'
-                : project.id === 'toolkit-pro'
-                ? 'https://toolkit-pro-chi.vercel.app/'
-                : 'https://app-tool.vercel.app/shopping.html';
+            const liveUrl = project.liveUrl || 'https://shaheerasadia.dev';
 
             return (
               <div

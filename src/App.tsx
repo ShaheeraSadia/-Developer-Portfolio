@@ -80,7 +80,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <ToastProvider>
-        <div className="min-h-screen bg-[#0a0d12] text-[#f8fafc] flex flex-col selection:bg-blue-600/30 selection:text-[#3b82f6]">
+        <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#0a0d12] text-[#f8fafc] flex flex-col selection:bg-blue-600/30 selection:text-[#3b82f6]">
           {/* Navigation Header */}
         <Navbar
           onOpenResume={() => setIsResumeOpen(true)}

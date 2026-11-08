@@ -157,10 +157,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="nav-link-home"
             onClick={() => handleNavClick('home')}
-            className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
+            className={`px-2.5 xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1.5 font-medium ${
               activeSection === 'home'
                 ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
-                : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
+                : 'text-slate-200 hover:text-white hover:bg-[#1e293b]'
             }`}
           >
             <Home className="w-3.5 h-3.5 shrink-0" />
@@ -174,10 +174,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={link.id}
                 id={`nav-link-${link.id}`}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer font-medium ${
+                className={`px-2.5 xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer font-medium ${
                   isActive
                     ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
-                    : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
+                    : 'text-slate-200 hover:text-white hover:bg-[#1e293b]'
                 }`}
               >
                 {link.label}
@@ -190,10 +190,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-more-dropdown-btn"
               onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
+              className={`px-2.5 xl:px-3 py-1.5 rounded-lg transition-colors duration-200 cursor-pointer flex items-center gap-1 font-medium ${
                 isSecondaryActive
                   ? 'bg-[#2563eb] text-white font-semibold shadow-sm'
-                  : 'text-slate-100 hover:text-blue-400 hover:bg-[#0f172a]'
+                  : 'text-slate-200 hover:text-white hover:bg-[#1e293b]'
               }`}
               aria-expanded={moreDropdownOpen}
               aria-haspopup="true"
@@ -215,13 +215,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                       className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2.5 transition-colors duration-200 cursor-pointer ${
                         isActive
                           ? 'bg-[#1e293b] text-blue-400 font-semibold'
-                          : 'text-slate-100 hover:text-blue-400 hover:bg-[#1e293b]'
+                          : 'text-slate-200 hover:text-white hover:bg-[#1e293b]'
                       }`}
                     >
                       <Icon className="w-4 h-4 text-blue-400 shrink-0" />
                       <div>
                         <div className="text-xs font-semibold text-white">{item.label}</div>
-                        <div className="text-[10px] text-slate-300">{item.desc}</div>
+                        <div className="text-[10px] text-slate-400">{item.desc}</div>
                       </div>
                     </button>
                   );
@@ -231,15 +231,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </nav>
 
-        {/* Right Action Tools */}
+        {/* Right Action Tools - Scaled responsibly without overflow */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Command Palette Trigger Button */}
           {onOpenCommandPalette && (
             <button
               id="open-command-palette-btn"
               onClick={onOpenCommandPalette}
-              className="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
+              className="inline-flex items-center gap-1.5 p-2 sm:px-2.5 xl:px-3 sm:py-1.5 rounded-lg text-xs font-medium bg-[#0f172a] text-[#94a3b8] border border-[#1e293b] hover:border-slate-600 hover:text-[#f8fafc] transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-sm group"
               title="Open Command Palette (Ctrl+K)"
+              aria-label="Search"
             >
               <Search className="w-3.5 h-3.5 text-[#94a3b8] group-hover:text-[#3b82f6] transition-colors shrink-0" />
               <span className="hidden xl:inline">Search</span>
@@ -249,7 +250,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          {/* SF Clock */}
+          {/* SF Clock - Displayed only on large displays */}
           <div
             id="sf-clock-display"
             className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono text-[#94a3b8] bg-[#0f172a] rounded-lg border border-[#1e293b] whitespace-nowrap shrink-0"
@@ -262,11 +263,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Theme Mode Switcher (Day / Midnight) */}
           <ThemeToggle />
 
-          {/* Config / Raw JSON View Switcher */}
+          {/* Config / Raw JSON View Switcher - Displayed on tablet and desktop */}
           <button
             id="toggle-config-mode-btn"
             onClick={onToggleConfigMode}
-            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`hidden md:inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
               isConfigMode
                 ? 'bg-[#2563eb] text-white font-semibold border-blue-500'
                 : 'bg-[#0f172a] text-[#94a3b8] border-[#1e293b] hover:text-[#f8fafc] hover:border-slate-600'
@@ -274,27 +275,29 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Toggle between UI Mode and Raw JSON Schema View"
           >
             <Code2 className="w-3.5 h-3.5 shrink-0" />
-            <span className="hidden sm:inline">{isConfigMode ? 'UI' : 'JSON'}</span>
+            <span>{isConfigMode ? 'UI' : 'JSON'}</span>
           </button>
 
-          {/* Resume Download Action Button */}
-          <ResumeDownloadButton
-            variant="compact"
-            onOpenModal={onOpenResume}
-          />
+          {/* Resume Download Action Button - Displayed on md+ screens */}
+          <div className="hidden md:inline-flex">
+            <ResumeDownloadButton
+              variant="compact"
+              onOpenModal={onOpenResume}
+            />
+          </div>
 
-          {/* Resume Modal Trigger */}
+          {/* Resume Modal Trigger - Displayed on lg+ screens */}
           <button
             id="open-resume-btn"
             onClick={onOpenResume}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
             title="Open Interactive Resume Modal"
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />
             <span>View CV</span>
           </button>
 
-          {/* Hamburger Menu (Mobile) */}
+          {/* Hamburger Menu (Mobile: < lg) */}
           <button
             id="mobile-menu-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

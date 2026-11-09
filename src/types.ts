@@ -23,6 +23,10 @@ export interface Project {
   impactDescription: string;
   githubUrl?: string;
   liveUrl?: string;
+  repoName?: string;
+  image?: string;
+  problemSolved?: string;
+  whatBuilt?: string;
   codeSnippet?: {
     filename: string;
     language: string;

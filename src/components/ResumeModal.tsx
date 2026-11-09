@@ -101,7 +101,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   if (!isOpen) return null;
 
   const atsPlainText = `Shaheera Sadia
-Web & Mobile Application Developer | Remote
+Front-End Developer | Remote
 
 Email: ${developerConfig.email} | GitHub: github.com/shaheerasadia | LinkedIn: linkedin.com/in/shaheerasadia
 

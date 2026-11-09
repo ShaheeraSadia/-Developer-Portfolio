@@ -2,14 +2,13 @@ import { SEOProps } from '../hooks/useSEO';
 
 export const sectionSEOConfig: Record<string, SEOProps> = {
   home: {
-    title: 'Shaheera Sadia — Front-End & Mobile Application Developer',
+    title: 'Shaheera Sadia — Front-End Developer',
     description:
-      'Front-End & Mobile Application Developer building fast React, JavaScript, and Vite web applications. Featured projects: SecuLens AI, Toolkit Pro, Brand Identity Generator, and App Tool.',
+      'Shaheera Sadia — Front-End Developer building fast React, JavaScript (ES6+), and Vite web applications. Verified projects: SecuLens AI, Toolkit Pro, Brand Identity Generator, and App Tool.',
     keywords: [
       'Shaheera Sadia',
       'Front-End Developer',
       'React Developer',
-      'Mobile Developer',
       'JavaScript',
       'Tailwind CSS',
       'Vite',
@@ -22,7 +21,7 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
     ogImage: '/og-image.png',
   },
   about: {
-    title: 'About Shaheera Sadia | Front-End & Mobile Application Developer',
+    title: 'About Shaheera Sadia | Front-End Developer',
     description:
       'Discover Shaheera Sadia’s engineering journey since 2021, core philosophy, and dedication to fast, accessible, client-side web tools.',
     keywords: [

@@ -43,8 +43,12 @@ export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenRe
           {/* Brand & Narrative */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs font-bold font-mono shadow-sm">
-                SS
+              <div className="w-8 h-8 rounded-lg overflow-hidden border border-blue-500/40 bg-[#0a0d12] shadow-sm shrink-0">
+                <img
+                  src="/assets/aistudio/OIP_3c866659.jpg"
+                  alt="Shaheera Sadia"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="text-lg font-bold tracking-tight text-white">
                 shaheerasadia<span className="text-blue-500 font-normal">.dev</span>
@@ -52,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenRe
             </div>
 
             <p className="text-sm text-slate-300 max-w-sm leading-relaxed font-sans">
-              Front-End &amp; Mobile Application Developer engineering fast, client-side web utilities and accessible interfaces with React, JavaScript, Vite, and Tailwind CSS.
+              Front-End Developer engineering fast, client-side web utilities and accessible interfaces with React, JavaScript, Vite, and Tailwind CSS.
             </p>
 
             <div className="pt-2 flex items-center gap-2.5">
@@ -174,7 +178,7 @@ export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenRe
           <div className="flex flex-wrap items-center gap-2">
             <span>© {new Date().getFullYear()}</span>
             <span className="text-white font-semibold">{developerConfig.name}</span>
-            <span>— Front-End &amp; Mobile Application Developer</span>
+            <span>— Front-End Developer</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">

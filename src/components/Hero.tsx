@@ -42,9 +42,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
     const typed = new Typed(typedTargetRef.current, {
       strings: [
         'Front-End Developer',
-        'Mobile Application Developer',
-        'React & JavaScript Specialist',
+        'React & Vite Specialist',
         'Web Application Engineer',
+        'Client-Side Performance Architect',
       ],
       typeSpeed: 55,
       backSpeed: 35,
@@ -95,14 +95,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0f172a] border border-emerald-500/30 text-xs font-mono shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               <span className="text-emerald-400 font-semibold text-xs font-mono">
-                Available for Hire &amp; Freelance
+                Available for Full-Time &amp; Freelance
               </span>
               <span className="text-slate-600 font-mono">•</span>
-              <span className="text-slate-400 text-xs font-mono">Remote / PKT</span>
+              <span className="text-slate-400 text-xs font-mono">Remote (PKT, UTC+5)</span>
             </div>
 
             {/* Top Greeting */}
-            <p className="font-mono text-sm sm:text-base text-slate-300 tracking-wide">
+            <p className="font-mono text-sm sm:text-base text-white tracking-wide">
               Hello, I'm
             </p>
 
@@ -114,7 +114,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               
               {/* Dynamic Typed.js Headline with Royal Blue Underline */}
               <div className="flex flex-wrap items-baseline gap-2 sm:gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white min-h-[44px]">
-                <span className="text-slate-100 shrink-0 font-bold">And I'm a</span>
+                <span className="text-white shrink-0 font-bold">And I'm a</span>
                 <span className="text-blue-400 border-b-2 sm:border-b-[3px] border-blue-500 pb-0.5 inline-block font-bold">
                   <span ref={typedTargetRef}></span>
                 </span>
@@ -122,13 +122,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
             </div>
 
             {/* Narrative Summary */}
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl font-normal">
-              Front-End &amp; Mobile Application Developer specializing in React, modern JavaScript (ES6+), Vite, and high-contrast responsive interfaces with client-side performance architectures.
+            <p className="text-sm sm:text-base text-white leading-relaxed max-w-xl font-normal">
+              Front-End Developer specializing in React, modern JavaScript (ES6+), Vite, and high-contrast responsive web applications with client-side performance architectures.
             </p>
 
             {/* Connect Bar */}
             <div className="flex items-center gap-3 pt-1">
-              <span className="text-xs sm:text-sm font-mono text-slate-300">// connect:</span>
+              <span className="text-xs sm:text-sm font-mono text-white">// connect:</span>
               
               <a
                 href={developerConfig.github}
@@ -232,19 +232,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-[#0f172a] rounded-2xl border border-[#1e293b] mt-12 shadow-sm">
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">5+ Yrs</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Front-End &amp; Mobile</p>
+            <p className="text-xs text-white font-sans font-medium">Front-End Engineering</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Live Production Tools</p>
+            <p className="text-xs text-white font-sans font-medium">Live Production Tools</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">100%</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Client-Side Privacy</p>
+            <p className="text-xs text-white font-sans font-medium">Client-Side Privacy</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono block">WCAG AA</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Accessible Contrast</p>
+            <p className="text-xs text-white font-sans font-medium">Accessible Contrast</p>
           </div>
         </div>
 

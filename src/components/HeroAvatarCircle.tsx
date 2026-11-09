@@ -50,30 +50,40 @@ export const HeroAvatarCircle: React.FC = () => {
           Web Workers
         </motion.div>
 
-        {/* Center Content Area */}
+        {/* Center Content Area with Profile Portrait */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 space-y-2 sm:space-y-2.5">
-          {/* Code Brackets Circle */}
-          <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-[#0a0d12] border border-blue-500/40 flex items-center justify-center text-blue-400 shadow-sm">
-            <span className="font-mono font-bold text-base sm:text-lg tracking-tighter">
-              &lt;/&gt;
-            </span>
+          {/* Portrait Photo with Verified Ring */}
+          <div className="relative group">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-blue-500/60 p-0.5 bg-[#0a0d12] shadow-lg shadow-blue-500/20">
+              <img
+                src="/assets/aistudio/OIP_3c866659.jpg"
+                alt="Shaheera Sadia - Front-End Developer"
+                className="w-full h-full object-cover rounded-full"
+                loading="eager"
+              />
+            </div>
+            {/* Online Status Indicator */}
+            <span
+              className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#0a0d12] shadow-sm"
+              title="Available for opportunities"
+            />
           </div>
+
+          {/* Developer Name */}
+          <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+            Shaheera Sadia
+          </h3>
 
           {/* Subtitle / Focus */}
           <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-blue-400 font-semibold">
-            Front-End &amp; Mobile
+            Front-End Developer
           </span>
 
-          {/* Availability Title */}
-          <h3 className="text-base sm:text-xl font-bold text-white tracking-tight">
-            Available for Hire
-          </h3>
-
           {/* Availability Status Pill */}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#0a0d12] border border-emerald-500/30 shadow-sm">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#0a0d12] border border-emerald-500/40 shadow-sm">
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[10px] sm:text-xs font-mono text-emerald-400 font-medium whitespace-nowrap">
-              5+ Yrs • Full-Time &amp; Freelance
+              Open to Opportunities
             </span>
           </div>
 

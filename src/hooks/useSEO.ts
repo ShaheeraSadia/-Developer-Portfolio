@@ -15,7 +15,7 @@ export function updateDocumentSEO({ title, description, keywords, canonicalPath,
   // Format Title consistently
   const formattedTitle = title.includes('Shaheera Sadia')
     ? title
-    : `${title} | Shaheera Sadia — Front-End & Mobile Application Developer`;
+    : `${title} | Shaheera Sadia — Front-End Developer`;
 
   document.title = formattedTitle;
 
@@ -51,7 +51,7 @@ export function updateDocumentSEO({ title, description, keywords, canonicalPath,
   setMeta('property', 'og:image', resolvedImage);
   setMeta('property', 'og:image:width', '1200');
   setMeta('property', 'og:image:height', '630');
-  setMeta('property', 'og:image:alt', 'Shaheera Sadia — Front-End & Mobile Application Developer Portfolio');
+  setMeta('property', 'og:image:alt', 'Shaheera Sadia — Front-End Developer Portfolio');
 
   // Twitter Cards
   setMeta('name', 'twitter:card', 'summary_large_image');

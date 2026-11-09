@@ -3,9 +3,9 @@ import { DeveloperConfig, Project, ExperienceItem, PhilosophyPillar, SkillCatego
 export const developerConfig: DeveloperConfig = {
   name: 'Shaheera Sadia',
   handle: 'shaheerasadia.dev',
-  role: 'Front-End & Mobile Application Developer',
-  level: 'Front-End & Mobile Application Developer',
-  location: 'Remote',
+  role: 'Front-End Developer',
+  level: 'Front-End Developer',
+  location: 'Remote (Pakistan, UTC+5)',
   timezone: 'PKT (UTC+5)',
   status: 'available_for_opportunities',
   yearsOfExperience: 5,
@@ -29,24 +29,32 @@ export const developerConfig: DeveloperConfig = {
   principles: [
     'Fast client-side zero server latency architectures',
     'Accessible, high-contrast UI across all viewports',
-    'Responsive mobile/web design with clean touch feedback',
+    'Responsive mobile-first web design with clean touch feedback',
     'Smooth UI performance offloading tasks to Web Workers',
   ],
 };
 
 export const resumeSummary = {
-  headline: 'Front-End & Mobile Application Developer | Remote',
+  headline: 'Front-End Developer | Remote',
   summary:
-    'Front-End & Mobile Application Developer engineering fast web applications, accessible user interfaces, and client-side browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and Web Worker pipelines. Track record of delivering fast, responsive, and accessible digital experiences.',
-  availability: 'Available for opportunities | Remote | Front-End & Mobile Application Developer',
+    'Front-End Developer engineering fast web applications, accessible user interfaces, and client-side browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and Web Worker pipelines. Track record of delivering fast, responsive, and accessible digital experiences.',
+  availability: 'Available immediately | Remote | Full-Time & Contract',
 };
 
 export const aboutMeData = {
   headline: 'I build clean, high-performance web applications centered on real user needs.',
   subHeadline:
-    'Shaheera Sadia — Front-End & Mobile Application Developer specializing in React, JavaScript, and responsive client-side architectures.',
+    'Shaheera Sadia — Front-End Developer specializing in React, JavaScript, and responsive client-side architectures.',
+  whoIAm:
+    'I am a Front-End Developer with 5+ years of experience building user-centric interfaces, performance-driven web tools, and responsive digital products.',
+  whereBased:
+    'Based in Pakistan (PKT / UTC+5), working smoothly and synchronously with global remote teams across US, Europe, and Asia-Pacific time zones.',
+  lookingFor:
+    'Looking for full-time front-end engineering roles, long-term contracts, or high-impact freelance product work building fast React & web applications.',
+  availability:
+    'Immediately available to start (Full-Time or Contract, 40 hours/week).',
   fullBio:
-    "I am a Front-End & Mobile Application Developer with a strong focus on building user-centric interfaces, performance-driven web tools, and responsive web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused on translating user tasks into smooth, intuitive UI designs.\n\nI specialize in React, modern JavaScript (ES6+), Vite, and Tailwind CSS, with an emphasis on browser capabilities (Web Workers and client-side compute) to build fast web utilities with instant responsiveness and total user privacy.",
+    "I am a Front-End Developer with a strong focus on building user-centric interfaces, performance-driven web tools, and responsive web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused on translating complex user requirements into smooth, intuitive UI designs.\n\nI specialize in React, modern JavaScript (ES6+), Vite, and Tailwind CSS, with an emphasis on browser capabilities (Web Workers and client-side compute) to build fast web utilities with instant responsiveness and total user privacy.",
   milestones: [
     { year: '2021', title: 'freeCodeCamp Genesis', description: 'Began intensive journey mastering modern JavaScript algorithms, responsive design, and component-driven front-ends.' },
     { year: '2022', title: 'Interactive Web & Dashboards', description: 'Built client-focused SPAs, responsive data interfaces, and localized WordPress/XAMPP database workflows.' },
@@ -63,6 +71,10 @@ export interface FeaturedToolItem {
   liveUrl: string;
   githubUrl: string;
   description: string;
+  image?: string;
+  repoName?: string;
+  problemSolved?: string;
+  whatBuilt?: string;
 }
 
 export const featuredToolsData: FeaturedToolItem[] = [
@@ -73,6 +85,10 @@ export const featuredToolsData: FeaturedToolItem[] = [
     keyTech: 'React, Vite, Gemini AI, Tailwind CSS, OWASP',
     liveUrl: 'https://secu-lens-ai-cybersecurity-code-aud-ecru.vercel.app/',
     githubUrl: 'https://github.com/shaheerasadia/secu-lens-ai',
+    repoName: 'secu-lens-ai',
+    image: '/src/assets/images/project_seculens_ai_1794224059932.jpg',
+    problemSolved: 'Identifying OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF) early without slow manual code reviews or noisy scanners.',
+    whatBuilt: 'Engineered an AI-powered code auditor utilizing Gemini AI for semantic AST code analysis and instant production-hardened patch generation.',
     description: 'AI-powered code security analyzer and vulnerability auditor powered by Gemini AI. Detects OWASP Top 10 security flaws, XSS, and generates actionable patch suggestions.',
   },
   {
@@ -81,7 +97,11 @@ export const featuredToolsData: FeaturedToolItem[] = [
     coreFocus: 'Client-side image & web utility suite',
     keyTech: 'React, Web Workers, JavaScript, Tailwind CSS',
     liveUrl: 'https://toolkit-pro-chi.vercel.app/',
-    githubUrl: 'https://github.com/shaheerasadia/-Toolkit.pro',
+    githubUrl: 'https://github.com/shaheerasadia/toolkit-pro',
+    repoName: 'toolkit-pro',
+    image: '/src/assets/images/project_toolkit_pro_1794224059255.jpg',
+    problemSolved: 'Cloud-based media compression costs money, incurs server upload latency, and exposes private user files to external servers.',
+    whatBuilt: 'Architected a 100% client-side web utility suite with off-thread Web Workers, OffscreenCanvas processing, and zero server upload latency.',
     description: 'Client-side web utility platform featuring browser-based media compression, format converters, and video prompt studio tools.',
   },
   {
@@ -90,7 +110,11 @@ export const featuredToolsData: FeaturedToolItem[] = [
     coreFocus: 'Automated palette & CSS token generation',
     keyTech: 'React, Tailwind CSS, Canvas API, Web Workers',
     liveUrl: 'https://brand-identity-five.vercel.app/',
-    githubUrl: 'https://github.com/shaheerasadia/Brand-Identity-',
+    githubUrl: 'https://github.com/shaheerasadia/brand-identity-generator',
+    repoName: 'brand-identity-generator',
+    image: '/src/assets/images/project_brand_identity_1794224061220.jpg',
+    problemSolved: 'Designers and developers struggle to ensure WCAG 2.1 AA color contrast and generate exportable CSS tokens quickly.',
+    whatBuilt: 'Engineered a real-time WCAG 2.1 AA luminance analyzer with one-click export to CSS variables (:root) and Tailwind configuration files.',
     description: 'Generates custom brand color palettes, typography scales, SVG logo presets, and CSS variables in seconds with instant client-side execution.',
   },
   {
@@ -99,7 +123,11 @@ export const featuredToolsData: FeaturedToolItem[] = [
     coreFocus: 'Client-side utilities, product catalog & responsive layout',
     keyTech: 'JavaScript, CSS3, LocalStorage, Responsive UI',
     liveUrl: 'https://app-tool.vercel.app/',
-    githubUrl: 'https://github.com/shaheerasadia/App-Tool',
+    githubUrl: 'https://github.com/shaheerasadia/app-tool',
+    repoName: 'app-tool',
+    image: '/src/assets/images/project_app_tool_1794224061017.jpg',
+    problemSolved: 'Shopping apps often stutter on slower mobile devices due to constant network reloads and database calls during cart updates.',
+    whatBuilt: 'Constructed an offline-resilient shopping interface with localized reactive cart state, instant totals calculation, and fluid touch micro-interactions.',
     description: 'Web utility tools hub and shopping catalog application with real-time product filtering, persistent calculations, and responsive mobile interface.',
   },
 ];
@@ -115,6 +143,10 @@ export const projectsData: Project[] = [
     clientOrContext: 'Cybersecurity & Developer Tools',
     featured: true,
     status: 'production',
+    repoName: 'secu-lens-ai',
+    image: '/src/assets/images/project_seculens_ai_1794224059932.jpg',
+    problemSolved: 'Identifying OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF) early without slow manual code reviews or noisy scanners.',
+    whatBuilt: 'Engineered an AI code auditor utilizing Gemini AI for semantic AST code analysis and instant production-hardened patch generation.',
     metrics: [
       { label: 'Vulnerability Detection', value: 'OWASP Top 10', change: 'XSS, SQLi, SSRF, IDOR', isPositive: true },
       { label: 'Audit Engine', value: 'Gemini AI', change: 'Real-time AST & semantic analysis', isPositive: true },
@@ -174,6 +206,10 @@ and a hardened production-ready patch.\`;
     clientOrContext: 'AI & Branding Tools',
     featured: true,
     status: 'production',
+    repoName: 'brand-identity-generator',
+    image: '/src/assets/images/project_brand_identity_1794224061220.jpg',
+    problemSolved: 'Designers and developers struggle to ensure WCAG 2.1 AA color contrast and generate exportable CSS tokens quickly.',
+    whatBuilt: 'Engineered a real-time WCAG 2.1 AA luminance analyzer with one-click export to CSS variables (:root) and Tailwind configuration files.',
     metrics: [
       { label: 'WCAG Contrast', value: 'WCAG 2.1 AA', change: 'Real-time validation', isPositive: true },
       { label: 'Token Generation', value: 'Instant', change: ':root & Tailwind config', isPositive: true },
@@ -234,6 +270,10 @@ export function evaluateBrandPalette(primaryHex, backgroundHex) {
     clientOrContext: 'Independent SaaS Platform',
     featured: true,
     status: 'production',
+    repoName: 'toolkit-pro',
+    image: '/src/assets/images/project_toolkit_pro_1794224059255.jpg',
+    problemSolved: 'Cloud-based media compression costs money, incurs server upload latency, and exposes private user files to external servers.',
+    whatBuilt: 'Architected a 100% client-side web utility suite with off-thread Web Workers, OffscreenCanvas processing, and zero server upload latency.',
     metrics: [
       { label: 'Client-Side Privacy', value: '100% Local', change: 'Zero server upload', isPositive: true },
       { label: 'Processing Speed', value: 'Sub-second', change: 'Web Workers off-thread', isPositive: true },
@@ -288,6 +328,10 @@ self.onmessage = async (e) => {
     clientOrContext: 'Web Utilities & Retail App Suite',
     featured: true,
     status: 'production',
+    repoName: 'app-tool',
+    image: '/src/assets/images/project_app_tool_1794224061017.jpg',
+    problemSolved: 'Shopping apps often stutter on slower mobile devices due to constant network reloads and database calls during cart updates.',
+    whatBuilt: 'Constructed an offline-resilient shopping interface with localized reactive cart state, instant totals calculation, and fluid touch micro-interactions.',
     metrics: [
       { label: 'Cart Latency', value: '< 10ms', change: 'Instant state persistence', isPositive: true },
       { label: 'Touch Response', value: '< 16ms', change: ':active touch feedback', isPositive: true },
@@ -354,6 +398,10 @@ export function createCartController() {
     clientOrContext: 'Toolkit Pro Suite',
     featured: true,
     status: 'production',
+    repoName: 'toolkit-pro',
+    image: '/src/assets/images/project_toolkit_pro_1794224059255.jpg',
+    problemSolved: 'Complex generative video parameter configuration often requires tedious UI re-renders and disjointed preview steps.',
+    whatBuilt: 'Engineered an interactive prompt tuning and video parameter playground with instant client-side preview controls.',
     metrics: [
       { label: 'Prompt Latency', value: '< 12ms', change: 'Instant state batching', isPositive: true },
       { label: 'Format Support', value: '12+ Types', change: 'Universal transcoding', isPositive: true },
@@ -434,7 +482,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     id: 'exp-3',
-    role: 'Web & Mobile Application Developer',
+    role: 'Front-End & Web Developer',
     company: 'Independent Projects',
     period: '2021 — 2023',
     location: 'Remote',

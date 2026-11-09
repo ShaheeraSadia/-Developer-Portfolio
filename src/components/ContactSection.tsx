@@ -225,11 +225,11 @@ export const ContactSection: React.FC = () => {
             <span className="text-xs font-mono text-[#3b82f6] uppercase tracking-wider block">
               Get in Touch
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
               Contact &amp; Collaboration
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#94a3b8] max-w-md leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-white max-w-md leading-relaxed font-sans">
             Available for full-time engineering roles, frontend contract work, and client-side architecture consulting.
           </p>
         </div>
@@ -239,10 +239,10 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 sm:p-7 space-y-6 shadow-sm">
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-[#f8fafc]">
+                <h3 className="text-lg font-bold text-white">
                   Let's Build Together
                 </h3>
-                <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm text-white font-sans leading-relaxed">
                   Whether you have an upcoming project, a full-time role opening, or want to discuss frontend performance, feel free to send a message.
                 </p>
               </div>

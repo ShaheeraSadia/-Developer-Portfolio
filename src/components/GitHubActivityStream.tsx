@@ -288,7 +288,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
               </button>
             </div>
 
-            <p className="text-sm text-slate-400 max-w-2xl font-sans">
+            <p className="text-sm text-white max-w-2xl font-sans">
               Live commit ledger, repository metrics, and continuous deployment signals fetched directly via the GitHub REST API.
             </p>
           </div>

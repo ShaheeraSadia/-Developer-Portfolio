@@ -18,7 +18,9 @@ import {
   Command,
   Home,
   Download,
-  Github
+  Github,
+  Award,
+  Send
 } from 'lucide-react';
 import { developerConfig } from '../data/portfolioData';
 import { ThemeToggle } from './ThemeToggle';
@@ -86,17 +88,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Primary navigation links shown directly in the header
+  // Primary navigation links shown directly in the header with anchor support
   const primaryNavLinks = [
     { id: 'projects', label: 'Projects' },
+    { id: 'credentials', label: 'Credentials' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' },
   ];
 
   // Secondary navigation links available in the "More" dropdown
   const secondaryNavLinks = [
+    { id: 'services', label: 'Services', desc: 'Engineering capabilities', icon: Layers },
     { id: 'github', label: 'GitHub Activity', desc: 'Live commits & repo activity', icon: Github },
     { id: 'experience', label: 'Experience', desc: 'Career path & milestones', icon: Briefcase },
     { id: 'component_lab', label: 'Lab', desc: 'Interactive token & RAF profiler', icon: FlaskConical },
@@ -107,6 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const allNavLinks = [
     { id: 'home', label: 'Home', desc: 'Portfolio Overview', icon: Home },
     { id: 'projects', label: 'Projects', desc: 'Featured Applications', icon: FolderGit2 },
+    { id: 'credentials', label: 'Credentials', desc: 'Accredited Certifications', icon: Award },
     { id: 'about', label: 'About', desc: 'Background & Story', icon: UserCheck },
     { id: 'skills', label: 'Skills', desc: 'Technologies & Matrix', icon: Wrench },
     { id: 'services', label: 'Services', desc: 'Offerings & Capabilities', icon: Layers },
@@ -118,12 +122,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const handleNavClick = (sectionId: string) => {
-    if (onNavigate) {
-      onNavigate(sectionId);
-    }
     setMobileMenuOpen(false);
     setMoreDropdownOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Check if the target element exists in the current page
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      if (onNavigate) {
+        onNavigate(sectionId);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const isSecondaryActive = secondaryNavLinks.some((l) => l.id === activeSection);
@@ -144,8 +155,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             id="nav-logo"
             className="flex items-center gap-2 text-sm font-semibold text-[#f8fafc] hover:text-[#3b82f6] transition-colors group cursor-pointer"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#2563eb] text-[#f8fafc] flex items-center justify-center text-xs font-bold font-mono shadow-sm group-hover:bg-[#3b82f6] transition-all shrink-0">
-              SS
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden border border-blue-500/40 bg-[#0a0d12] shadow-sm group-hover:border-blue-400 transition-all shrink-0">
+              <img
+                src="/assets/aistudio/OIP_3c866659.jpg"
+                alt="Shaheera Sadia"
+                className="w-full h-full object-cover"
+              />
             </div>
             <span className="tracking-tight text-sm sm:text-base font-bold text-[#f8fafc]">
               shaheerasadia<span className="text-[#3b82f6] font-normal">.dev</span>
@@ -281,6 +296,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <FileText className="w-3.5 h-3.5 shrink-0" />
             <span>View CV</span>
+          </button>
+
+          {/* Hire Me / Let's Work Together Primary CTA Button */}
+          <button
+            id="nav-hire-me-btn"
+            onClick={() => handleNavClick('contact')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
+            title="Jump to Contact Form / Hire Me"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+            <span>Hire Me</span>
           </button>
 
           {/* Hamburger Menu (Mobile: < lg) */}

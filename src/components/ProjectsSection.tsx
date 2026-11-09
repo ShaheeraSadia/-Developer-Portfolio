@@ -81,6 +81,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       alt={`${tool.application} screenshot preview`}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLElement).style.opacity = '0.4';
+                      }}
                     />
                     <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#0a0d12]/90 backdrop-blur-xs border border-[#1e293b] text-[10px] font-mono text-emerald-400">
                       Live
@@ -202,6 +205,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       alt={`${project.title} screenshot`}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLElement).style.opacity = '0.4';
+                      }}
                     />
                     <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-[#0a0d12]/90 backdrop-blur-xs border border-[#1e293b] text-[10px] font-mono text-slate-200">
                       {project.category}

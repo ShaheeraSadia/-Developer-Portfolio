@@ -279,24 +279,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Theme Mode Switcher (Day / Midnight) */}
           <ThemeToggle />
 
-          {/* Resume Download Action Button - Displayed on md+ screens */}
+          {/* Resume Download Action Button - Single, definitive CV action on md+ screens */}
           <div className="hidden md:inline-flex">
             <ResumeDownloadButton
               variant="compact"
               onOpenModal={onOpenResume}
             />
           </div>
-
-          {/* Resume Modal Trigger - Displayed on lg+ screens */}
-          <button
-            id="open-resume-btn"
-            onClick={onOpenResume}
-            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#2563eb] hover:bg-[#3b82f6] text-white shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
-            title="Open Interactive Curriculum Vitae Modal"
-          >
-            <FileText className="w-3.5 h-3.5 shrink-0" />
-            <span>View CV</span>
-          </button>
 
           {/* Hire Me / Let's Work Together Primary CTA Button */}
           <button

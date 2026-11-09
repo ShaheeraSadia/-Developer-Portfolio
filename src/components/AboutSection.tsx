@@ -43,82 +43,81 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Two-Column Grid: Bio & Milestones */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Full Biography Narrative & Explicit Profile Snapshot */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* Explicit Profile Snapshot Card (Who, Where, Looking For, Availability) */}
-            <div className="bg-[#0f172a] p-6 sm:p-7 rounded-2xl border border-blue-500/30 space-y-4 shadow-sm relative overflow-hidden">
-              <div className="flex items-center justify-between gap-3 border-b border-[#1e293b] pb-3.5">
-                <div className="flex items-center gap-3">
-                  <div className="relative shrink-0">
-                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-500/50 p-0.5 bg-[#0a0d12] shadow-sm">
-                      <img
-                        src="/assets/aistudio/OIP_3c866659.jpg"
-                        alt="Shaheera Sadia - Front-End Developer"
-                        className="w-full h-full object-cover rounded-full"
-                        loading="lazy"
-                      />
-                    </div>
-                    <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#0f172a]" title="Online / Available" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
-                      Shaheera Sadia
-                    </h3>
-                    <span className="text-[11px] font-mono text-blue-400">
-                      Front-End Developer
-                    </span>
-                  </div>
+        {/* Explicit Profile Snapshot Card (Who, Where, Looking For, Availability) - Full-Width Header */}
+        <div className="bg-[#0f172a] p-6 sm:p-7 rounded-2xl border border-blue-500/30 space-y-4 shadow-sm relative overflow-hidden mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#1e293b] pb-3.5">
+            <div className="flex items-center gap-3">
+              <div className="relative shrink-0">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-500/50 p-0.5 bg-[#0a0d12] shadow-sm">
+                  <img
+                    src="/assets/aistudio/OIP_3c866659.jpg"
+                    alt="Shaheera Sadia - Front-End Developer"
+                    className="w-full h-full object-cover rounded-full"
+                    loading="lazy"
+                  />
                 </div>
-
-                <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Available</span>
-                </div>
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#0f172a]" title="Online / Available" />
               </div>
-
-              <div className="space-y-3 text-xs sm:text-sm font-sans divide-y divide-[#1e293b]">
-                <div className="pt-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                  <span className="font-mono text-xs text-blue-400 font-semibold shrink-0 sm:w-28">
-                    Who I Am:
-                  </span>
-                  <p className="text-white leading-relaxed">
-                    {aboutMeData.whoIAm}
-                  </p>
-                </div>
-
-                <div className="pt-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                  <span className="font-mono text-xs text-blue-400 font-semibold shrink-0 sm:w-28">
-                    Where Based:
-                  </span>
-                  <p className="text-white leading-relaxed">
-                    {aboutMeData.whereBased}
-                  </p>
-                </div>
-
-                <div className="pt-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                  <span className="font-mono text-xs text-emerald-400 font-semibold shrink-0 sm:w-28">
-                    Looking For:
-                  </span>
-                  <p className="text-white leading-relaxed">
-                    {aboutMeData.lookingFor}
-                  </p>
-                </div>
-
-                <div className="pt-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                  <span className="font-mono text-xs text-emerald-400 font-semibold shrink-0 sm:w-28">
-                    Availability:
-                  </span>
-                  <div className="flex items-center gap-2 text-emerald-300 font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                    <span>{aboutMeData.availability}</span>
-                  </div>
-                </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
+                  Shaheera Sadia
+                </h3>
+                <span className="text-[11px] font-mono text-blue-400">
+                  Front-End Developer
+                </span>
               </div>
             </div>
 
+            <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Available for Opportunities</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs sm:text-sm font-sans pt-1">
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+              <span className="font-mono text-xs text-blue-400 font-semibold shrink-0 sm:w-28">
+                Who I Am:
+              </span>
+              <p className="text-white leading-relaxed">
+                {aboutMeData.whoIAm}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+              <span className="font-mono text-xs text-blue-400 font-semibold shrink-0 sm:w-28">
+                Where Based:
+              </span>
+              <p className="text-white leading-relaxed">
+                {aboutMeData.whereBased}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+              <span className="font-mono text-xs text-emerald-400 font-semibold shrink-0 sm:w-28">
+                Looking For:
+              </span>
+              <p className="text-white leading-relaxed">
+                {aboutMeData.lookingFor}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+              <span className="font-mono text-xs text-emerald-400 font-semibold shrink-0 sm:w-28">
+                Availability:
+              </span>
+              <div className="flex items-center gap-2 text-emerald-300 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span>{aboutMeData.availability}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Two-Column Grid: Narrative Bio & Career Milestones */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Full Biography Narrative & Stats */}
+          <div className="lg:col-span-7 space-y-6">
             {/* Narrative Bio */}
             <div className="bg-[#0f172a] p-7 rounded-2xl border border-[#1e293b] space-y-4 shadow-sm">
               <h3 className="text-xl font-bold text-white leading-snug">

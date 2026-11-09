@@ -135,6 +135,24 @@ export function detectCommitType(
 }
 
 /**
+ * Sanitizes and cleans up repository names for human-readable, professional display
+ * e.g. "-Developer-Portfolio" -> "developer-portfolio", "-Toolkit.pro" -> "toolkit-pro"
+ */
+export function cleanRepoName(rawName?: string): string {
+  if (!rawName) return 'repository';
+  let name = rawName.trim();
+  // Strip leading/trailing dashes, underscores, and dots
+  name = name.replace(/^[-_.]+|[-_.]+$/g, '');
+  const lower = name.toLowerCase();
+  if (lower === 'developer-portfolio') return 'developer-portfolio';
+  if (lower === 'toolkit.pro' || lower === 'toolkit' || lower === 'toolkit-pro') return 'toolkit-pro';
+  if (lower === 'brand-identity' || lower === 'brand-identity-generator') return 'brand-identity-generator';
+  if (lower === 'app-tool') return 'app-tool';
+  if (lower === 'secu-lens-ai') return 'secu-lens-ai';
+  return lower;
+}
+
+/**
  * Pre-cached fallback telemetry data matching Shaheera Sadia's real repositories and commits.
  * Ensures the component never breaks even if GitHub's unauthenticated API rate limit is exceeded.
  */
@@ -489,7 +507,7 @@ export async function fetchGitHubActivity(forceRefresh = false): Promise<GitHubA
           .filter((r) => !r.fork && r.name.toLowerCase() !== 'shaheerasadia')
           .map((r) => ({
             id: r.id,
-            name: r.name,
+            name: cleanRepoName(r.name),
             fullName: r.full_name,
             htmlUrl: r.html_url,
             description: r.description || 'Public repository by Shaheera Sadia',
@@ -530,7 +548,8 @@ export async function fetchGitHubActivity(forceRefresh = false): Promise<GitHubA
         for (const event of rawEvents) {
           if (event.type === 'PushEvent' && event.payload) {
             const rawCommits = event.payload.commits || [];
-            const repoName = (event.repo?.name || '').replace('ShaheeraSadia/', '');
+            const rawRepoName = (event.repo?.name || '').replace('ShaheeraSadia/', '');
+            const repoName = cleanRepoName(rawRepoName);
             const branch = (event.payload.ref || 'refs/heads/main').replace('refs/heads/', '');
 
             if (rawCommits.length > 0) {
@@ -546,9 +565,9 @@ export async function fetchGitHubActivity(forceRefresh = false): Promise<GitHubA
                   message: c.message,
                   title,
                   body: body || undefined,
-                  repoName: repoName || 'Repository',
-                  repoFullName: event.repo?.name || `ShaheeraSadia/${repoName}`,
-                  repoUrl: `https://github.com/${event.repo?.name || repoName}`,
+                  repoName: repoName || 'repository',
+                  repoFullName: event.repo?.name || `ShaheeraSadia/${rawRepoName}`,
+                  repoUrl: `https://github.com/${event.repo?.name || rawRepoName}`,
                   commitUrl: `https://github.com/${event.repo?.name}/commit/${c.sha}`,
                   date: event.created_at,
                   relativeTime: formatRelativeTime(event.created_at),
@@ -569,9 +588,9 @@ export async function fetchGitHubActivity(forceRefresh = false): Promise<GitHubA
                 message: `Push to ${branch} on ${repoName}`,
                 title: `Push to branch ${branch}`,
                 body: `Committed update to ${repoName}`,
-                repoName: repoName || 'Repository',
-                repoFullName: event.repo?.name || `ShaheeraSadia/${repoName}`,
-                repoUrl: `https://github.com/${event.repo?.name || repoName}`,
+                repoName: repoName || 'repository',
+                repoFullName: event.repo?.name || `ShaheeraSadia/${rawRepoName}`,
+                repoUrl: `https://github.com/${event.repo?.name || rawRepoName}`,
                 commitUrl: `https://github.com/${event.repo?.name}/commit/${headSha}`,
                 date: event.created_at,
                 relativeTime: formatRelativeTime(event.created_at),

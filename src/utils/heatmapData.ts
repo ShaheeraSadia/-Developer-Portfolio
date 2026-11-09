@@ -117,12 +117,12 @@ export function generateContributionData(
 
   // Default repositories to sprinkle into history
   const sampleRepos = [
-    '-Developer-Portfolio',
-    '-Toolkit.pro',
-    'react-image-craft',
-    'zero-latency-cache',
+    'developer-portfolio',
+    'toolkit-pro',
+    'secu-lens-ai',
+    'brand-identity-generator',
+    'app-tool',
     'client-side-utility-suite',
-    'component-lab-kit',
   ];
 
   while (iterDate <= end || currentWeek.length > 0) {

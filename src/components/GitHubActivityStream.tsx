@@ -787,7 +787,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
                       <span>Multi-Repository Sync</span>
                     </div>
                     <p className="text-xs text-slate-300 font-sans leading-relaxed">
-                      Aggregates public releases across <code className="text-blue-300">-Developer-Portfolio</code>, <code className="text-blue-300">-Toolkit.pro</code>, and open-source utilities.
+                      Aggregates public releases across <code className="text-blue-300">developer-portfolio</code>, <code className="text-blue-300">toolkit-pro</code>, and open-source utilities.
                     </p>
                   </div>
 

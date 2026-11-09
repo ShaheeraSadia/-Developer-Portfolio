@@ -476,7 +476,7 @@ export const ContactSection: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="contact-input-name" className="text-xs font-mono text-[#94a3b8] block">
+                      <label htmlFor="contact-input-name" className="text-xs font-mono text-slate-200 font-medium block">
                         Your Name <span className="text-[#3b82f6]">*</span>
                       </label>
                       <input
@@ -490,12 +490,12 @@ export const ContactSection: React.FC = () => {
                           if (threatAlert) setThreatAlert(null);
                         }}
                         placeholder="Alex Morgan"
-                        className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors"
+                        className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-400 outline-none transition-colors"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="contact-input-email" className="text-xs font-mono text-[#94a3b8] block">
+                      <label htmlFor="contact-input-email" className="text-xs font-mono text-slate-200 font-medium block">
                         Your Email <span className="text-[#3b82f6]">*</span>
                       </label>
                       <input
@@ -509,13 +509,13 @@ export const ContactSection: React.FC = () => {
                           if (threatAlert) setThreatAlert(null);
                         }}
                         placeholder="alex@company.com"
-                        className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors"
+                        className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-400 outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-select-category" className="text-xs font-mono text-[#94a3b8] block">
+                    <label htmlFor="contact-select-category" className="text-xs font-mono text-slate-200 font-medium block">
                       Inquiry Category
                     </label>
                     <select
@@ -534,10 +534,10 @@ export const ContactSection: React.FC = () => {
 
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <label htmlFor="contact-input-message" className="text-xs font-mono text-[#94a3b8] block">
+                      <label htmlFor="contact-input-message" className="text-xs font-mono text-slate-200 font-medium block">
                         Message <span className="text-[#3b82f6]">*</span>
                       </label>
-                      <span className="text-[10px] font-mono text-slate-500">
+                      <span className="text-[10px] font-mono text-slate-400">
                         {formState.message.length}/3000
                       </span>
                     </div>
@@ -552,7 +552,7 @@ export const ContactSection: React.FC = () => {
                         if (threatAlert) setThreatAlert(null);
                       }}
                       placeholder="Hi Shaheera, I'd like to discuss a project..."
-                      className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-600 outline-none transition-colors resize-none"
+                      className="w-full bg-[#0a0d12] border border-[#1e293b] focus:border-[#3b82f6] rounded-xl px-4 py-2.5 text-sm text-[#f8fafc] placeholder-slate-400 outline-none transition-colors resize-none"
                     />
                   </div>
 

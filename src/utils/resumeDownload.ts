@@ -4,6 +4,7 @@ import {
   skillCategories,
   educationCertificationsData,
   resumeSummary,
+  featuredToolsData,
 } from '../data/portfolioData';
 import { generateResumePdf, GeneratePdfOptions } from './pdfGenerator';
 import { generateResumeDocx } from './docxGenerator';
@@ -20,6 +21,19 @@ export function generateResumeText(): string {
 
   const contactLine = `Email: ${developerConfig.email} | GitHub: ${developerConfig.github} | LinkedIn: ${developerConfig.linkedin}`;
   const locationLine = `Location: ${developerConfig.location} | Availability: ${resumeSummary.availability}`;
+
+  const projectsBlock = featuredToolsData
+    .map((tool) => {
+      const live = tool.liveUrl ? `Live: ${tool.liveUrl}` : '';
+      const repo = tool.githubUrl ? `Code: ${tool.githubUrl}` : '';
+      const links = [live, repo].filter(Boolean).join(' | ');
+      return `• ${tool.application.toUpperCase()} — ${tool.category}
+  ${links}
+  Problem Solved: ${tool.problemSolved}
+  Architecture: ${tool.whatBuilt}
+  Tech Stack: ${tool.keyTech}`;
+    })
+    .join('\n\n');
 
   const skillsBlock = skillCategories
     .map((cat) => {
@@ -65,6 +79,11 @@ ${divider}
 ${skillsBlock}
 
 ${divider}
+KEY FEATURED PRODUCTION PROJECTS
+${divider}
+${projectsBlock}
+
+${divider}
 PROFESSIONAL WORK EXPERIENCE
 ${divider}
 ${experienceBlock}
@@ -86,6 +105,18 @@ ${developerConfig.principles.map((p) => `• ${p}`).join('\n')}
  */
 export function generateResumeMarkdown(): string {
   const contact = `[Email](mailto:${developerConfig.email}) • [GitHub](${developerConfig.github}) • [LinkedIn](${developerConfig.linkedin}) • **${developerConfig.location}**`;
+
+  const projectsSection = featuredToolsData
+    .map((tool) => {
+      const live = tool.liveUrl ? `[Live Demo](${tool.liveUrl})` : '';
+      const repo = tool.githubUrl ? `[Source Code](${tool.githubUrl})` : '';
+      const links = [live, repo].filter(Boolean).join(' • ');
+      return `### ${tool.application} — *${tool.category}*
+${links ? `${links}\n\n` : ''}- **Problem Solved:** ${tool.problemSolved}
+- **Architecture:** ${tool.whatBuilt}
+- **Technologies:** \`${tool.keyTech}\``;
+    })
+    .join('\n\n---\n\n');
 
   const skillsSection = skillCategories
     .map((cat) => {
@@ -135,6 +166,11 @@ ${skillsSection}
 
 ---
 
+## Key Featured Production Projects
+${projectsSection}
+
+---
+
 ## Professional Experience
 ${experienceSection}
 
@@ -154,7 +190,6 @@ ${developerConfig.principles.map((p) => `- ${p}`).join('\n')}
  * Generates standalone, printable HTML document representation of the resume.
  */
 export function generateResumeHtml(): string {
-  const text = generateResumeMarkdown();
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -200,7 +235,7 @@ export function generateResumeHtml(): string {
   <div class="contact">
     Email: <a href="mailto:${developerConfig.email}">${developerConfig.email}</a> •
     GitHub: <a href="${developerConfig.github}">github.com/shaheerasadia</a> •
-    LinkedIn: <a href="${developerConfig.linkedin}">linkedin.com/in/shaheerasadia</a> •
+    LinkedIn: <a href="${developerConfig.linkedin}">${developerConfig.linkedin.replace('https://', '')}</a> •
     Location: ${developerConfig.location} (Remote)
   </div>
 
@@ -226,6 +261,28 @@ export function generateResumeHtml(): string {
       )
       .join('')}
   </div>
+
+  <h2>Key Featured Production Projects</h2>
+  ${featuredToolsData
+    .map(
+      (p) => `
+    <div style="margin-bottom: 14px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px;">
+      <div class="role-header">
+        <h3 style="display: inline; font-size: 13px;">${p.application}</h3>
+        <span style="font-size: 11px; color: #2563eb; font-weight: 600;">${p.category}</span>
+      </div>
+      <p style="margin: 3px 0 6px 0; font-size: 11px; color: #334155;"><strong>Problem Solved:</strong> ${p.problemSolved}</p>
+      <p style="margin: 0 0 6px 0; font-size: 11px; color: #334155;"><strong>Architecture:</strong> ${p.whatBuilt}</p>
+      <div style="font-size: 11px; margin-bottom: 6px;">
+        ${p.liveUrl ? `<a href="${p.liveUrl}" target="_blank" style="color: #2563eb; margin-right: 12px;">Live Demo ↗</a>` : ''}
+        ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" style="color: #475569;">Source Code ↗</a>` : ''}
+      </div>
+      <div>
+        <span class="tech-pill">${p.keyTech}</span>
+      </div>
+    </div>`
+    )
+    .join('')}
 
   <h2>Professional Work Experience</h2>
   ${experienceData

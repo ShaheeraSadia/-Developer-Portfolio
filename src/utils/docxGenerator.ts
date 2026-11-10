@@ -14,6 +14,7 @@ import {
   skillCategories,
   educationCertificationsData,
   resumeSummary,
+  featuredToolsData,
 } from '../data/portfolioData';
 
 /**
@@ -81,7 +82,7 @@ export async function generateResumeDocx(filename = 'Shaheera_Sadia_Resume.docx'
             },
             children: [
               new TextRun({
-                text: `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   GitHub: github.com/shaheerasadia   |   LinkedIn: linkedin.com/in/shaheerasadia`,
+                text: `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   GitHub: ${developerConfig.github.replace('https://', '')}   |   LinkedIn: ${developerConfig.linkedin.replace('https://', '')}`,
                 size: 18, // 9pt
                 color: '475569',
               }),
@@ -186,6 +187,68 @@ export async function generateResumeDocx(filename = 'Shaheera_Sadia_Resume.docx'
                   text: exp.technologies.join(', '),
                   size: 18,
                   color: '475569',
+                }),
+              ],
+            }),
+          ]),
+
+          // Key Featured Production Projects Section
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            spacing: { before: 240, after: 120 },
+            border: {
+              bottom: {
+                color: 'E2E8F0',
+                space: 4,
+                style: BorderStyle.SINGLE,
+                size: 6,
+              },
+            },
+            children: [
+              new TextRun({
+                text: 'KEY FEATURED PRODUCTION PROJECTS',
+                bold: true,
+                size: 24,
+                color: '1E40AF',
+              }),
+            ],
+          }),
+
+          ...featuredToolsData.flatMap((tool) => [
+            new Paragraph({
+              spacing: { before: 100, after: 40 },
+              children: [
+                new TextRun({
+                  text: `${tool.application} `,
+                  bold: true,
+                  size: 20,
+                  color: '0F172A',
+                }),
+                new TextRun({
+                  text: `(${tool.keyTech})`,
+                  bold: true,
+                  size: 18,
+                  color: '2563EB',
+                }),
+              ],
+            }),
+            new Paragraph({
+              spacing: { after: 40 },
+              children: [
+                new TextRun({
+                  text: tool.description,
+                  size: 18,
+                  color: '334155',
+                }),
+              ],
+            }),
+            new Paragraph({
+              spacing: { after: 100 },
+              children: [
+                new TextRun({
+                  text: `Live: ${tool.liveUrl}  |  GitHub: ${tool.githubUrl}`,
+                  size: 17,
+                  color: '64748B',
                 }),
               ],
             }),

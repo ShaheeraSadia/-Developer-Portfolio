@@ -20,14 +20,16 @@ import {
   FileDown,
   Printer,
   FileCheck,
-  Loader2
+  Loader2,
+  Rocket
 } from 'lucide-react';
 import {
   developerConfig,
   experienceData,
   skillCategories,
   educationCertificationsData,
-  resumeSummary
+  resumeSummary,
+  featuredToolsData
 } from '../data/portfolioData';
 import { downloadResume } from '../utils/resumeDownload';
 import { useToast } from './Toast';
@@ -103,7 +105,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const atsPlainText = `Shaheera Sadia
 Front-End Developer | Remote
 
-Email: ${developerConfig.email} | GitHub: github.com/shaheerasadia | LinkedIn: linkedin.com/in/shaheerasadia
+Email: ${developerConfig.email} | GitHub: ${developerConfig.github.replace('https://', '')} | LinkedIn: ${developerConfig.linkedin.replace('https://', '')}
 
 Summary
 ${resumeSummary.summary}
@@ -115,6 +117,17 @@ ${skillCategories
       `${cat.category}: ${cat.skills.map((s) => `${s.name} (${s.level}, ${s.experienceYears})`).join(', ')}`
   )
   .join('\n')}
+
+Key Featured Projects
+${featuredToolsData
+  .map(
+    (tool) => `• ${tool.application} (${tool.keyTech})
+  Live Application: ${tool.liveUrl}
+  GitHub Repository: ${tool.githubUrl}
+  Problem Solved: ${tool.problemSolved || tool.description}
+  What Was Built: ${tool.whatBuilt || tool.coreFocus}`
+  )
+  .join('\n\n')}
 
 Professional Experience
 ${experienceData
@@ -130,7 +143,7 @@ Tech Stack: ${exp.technologies.join(', ')}`
 
 Education & Certifications
 ${educationCertificationsData
-  .map((cert) => `- ${cert.title} — ${cert.issuer} (Issued ${cert.issuedDate})`)
+  .map((cert) => `- ${cert.title} — ${cert.issuer} (Issued ${cert.issuedDate}) [${cert.badge}]`)
   .join('\n')}
 `;
 
@@ -156,6 +169,19 @@ ${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s
 
 ---
 
+## Featured Production Projects
+${featuredToolsData
+  .map(
+    (tool) => `### [${tool.application}](${tool.liveUrl})
+**Tech Stack:** \`${tool.keyTech}\` | [GitHub Source](${tool.githubUrl})
+
+- **Problem Solved:** ${tool.problemSolved || tool.description}
+- **What Was Built:** ${tool.whatBuilt || tool.coreFocus}`
+  )
+  .join('\n\n')}
+
+---
+
 ## Professional Experience
 ${experienceData
   .map(
@@ -174,7 +200,7 @@ ${exp.achievements.map((a) => `- ${a}`).join('\n')}
 ${educationCertificationsData
   .map(
     (cert) => `### ${cert.title}
-*${cert.issuer} | Issued: ${cert.issuedDate}*
+*${cert.issuer} | Issued: ${cert.issuedDate}* [${cert.badge}]
 ${cert.description}`
   )
   .join('\n\n')}
@@ -456,13 +482,13 @@ ${cert.description}`
                   <div className="flex items-center gap-1.5">
                     <Github className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
                     <a href={developerConfig.github} target="_blank" rel="noreferrer" className="hover:underline">
-                      github.com/shaheerasadia
+                      {developerConfig.github.replace('https://', '')}
                     </a>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Linkedin className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
                     <a href={developerConfig.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
-                      linkedin.com/in/shaheerasadia
+                      {developerConfig.linkedin.replace('https://', '')}
                     </a>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-400 print:text-neutral-500">
@@ -606,6 +632,77 @@ ${cert.description}`
                           {t}
                         </span>
                       ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Key Featured Production Projects */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-blue-400 print:text-blue-800 uppercase tracking-wider font-bold">
+                <Rocket className="w-4 h-4" />
+                <span>Key Featured Production Projects</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {featuredToolsData.map((tool, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-[#0a0d12] print:bg-neutral-50 p-4 rounded-xl border border-[#1e293b] print:border-neutral-200 flex flex-col justify-between space-y-2.5"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="text-sm font-bold text-white print:text-black leading-snug">
+                          {tool.application}
+                        </h4>
+                        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 shrink-0">
+                          Live
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-300 print:text-neutral-700 leading-relaxed font-sans">
+                        {tool.description}
+                      </p>
+                      {tool.problemSolved && (
+                        <p className="text-[11px] text-amber-200/90 print:text-amber-800 font-sans pt-0.5">
+                          <strong>Problem:</strong> {tool.problemSolved}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="pt-2 border-t border-[#1e293b] print:border-neutral-200 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                      <div className="flex flex-wrap gap-1">
+                        {tool.keyTech.split(',').slice(0, 3).map((t, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="px-1.5 py-0.5 rounded text-[10px] bg-[#0f172a] print:bg-neutral-200 text-slate-300 print:text-black border border-[#1e293b] print:border-neutral-300"
+                          >
+                            {t.trim()}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-2 print:hidden">
+                        <a
+                          href={tool.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1 text-[11px]"
+                        >
+                          <span>Live</span>
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </a>
+                        <span className="text-slate-600">•</span>
+                        <a
+                          href={tool.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-slate-400 hover:text-white flex items-center gap-1 text-[11px]"
+                        >
+                          <Github className="w-2.5 h-2.5" />
+                          <span>Code</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}

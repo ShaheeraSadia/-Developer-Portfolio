@@ -173,31 +173,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               </button>
             </div>
 
-            {/* Action Buttons - 3 Prioritized, clean actions without wrapping issues */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              {/* Primary Action: Contact / Hire Me */}
+            {/* Action Buttons - Clean, responsive on all screens, never-wrapping */}
+            <div className="pt-2 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full">
+              {/* Primary Action: Hire Me / Contact */}
               <button
                 onClick={() => scrollToSection('contact')}
                 id="hero-contact-primary-btn"
-                className="px-6 py-3 rounded-xl bg-[#2563eb] hover:bg-[#3b82f6] text-white font-semibold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-blue-600/25 cursor-pointer"
+                className="h-12 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 active:scale-[0.98] text-white font-semibold text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 shadow-md shadow-blue-600/30 hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer whitespace-nowrap shrink-0 group w-full sm:w-auto"
               >
-                <Mail className="w-4 h-4 shrink-0" />
-                <span>Contact / Hire Me</span>
-                <ArrowRight className="w-4 h-4 shrink-0" />
+                <Mail className="w-4 h-4 shrink-0 transition-transform group-hover:scale-110" />
+                <span className="whitespace-nowrap">Hire Me / Contact</span>
+                <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
               </button>
 
               {/* Secondary Action: Explore Projects */}
               <button
                 onClick={() => scrollToSection('projects')}
                 id="hero-explore-projects-btn"
-                className="px-5 py-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-medium text-sm sm:text-base border border-[#1e293b] hover:border-slate-500 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                className="h-12 px-5 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] active:scale-[0.98] text-white font-medium text-sm border border-[#1e293b] hover:border-slate-500 transition-all duration-200 inline-flex items-center justify-center gap-2 cursor-pointer shadow-sm whitespace-nowrap shrink-0 group w-full sm:w-auto"
               >
-                <span>Explore Projects</span>
-                <ChevronRight className="w-4 h-4 text-blue-400 shrink-0" />
+                <span className="whitespace-nowrap">Explore Projects</span>
+                <ChevronRight className="w-4 h-4 text-blue-400 shrink-0 transition-transform group-hover:translate-x-0.5" />
               </button>
 
-              {/* Action: Download CV */}
-              <div className="w-full sm:w-auto">
+              {/* Action: Download Resume */}
+              <div className="w-full sm:w-auto shrink-0">
                 <ResumeDownloadButton
                   variant="hero"
                   onOpenModal={onOpenResume}

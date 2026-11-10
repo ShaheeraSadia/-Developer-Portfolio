@@ -35,10 +35,10 @@ export const developerConfig: DeveloperConfig = {
 };
 
 export const resumeSummary = {
-  headline: 'Front-End Developer | Remote',
+  headline: 'Front-End Developer | Remote (React, JavaScript, Vite, Tailwind CSS)',
   summary:
-    'Front-End Developer engineering fast web applications, accessible user interfaces, and client-side browser utilities. Specialized in React, JavaScript (ES6+), Vite, Tailwind CSS, and Web Worker pipelines. Track record of delivering fast, responsive, and accessible digital experiences.',
-  availability: 'Available immediately | Remote | Full-Time & Contract',
+    'Front-End Developer with 5+ years of experience engineering high-performance web applications, accessible user interfaces, and client-side browser utilities. Proficient in React, modern JavaScript (ES6+), Vite, and Tailwind CSS with deep expertise in off-thread Web Worker compute, responsive mobile-first architectures, and WCAG 2.1 AA accessibility standards. Creator of production web applications including SecuLens AI Code Auditor, Toolkit Pro, Brand Identity Generator, and App Tool.',
+  availability: 'Available immediately | Remote | Full-Time & Contract (40 hrs/wk)',
 };
 
 export const aboutMeData = {

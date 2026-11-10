@@ -154,14 +154,14 @@ export const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({
   if (variant === 'hero') {
     return (
       <div className={`relative inline-flex items-center w-full sm:w-auto ${className}`} ref={dropdownRef}>
-        <div className="inline-flex w-full sm:w-auto rounded-xl shadow-md shadow-blue-900/30 overflow-hidden">
+        <div className="inline-flex w-full sm:w-auto h-12 rounded-xl shadow-md shadow-blue-900/30 overflow-hidden">
           {/* Main Action: Primary Download Trigger using jsPDF + html2canvas */}
           <button
             type="button"
             id="hero-download-resume-btn"
             disabled={isGenerating}
             onClick={() => handleDownload('pdf', 'PDF Document')}
-            className={`grow sm:grow-0 px-4 sm:px-5 py-3 font-semibold text-sm sm:text-base transition-all duration-150 flex items-center justify-center gap-2.5 cursor-pointer ${
+            className={`grow sm:grow-0 h-full px-4 sm:px-5 font-semibold text-sm transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap ${
               isGenerating
                 ? 'bg-blue-800 text-blue-200 cursor-wait'
                 : 'bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white'
@@ -192,7 +192,7 @@ export const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({
             onClick={() => setDropdownOpen(!dropdownOpen)}
             aria-expanded={dropdownOpen}
             aria-label="Select resume download format"
-            className="px-3 py-3 bg-blue-700 hover:bg-blue-600 active:bg-blue-800 text-white border-l border-blue-500/40 transition-colors flex items-center justify-center cursor-pointer shrink-0 disabled:opacity-50"
+            className="h-full px-3 bg-blue-700 hover:bg-blue-600 active:bg-blue-800 text-white border-l border-blue-500/40 transition-colors flex items-center justify-center cursor-pointer shrink-0 disabled:opacity-50"
             title="Choose format (.pdf, .docx, .txt, .md, .html)"
           >
             <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />

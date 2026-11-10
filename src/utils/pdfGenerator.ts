@@ -6,6 +6,7 @@ import {
   skillCategories,
   educationCertificationsData,
   resumeSummary,
+  featuredToolsData,
 } from '../data/portfolioData';
 
 export interface GeneratePdfOptions {
@@ -68,7 +69,7 @@ export function generateNativeVectorPdf(filename = 'Shaheera_Sadia_Resume.pdf'):
   doc.setFontSize(8.5);
   doc.setTextColor(71, 85, 105); // #475569
   doc.text(
-    `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   GitHub: github.com/shaheerasadia   |   LinkedIn: linkedin.com/in/shaheerasadia`,
+    `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   GitHub: ${developerConfig.github.replace('https://', '')}   |   LinkedIn: ${developerConfig.linkedin.replace('https://', '')}`,
     margin,
     y + 8
   );
@@ -150,7 +151,40 @@ export function generateNativeVectorPdf(filename = 'Shaheera_Sadia_Resume.pdf'):
     y += 14;
   }
 
-  // 3. EDUCATION & CERTIFICATIONS (Standard heading recognized by LinkedIn profile parser)
+  // 3. KEY FEATURED PRODUCTION PROJECTS
+  renderSectionHeader('Key Featured Production Projects');
+
+  for (const tool of featuredToolsData) {
+    checkPageBreak(38);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(15, 23, 42);
+    doc.text(tool.application, margin, y + 8);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(37, 99, 235);
+    const appWidth = doc.getTextWidth(tool.application);
+    const techText = ` — ${tool.keyTech}`;
+    const techLines = doc.splitTextToSize(techText, contentWidth - appWidth - 10);
+    doc.text(techLines[0], margin + appWidth, y + 8);
+    y += 12;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(71, 85, 105);
+    const descLines = doc.splitTextToSize(tool.description, contentWidth - 14);
+    doc.text(descLines, margin + 14, y + 7);
+    y += descLines.length * 11 + 4;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`Live: ${tool.liveUrl}  |  Code: ${tool.githubUrl}`, margin + 14, y + 6);
+    y += 12;
+  }
+
+  // 4. EDUCATION & CERTIFICATIONS (Standard heading recognized by LinkedIn profile parser)
   renderSectionHeader('Education & Accredited Certifications');
 
   for (const cert of educationCertificationsData) {

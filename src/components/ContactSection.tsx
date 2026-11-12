@@ -288,55 +288,6 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Direct Mail Client Quick Action */}
-              <div className="p-3 bg-[#0a0d12] border border-blue-500/20 rounded-xl space-y-2">
-                <div className="flex items-center gap-2 text-xs font-mono text-blue-400">
-                  <Mail className="w-3.5 h-3.5" />
-                  <span>Prefer Native Email?</span>
-                </div>
-                <p className="text-xs text-slate-400 font-sans leading-relaxed">
-                  You can click below to launch your system's default email client (Gmail, Apple Mail, Outlook).
-                </p>
-                <a
-                  href={`mailto:${developerConfig.email}?subject=${encodeURIComponent('[Inquiry] Project Discussion / Full-Time Role')}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
-                >
-                  <span>Launch Mail App</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-
-              {/* Social Channels */}
-              <div className="pt-2 border-t border-[#1e293b] flex items-center gap-2">
-                <a
-                  href={developerConfig.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] flex items-center justify-center gap-2 transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href={developerConfig.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] flex items-center justify-center gap-2 transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={developerConfig.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 py-2.5 rounded-xl bg-[#0a0d12] hover:bg-[#1e293b] border border-[#1e293b] hover:border-slate-600 text-xs font-mono text-[#94a3b8] hover:text-[#f8fafc] flex items-center justify-center gap-2 transition-colors"
-                >
-                  <XIcon className="w-4 h-4" />
-                  <span>X (Twitter)</span>
-                </a>
-              </div>
             </div>
           </div>
 

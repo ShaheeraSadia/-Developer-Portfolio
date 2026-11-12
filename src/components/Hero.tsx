@@ -42,12 +42,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
     const typed = new Typed(typedTargetRef.current, {
       strings: [
         'Front-End Developer',
-        'React & Next.js Developer',
-        'PWA & Web Worker Specialist',
-        'Client-Side Performance Architect',
+        'React & Next.js Engineer',
+        'PWA & Web App Specialist',
+        'Performance Architect',
       ],
-      typeSpeed: 55,
-      backSpeed: 35,
+      typeSpeed: 50,
+      backSpeed: 30,
       backDelay: 1800,
       loop: true,
       showCursor: true,
@@ -113,9 +113,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
               </h1>
               
               {/* Dynamic Typed.js Headline with Royal Blue Underline */}
-              <div className="flex flex-wrap items-baseline gap-2 sm:gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white min-h-[44px]">
+              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-lg sm:text-2xl lg:text-3xl font-bold text-white min-h-[48px] sm:min-h-[44px]">
                 <span className="text-white shrink-0 font-bold">And I'm a</span>
-                <span className="text-blue-400 border-b-2 sm:border-b-[3px] border-blue-500 pb-0.5 inline-block font-bold">
+                <span className="text-blue-400 border-b-2 sm:border-b-[3px] border-blue-500 pb-0.5 inline font-bold break-words">
                   <span ref={typedTargetRef}></span>
                 </span>
               </div>
@@ -234,13 +234,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">Since 2021</span>
             <p className="text-xs text-slate-300 font-sans font-medium">Web Applications</p>
           </div>
-          <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Production Tools</p>
+          <div className="space-y-1" title="4 core production tools + Veo Director Studio specialized module">
+            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4 <span className="text-base text-blue-300/80 font-sans font-normal">+1</span></span>
+            <p className="text-xs text-slate-300 font-sans font-medium">Core Apps (+1 Module)</p>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1" title="Media compression and format conversion run 100% client-side in the browser via Web Workers">
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">100%</span>
-            <p className="text-xs text-slate-300 font-sans font-medium">Client Privacy</p>
+            <p className="text-xs text-slate-300 font-sans font-medium">In-Browser Media Tools</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono block">WCAG AA</span>

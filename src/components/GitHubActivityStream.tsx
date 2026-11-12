@@ -232,7 +232,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
   return (
     <section
       id="github-activity-stream"
-      className={`bg-[#0a0d12] text-[#f8fafc] py-24 sm:py-32 relative border-t border-[#1e293b] overflow-hidden ${className}`}
+      className={`bg-[#0a0d12] text-[#f8fafc] py-14 sm:py-18 relative border-t border-[#1e293b] overflow-hidden ${className}`}
     >
       {/* Animated Top Progress Bar when re-fetching or initial loading */}
       {(refreshing || loading) && (
@@ -241,10 +241,10 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#1e293b]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-5 border-b border-[#1e293b]">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#0f172a] border border-[#1e293b] text-blue-400 flex items-center justify-center">
@@ -589,7 +589,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
                     </div>
                   ) : (
                     <div className="space-y-3">
-                      {filteredCommits.slice(0, 5).map((commit) => (
+                      {filteredCommits.slice(0, 3).map((commit) => (
                         <div
                           key={commit.id}
                           className="p-4 rounded-xl bg-[#0f172a] border border-[#1e293b] hover:border-slate-600 transition-all group space-y-2.5"
@@ -686,7 +686,7 @@ export const GitHubActivityStream: React.FC<GitHubActivityStreamProps> = ({
                     renderRepoSkeletons(4)
                   ) : (
                     <div className="space-y-3">
-                      {filteredRepos.slice(0, 4).map((repo) => (
+                      {filteredRepos.slice(0, 3).map((repo) => (
                         <div
                           key={repo.id}
                           className="p-4 rounded-xl bg-[#0f172a] border border-[#1e293b] hover:border-slate-600 transition-all group space-y-2"

@@ -109,9 +109,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                   {/* Title & Metadata Header */}
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="space-y-1">
-                      <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block">
-                        {project.category}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block">
+                          {project.category}
+                        </span>
+                        {project.id === 'veo-director-studio' && (
+                          <span className="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30 text-[10px] font-mono font-semibold">
+                            Module of Toolkit Pro
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
@@ -128,6 +135,25 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                   <p className="text-slate-300 text-sm sm:text-base font-sans leading-relaxed">
                     {project.summary}
                   </p>
+
+                  {/* 2-3 Concrete Verified Numbers / Performance Metrics */}
+                  {project.metrics && project.metrics.length > 0 && (
+                    <div className="grid grid-cols-3 gap-2.5 sm:gap-3 pt-1">
+                      {project.metrics.slice(0, 3).map((metric, mIdx) => (
+                        <div
+                          key={mIdx}
+                          className="p-2.5 sm:p-3 rounded-xl bg-[#0a0d12] border border-[#1e293b] flex flex-col justify-center"
+                        >
+                          <span className="text-sm sm:text-base font-bold font-mono text-white">
+                            {metric.value}
+                          </span>
+                          <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans truncate" title={metric.label}>
+                            {metric.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Key Highlights: Problem Solved & What I Built */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 sm:p-5 bg-[#0a0d12] rounded-2xl border border-[#1e293b]">

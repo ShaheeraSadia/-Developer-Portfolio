@@ -60,7 +60,7 @@ export async function generateResumeDocx(filename = 'Shaheera_Sadia_Resume.docx'
             spacing: { after: 120 },
             children: [
               new TextRun({
-                text: `${developerConfig.role} | 5+ Years Experience`,
+                text: `${developerConfig.role} | Web Applications Since 2021`,
                 bold: true,
                 size: 22, // 11pt
                 color: '2563EB',
@@ -82,7 +82,7 @@ export async function generateResumeDocx(filename = 'Shaheera_Sadia_Resume.docx'
             },
             children: [
               new TextRun({
-                text: `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   GitHub: ${developerConfig.github.replace('https://', '')}   |   LinkedIn: ${developerConfig.linkedin.replace('https://', '')}`,
+                text: `Email: ${developerConfig.email}   |   Location: ${developerConfig.location}   |   Portfolio: shaheera-sadia.vercel.app\nGitHub: github.com/shaheerasadia   |   LinkedIn: ${developerConfig.linkedin.replace('https://', '').replace(/^www\./, '').replace(/\/$/, '')}`,
                 size: 18, // 9pt
                 color: '475569',
               }),

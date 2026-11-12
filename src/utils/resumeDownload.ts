@@ -19,7 +19,7 @@ export function generateResumeText(): string {
   const divider = '============================================================';
   const subDivider = '------------------------------------------------------------';
 
-  const contactLine = `Email: ${developerConfig.email} | GitHub: ${developerConfig.github} | LinkedIn: ${developerConfig.linkedin}`;
+  const contactLine = `Email: ${developerConfig.email} | Portfolio: shaheera-sadia.vercel.app | GitHub: ${developerConfig.github} | LinkedIn: ${developerConfig.linkedin}`;
   const locationLine = `Location: ${developerConfig.location} | Availability: ${resumeSummary.availability}`;
 
   const projectsBlock = featuredToolsData
@@ -38,7 +38,7 @@ export function generateResumeText(): string {
   const skillsBlock = skillCategories
     .map((cat) => {
       const skillsStr = cat.skills
-        .map((s) => `${s.name} (${s.level}, ${s.experienceYears})`)
+        .map((s) => s.name)
         .join(', ');
       return `• ${cat.category.toUpperCase()}:\n  ${skillsStr}`;
     })
@@ -104,7 +104,7 @@ ${developerConfig.principles.map((p) => `• ${p}`).join('\n')}
  * Generates Markdown representation of the resume.
  */
 export function generateResumeMarkdown(): string {
-  const contact = `[Email](mailto:${developerConfig.email}) • [GitHub](${developerConfig.github}) • [LinkedIn](${developerConfig.linkedin}) • **${developerConfig.location}**`;
+  const contact = `[Email](mailto:${developerConfig.email}) • [Portfolio](https://shaheera-sadia.vercel.app) • [GitHub](${developerConfig.github}) • [LinkedIn](${developerConfig.linkedin}) • **${developerConfig.location}**`;
 
   const projectsSection = featuredToolsData
     .map((tool) => {
@@ -121,7 +121,7 @@ ${links ? `${links}\n\n` : ''}- **Problem Solved:** ${tool.problemSolved}
   const skillsSection = skillCategories
     .map((cat) => {
       const skillsList = cat.skills
-        .map((s) => `- **${s.name}** (\`${s.level}\`, ${s.experienceYears}): ${s.focus}`)
+        .map((s) => `- **${s.name}**: ${s.focus}`)
         .join('\n');
       return `### ${cat.category}\n${skillsList}`;
     })
@@ -234,9 +234,10 @@ export function generateResumeHtml(): string {
   <div style="font-size: 14px; font-weight: 600; color: #2563eb; margin-bottom: 6px;">${developerConfig.role}</div>
   <div class="contact">
     Email: <a href="mailto:${developerConfig.email}">${developerConfig.email}</a> •
+    Portfolio: <a href="https://shaheera-sadia.vercel.app">shaheera-sadia.vercel.app</a> •
     GitHub: <a href="${developerConfig.github}">github.com/shaheerasadia</a> •
-    LinkedIn: <a href="${developerConfig.linkedin}">${developerConfig.linkedin.replace('https://', '')}</a> •
-    Location: ${developerConfig.location} (Remote)
+    LinkedIn: <a href="${developerConfig.linkedin}">${developerConfig.linkedin.replace('https://', '').replace(/^www\./, '').replace(/\/$/, '')}</a> •
+    Location: ${developerConfig.location}
   </div>
 
   <h2>Professional Summary</h2>
@@ -252,8 +253,8 @@ export function generateResumeHtml(): string {
         ${cat.skills
           .map(
             (s) => `<div style="font-size: 11px; display: flex; justify-content: space-between; margin-bottom: 2px;">
-              <span>${s.name}</span>
-              <span style="color: #64748b; font-family: monospace;">${s.level} (${s.experienceYears})</span>
+              <span style="font-weight: 600;">${s.name}</span>
+              <span style="color: #64748b; font-size: 10px;">${s.focus}</span>
             </div>`
           )
           .join('')}

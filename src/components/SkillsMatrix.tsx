@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
   Wrench,
-  CheckCircle2,
-  Sparkles,
   Layers,
   Cpu,
   Database,
   Globe,
-  Award
+  Sparkles
 } from 'lucide-react';
 import { skillCategories } from '../data/portfolioData';
 import { useSEO } from '../hooks/useSEO';
@@ -33,70 +31,75 @@ export const SkillsMatrix: React.FC = () => {
   };
 
   const coreStackPills = [
-    { name: 'React', badge: 'v19 / Functional & Hooks', primary: true },
+    { name: 'React', badge: 'Component Architecture', primary: true },
+    { name: 'Next.js', badge: 'App Router & SSR', primary: true },
+    { name: 'PWAs', badge: 'Offline & Service Workers', primary: true },
+    { name: 'Web Workers', badge: 'Off-Thread Compute', primary: true },
     { name: 'JavaScript (ES6+)', badge: 'Modern Async & DOM', primary: true },
-    { name: 'Vite', badge: 'Lightning HMR & Build', primary: true },
-    { name: 'Tailwind CSS', badge: 'v4 Zero-Runtime Tokens', primary: true },
-    { name: 'Client Web Workers', badge: 'Off-Thread Compute', primary: true },
-    { name: 'Gemini AI', badge: 'LLM & Code Audits', primary: false },
-    { name: 'HTML5 & CSS3', badge: 'Accessible Semantic UI', primary: false },
+    { name: 'Vite', badge: 'Fast Build Tooling', primary: true },
+    { name: 'Tailwind CSS', badge: 'Utility Design Tokens', primary: true },
+    { name: 'Gemini AI', badge: 'AI Code Analysis', primary: false },
+    { name: 'HTML5 & CSS3', badge: 'Semantic Accessible UI', primary: false },
     { name: 'Git & GitHub', badge: 'Version Control', primary: false },
     { name: 'Vercel', badge: 'Edge Deployments', primary: false },
   ];
 
   return (
-    <section id="skills" className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0d12] scroll-mt-20">
-      <div id="tech-stack" className="max-w-6xl mx-auto space-y-10 scroll-mt-20">
+    <section id="skills" className="w-full py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0d12] scroll-mt-20 border-b border-[#1e293b]">
+      <div id="tech-stack" className="max-w-6xl mx-auto space-y-12 sm:space-y-16 scroll-mt-20">
+        
         {/* Section Header */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0f172a] border border-[#1e293b] text-xs font-mono text-[#3b82f6]">
-            <Wrench className="w-3.5 h-3.5" />
-            <span>Technical Proficiencies &amp; Stack</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#1e293b]">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0f172a] border border-[#1e293b] text-xs font-mono text-blue-400">
+              <Wrench className="w-3.5 h-3.5" />
+              <span>Core Stack &amp; Tooling</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Skills &amp; Technologies
+            </h2>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            Tech Stack &amp; Skills Matrix
-          </h2>
-          <p className="text-sm sm:text-base text-white max-w-2xl font-sans">
-            A verified matrix of tools, browser APIs, and libraries I use to engineer fast, accessible front-end applications.
+          <p className="text-sm sm:text-base text-slate-300 max-w-md leading-relaxed font-sans">
+            Tools, browser APIs, and libraries used to engineer accessible, responsive, and performance-driven web products.
           </p>
         </div>
 
         {/* Core Tech Stack Highlights Strip */}
-        <div className="p-5 sm:p-6 bg-[#0f172a] rounded-2xl border border-blue-500/25 space-y-3 shadow-sm">
-          <div className="flex items-center justify-between gap-2 border-b border-[#1e293b] pb-2.5">
-            <div className="flex items-center gap-2 text-xs font-mono text-blue-400 font-semibold uppercase tracking-wider">
+        <div className="p-6 sm:p-8 bg-[#0f172a] rounded-3xl border border-blue-500/25 space-y-5 shadow-lg shadow-black/20">
+          <div className="flex items-center justify-between gap-3 border-b border-[#1e293b] pb-3">
+            <div className="flex items-center gap-2.5 text-xs font-mono text-blue-400 font-semibold uppercase tracking-wider">
               <Layers className="w-4 h-4 text-blue-400" />
-              <span>Core Production Tech Stack</span>
+              <span>Primary Technical Proficiencies</span>
             </div>
-            <span className="text-[11px] font-mono text-slate-300">Daily Driver Workflow</span>
+            <span className="text-xs font-mono text-slate-400">Daily Driver Workflow</span>
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-1">
+          <div className="flex flex-wrap gap-2.5 pt-1">
             {coreStackPills.map((pill, idx) => (
               <div
                 key={idx}
-                className={`px-3 py-1.5 rounded-xl border flex items-center gap-2 text-xs font-mono transition-all ${
+                className={`px-3.5 py-2 rounded-xl border flex items-center gap-2 text-xs font-mono transition-all ${
                   pill.primary
-                    ? 'bg-[#0a0d12] border-blue-500/40 text-white shadow-2xs'
-                    : 'bg-[#0a0d12] border-[#1e293b] text-slate-200'
+                    ? 'bg-[#0a0d12] border-blue-500/40 text-white shadow-sm'
+                    : 'bg-[#0a0d12] border-[#1e293b] text-slate-300'
                 }`}
               >
                 <span className="font-semibold text-white">{pill.name}</span>
-                <span className="text-[10px] text-blue-400 font-sans">• {pill.badge}</span>
+                <span className="text-[11px] text-blue-400 font-sans">• {pill.badge}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === cat
-                  ? 'bg-[#2563eb] text-white shadow-sm font-semibold'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20 font-semibold'
                   : 'bg-[#0f172a] text-slate-300 hover:text-white hover:bg-[#1e293b] border border-[#1e293b]'
               }`}
             >
@@ -105,51 +108,45 @@ export const SkillsMatrix: React.FC = () => {
           ))}
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Skills Grid - Airy, Non-Bulky Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {filteredCategories.map((catGroup) => {
             const Icon = getCategoryIcon(catGroup.category);
             return (
               <div
                 key={catGroup.category}
-                className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 space-y-5 shadow-sm"
+                className="bg-[#0f172a] border border-[#1e293b] rounded-3xl p-7 sm:p-8 space-y-6 shadow-md shadow-black/20"
               >
                 <div className="flex items-center justify-between border-b border-[#1e293b] pb-4">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-[#0a0d12] text-blue-400 border border-[#1e293b]">
-                      <Icon className="w-4 h-4" />
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#0a0d12] text-blue-400 border border-[#1e293b]">
+                      <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm sm:text-base font-bold text-white">
+                      <h3 className="text-base sm:text-lg font-bold text-white">
                         {catGroup.category}
                       </h3>
-                      <span className="text-[11px] text-white font-mono">
+                      <span className="text-xs text-slate-400 font-mono">
                         {catGroup.skills.length} core technologies
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {catGroup.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="p-3 rounded-xl bg-[#0a0d12] border border-[#1e293b] space-y-1.5 hover:border-slate-600 transition-colors"
+                      className="p-4 rounded-2xl bg-[#0a0d12] border border-[#1e293b] space-y-2 hover:border-slate-500 transition-colors"
                     >
                       <div className="flex items-center justify-between gap-1">
-                        <span className="text-xs font-bold text-white">
+                        <span className="text-sm font-bold text-white">
                           {skill.name}
                         </span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#0f172a] text-blue-400 border border-[#1e293b]">
-                          {skill.level}
-                        </span>
                       </div>
-                      <p className="text-[11px] text-white font-sans line-clamp-2">
+                      <p className="text-xs text-slate-300 font-sans leading-relaxed">
                         {skill.focus}
                       </p>
-                      <div className="text-[10px] font-mono text-white pt-0.5">
-                        Exp: {skill.experienceYears}
-                      </div>
                     </div>
                   ))}
                 </div>

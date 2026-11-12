@@ -66,6 +66,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  // Prevent background scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -163,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               />
             </div>
             <span className="tracking-tight text-sm sm:text-base font-bold text-[#f8fafc]">
-              shaheerasadia<span className="text-[#3b82f6] font-normal">.dev</span>
+              Shaheera <span className="text-[#3b82f6] font-normal">Sadia</span>
             </span>
           </button>
         </div>
@@ -310,66 +322,76 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer: Fixed Overlay Floating Over Page - Never pushes hero section down */}
       {mobileMenuOpen && (
-        <div
-          id="mobile-nav-drawer"
-          className="lg:hidden border-b border-[#1e293b] bg-[#0a0d12] px-4 py-5 space-y-4 animate-in fade-in slide-in-from-top-2 duration-150 shadow-xl"
-        >
-          {/* Mobile Theme Toggle Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-[#1e293b]">
-            <span className="text-xs font-mono text-slate-400">Theme Mode:</span>
-            <ThemeToggle showLabel={true} />
-          </div>
+        <>
+          {/* Backdrop Overlay */}
+          <div
+            className="fixed inset-0 top-16 bg-black/70 backdrop-blur-xs z-40 lg:hidden animate-in fade-in duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
 
-          {/* Mobile Resume Quick Download & View Bar */}
-          <div className="grid grid-cols-2 gap-2 pb-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenResume();
-              }}
-              className="p-2.5 rounded-xl bg-[#2563eb] hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
-            >
-              <FileText className="w-4 h-4" />
-              <span>View CV</span>
-            </button>
-            <ResumeDownloadButton
-              variant="outline"
-              className="w-full justify-center"
-              onOpenModal={() => {
-                setMobileMenuOpen(false);
-                onOpenResume();
-              }}
-            />
-          </div>
+          {/* Floating Drawer */}
+          <div
+            id="mobile-nav-drawer"
+            className="fixed inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto bg-[#0a0d12]/95 backdrop-blur-xl border-b border-[#1e293b] px-4 py-5 space-y-4 animate-in fade-in slide-in-from-top-3 duration-200 z-50 lg:hidden shadow-2xl"
+          >
+            {/* Mobile Theme Toggle Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-[#1e293b]">
+              <span className="text-xs font-mono text-slate-400">Theme Mode:</span>
+              <ThemeToggle showLabel={true} />
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            {allNavLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = activeSection === link.id;
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => handleNavClick(link.id)}
-                  className={`p-3 rounded-xl border text-left transition-all flex items-center gap-3 cursor-pointer ${
-                    isActive
-                      ? 'bg-[#1e293b] border-blue-500/50'
-                      : 'bg-[#0f172a] border-[#1e293b] hover:border-slate-600'
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-[#0a0d12] text-[#3b82f6] shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-slate-100 group-hover:text-blue-400">{link.label}</div>
-                    <div className="text-[10px] text-slate-300">{link.desc}</div>
-                  </div>
-                </button>
-              );
-            })}
+            {/* Mobile Resume Quick Download & View Bar */}
+            <div className="grid grid-cols-2 gap-2 pb-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+                className="p-2.5 rounded-xl bg-[#2563eb] hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+              >
+                <FileText className="w-4 h-4" />
+                <span>View CV</span>
+              </button>
+              <ResumeDownloadButton
+                variant="outline"
+                className="w-full justify-center"
+                onOpenModal={() => {
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {allNavLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive = activeSection === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNavClick(link.id)}
+                    className={`p-3 rounded-xl border text-left transition-all flex items-center gap-3 cursor-pointer ${
+                      isActive
+                        ? 'bg-[#1e293b] border-blue-500/50'
+                        : 'bg-[#0f172a] border-[#1e293b] hover:border-slate-600'
+                    }`}
+                  >
+                    <div className="p-2 rounded-lg bg-[#0a0d12] text-[#3b82f6] shrink-0">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-slate-100 group-hover:text-blue-400">{link.label}</div>
+                      <div className="text-[10px] text-slate-300">{link.desc}</div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

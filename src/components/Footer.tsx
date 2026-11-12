@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ activeSection = 'home', onOpenRe
                 />
               </div>
               <span className="text-lg font-bold tracking-tight text-white">
-                shaheerasadia<span className="text-blue-500 font-normal">.dev</span>
+                Shaheera <span className="text-blue-500 font-normal">Sadia</span>
               </span>
             </div>
 

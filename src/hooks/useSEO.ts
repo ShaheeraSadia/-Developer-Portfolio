@@ -19,7 +19,7 @@ export function updateDocumentSEO({ title, description, keywords, canonicalPath,
 
   document.title = formattedTitle;
 
-  const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : 'https://shaheerasadia.dev';
+  const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : 'https://shaheera-sadia.vercel.app';
   const defaultImage = `${origin}/og-image.png`;
   const resolvedImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${origin}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`) : defaultImage;
   const resolvedUrl = canonicalPath ? `${origin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}` : `${origin}/`;

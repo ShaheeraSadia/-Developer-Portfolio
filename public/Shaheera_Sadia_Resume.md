@@ -1,6 +1,6 @@
 # Shaheera Sadia
 **Front-End & Mobile Application Developer**  
-[Email](mailto:shaheerasadia@gmail.com) • [GitHub](https://github.com/shaheerasadia) • [LinkedIn](https://linkedin.com/in/shaheerasadia) • **Remote**
+[Email](mailto:shaheerasadia@gmail.com) • [Portfolio](https://shaheera-sadia.vercel.app) • [GitHub](https://github.com/shaheerasadia) • [LinkedIn](https://www.linkedin.com/in/shaheera-sadia-038944374/) • **Remote**
 
 ---
 

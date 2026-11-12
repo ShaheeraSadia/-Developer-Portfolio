@@ -2,9 +2,9 @@ import { DeveloperConfig, Project, ExperienceItem, PhilosophyPillar, SkillCatego
 
 export const developerConfig: DeveloperConfig = {
   name: 'Shaheera Sadia',
-  handle: 'shaheerasadia.dev',
-  role: 'Front-End Developer',
-  level: 'Front-End Developer',
+  handle: 'shaheera-sadia.vercel.app',
+  role: 'Front-End & Mobile Application Developer',
+  level: 'Front-End & Mobile Application Developer',
   location: 'Remote (Pakistan, UTC+5)',
   timezone: 'PKT (UTC+5)',
   status: 'available_for_opportunities',
@@ -13,40 +13,42 @@ export const developerConfig: DeveloperConfig = {
   editor: 'VS Code + Chrome DevTools',
   email: 'shaheerasadia@gmail.com',
   github: 'https://github.com/shaheerasadia',
-  linkedin: 'https://linkedin.com/in/shaheera-sadia-038944374',
-  twitter: 'https://x.com/shaheerasadia',
-  rss: 'https://shaheerasadia.dev/rss.xml',
+  linkedin: 'https://www.linkedin.com/in/shaheera-sadia-038944374/',
+  twitter: 'https://x.com/SadiaShahe4566',
+  rss: 'https://shaheera-sadia.vercel.app/rss.xml',
   coreStack: [
     'React',
+    'Next.js',
     'JavaScript (ES6+)',
+    'Progressive Web Apps (PWA)',
+    'Client-Side Web Workers',
     'Vite',
     'Tailwind CSS',
     'HTML5 & CSS3',
-    'Client-Side Web Workers',
-    'Vercel',
     'Git',
+    'Vercel',
   ],
   principles: [
     'Fast client-side zero server latency architectures',
     'Accessible, high-contrast UI across all viewports',
-    'Responsive mobile-first web design with clean touch feedback',
-    'Smooth UI performance offloading tasks to Web Workers',
+    'Responsive mobile-first web design with tactile touch feedback',
+    'Smooth UI performance offloading compute to Web Workers',
   ],
 };
 
 export const resumeSummary = {
-  headline: 'Front-End Developer | Remote (React, JavaScript, Vite, Tailwind CSS)',
+  headline: 'Front-End Developer | Remote (React, Next.js, JavaScript, PWAs, Tailwind CSS)',
   summary:
-    'Front-End Developer with 5+ years of experience engineering high-performance web applications, accessible user interfaces, and client-side browser utilities. Proficient in React, modern JavaScript (ES6+), Vite, and Tailwind CSS with deep expertise in off-thread Web Worker compute, responsive mobile-first architectures, and WCAG 2.1 AA accessibility standards. Creator of production web applications including SecuLens AI Code Auditor, Toolkit Pro, Brand Identity Generator, and App Tool.',
+    'Front-End Developer engineering accessible, performance-driven web applications, PWAs, and client-side browser utilities since 2021. Proficient in React, Next.js, modern JavaScript (ES6+), Vite, and Tailwind CSS with practical expertise in off-thread Web Worker compute, responsive mobile-first architectures, and WCAG 2.1 AA accessibility standards. Creator of production web applications including SecuLens AI Code Auditor, Toolkit Pro, Brand Identity Generator, and App Tool.',
   availability: 'Available immediately | Remote | Full-Time & Contract (40 hrs/wk)',
 };
 
 export const aboutMeData = {
   headline: 'I build clean, high-performance web applications centered on real user needs.',
   subHeadline:
-    'Shaheera Sadia — Front-End Developer specializing in React, JavaScript, and responsive client-side architectures.',
+    'Shaheera Sadia — Front-End & Mobile Application Developer specializing in React, JavaScript, and responsive client-side architectures.',
   whoIAm:
-    'I am a Front-End Developer with 5+ years of experience building user-centric interfaces, performance-driven web tools, and responsive digital products.',
+    'I am a Front-End & Mobile Application Developer with practical engineering experience since 2021 building user-centric interfaces, performance-driven web tools, and responsive digital products.',
   whereBased:
     'Based in Pakistan (PKT / UTC+5), working smoothly and synchronously with global remote teams across US, Europe, and Asia-Pacific time zones.',
   lookingFor:
@@ -54,11 +56,11 @@ export const aboutMeData = {
   availability:
     'Immediately available to start (Full-Time or Contract, 40 hours/week).',
   fullBio:
-    "I am a Front-End Developer with a strong focus on building user-centric interfaces, performance-driven web tools, and responsive web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused on translating complex user requirements into smooth, intuitive UI designs.\n\nI specialize in React, modern JavaScript (ES6+), Vite, and Tailwind CSS, with an emphasis on browser capabilities (Web Workers and client-side compute) to build fast web utilities with instant responsiveness and total user privacy.",
+    "I am a Front-End & Mobile Application Developer with a strong focus on building user-centric interfaces, performance-driven web tools, and responsive web applications. My journey started on freeCodeCamp in 2021, and since then, I've focused on translating complex user requirements into smooth, intuitive UI designs.\n\nI specialize in React, modern JavaScript (ES6+), Vite, and Tailwind CSS, with an emphasis on browser capabilities (Web Workers and client-side compute) to build fast web utilities with instant responsiveness and total user privacy.",
   milestones: [
     { year: '2021', title: 'freeCodeCamp Genesis', description: 'Began intensive journey mastering modern JavaScript algorithms, responsive design, and component-driven front-ends.' },
     { year: '2022', title: 'Interactive Web & Dashboards', description: 'Built client-focused SPAs, responsive data interfaces, and localized WordPress/XAMPP database workflows.' },
-    { year: '2023', title: 'Interactive Web Tools & Portals', description: 'Developed App Tool utilities, dynamic product catalogs, and responsive client-side applications with accessible UI.' },
+    { year: '2023', title: 'Interactive Web Tools & Portals', description: 'Developed App Tool utilities, dynamic product showcases, and responsive client-side applications with accessible UI.' },
     { year: '2024 — 2026', title: 'Toolkit Pro & Brand Identity Generator', description: 'Architected client-side web utilities and branding engines with off-thread Web Workers, fast load times, and automated CSS token generation.' },
   ],
 };
@@ -126,9 +128,9 @@ export const featuredToolsData: FeaturedToolItem[] = [
     githubUrl: 'https://github.com/shaheerasadia/app-tool',
     repoName: 'app-tool',
     image: '/assets/images/project_app_tool_1794224061017.jpg',
-    problemSolved: 'Shopping apps often stutter on slower mobile devices due to constant network reloads and database calls during cart updates.',
-    whatBuilt: 'Constructed an offline-resilient shopping interface with localized reactive cart state, instant totals calculation, and fluid touch micro-interactions.',
-    description: 'Web utility tools hub and shopping catalog application with real-time product filtering, persistent calculations, and responsive mobile interface.',
+    problemSolved: 'Users looking for quick everyday browser tools or curated product guides face cluttered interfaces and slow reload cycles.',
+    whatBuilt: 'Constructed an offline-resilient utility and product showcase interface with localized preferences, fast category filtering, and responsive mobile layouts.',
+    description: 'Web utility tools hub and curated product showcase with real-time category filtering, persistent browser preferences, and mobile-responsive layout.',
   },
 ];
 
@@ -320,40 +322,40 @@ self.onmessage = async (e) => {
   },
   {
     id: 'app-tool-shopping',
-    title: 'App Tool — Shopping Hub',
-    tagline: 'Interactive client-side shopping application with dynamic product filtering, persistent cart calculations, and responsive mobile checkout flow.',
-    category: 'Web Utilities & E-Commerce',
+    title: 'App Tool — Web Utilities & Store Hub',
+    tagline: 'Web utility tools hub and curated product showcase with real-time category filtering, persistent browser preferences, and mobile-responsive layout.',
+    category: 'Web Utilities & Catalog Hub',
     year: '2023 — 2024',
     role: 'Front-End Developer',
-    clientOrContext: 'Web Utilities & Retail App Suite',
+    clientOrContext: 'Web Utilities & Catalog App Suite',
     featured: true,
     status: 'production',
     repoName: 'app-tool',
     image: '/assets/images/project_app_tool_1794224061017.jpg',
-    problemSolved: 'Shopping apps often stutter on slower mobile devices due to constant network reloads and database calls during cart updates.',
-    whatBuilt: 'Constructed an offline-resilient shopping interface with localized reactive cart state, instant totals calculation, and fluid touch micro-interactions.',
+    problemSolved: 'Users looking for quick everyday browser tools or curated product guides face cluttered interfaces and slow reload cycles.',
+    whatBuilt: 'Constructed an offline-resilient utility and product showcase interface with localized preferences, fast category filtering, and responsive mobile layouts.',
     metrics: [
       { label: 'Cart Latency', value: '< 10ms', change: 'Instant state persistence', isPositive: true },
       { label: 'Touch Response', value: '< 16ms', change: ':active touch feedback', isPositive: true },
       { label: 'Mobile Fidelity', value: '100%', change: 'Fluid responsive layout', isPositive: true },
     ],
-    stack: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'LocalStorage', 'Responsive UI', 'Vercel'],
+    stack: ['JavaScript (ES6+)', 'React', 'Tailwind CSS', 'LocalStorage', 'Responsive UI', 'Vercel'],
     summary:
-      'Engineered a responsive client-side shopping and retail application with dynamic category filtering, real-time cart state management, and optimized checkout micro-interactions.',
+      'Engineered a client-side web utilities hub and curated product showcase featuring real-time category filtering, localized browser preferences, and responsive mobile layouts with accessible touch micro-interactions.',
     challenges: [
-      'Maintaining persistent, zero-jank shopping cart state and real-time total calculations across navigation without page reloads.',
-      'Designing a fluid responsive product grid with accessible touch targets, badges, and quick-add actions on mobile viewports.',
-      'Ensuring instant feedback during cart quantity adjustments, discount calculations, and local checkout simulation.',
+      'Maintaining persistent, zero-jank utility preferences and category filtering across navigation without page reloads.',
+      'Designing a fluid responsive showcase grid with accessible touch targets, badges, and quick-access actions on mobile viewports.',
+      'Ensuring instant feedback during search filtering, state adjustments, and client-side view toggling.',
     ],
     architecturalDecisions: [
-      'Built a centralized cart state controller using reactive state and localStorage synchronization for persistent sessions.',
-      'Implemented accessible product cards with fluid aspect ratios, responsive touch states, and instant badge notifications.',
+      'Built a centralized reactive state controller with localStorage synchronization for persistent user settings.',
+      'Implemented accessible product and utility cards with fluid aspect ratios, responsive touch states, and instant badge notifications.',
       'Optimized client-side asset loading and layout shifts for sub-second page performance across devices.',
     ],
     impactDescription:
-      'Delivered a lightweight, highly responsive shopping experience with zero server latency, instant cart calculations, and seamless mobile usability.',
+      'Delivered a lightweight, highly responsive utility and shopping portal with zero server latency, instant category filtering, and seamless mobile usability.',
     githubUrl: 'https://github.com/shaheerasadia/app-tool',
-    liveUrl: 'https://app-tool.vercel.app/shopping.html',
+    liveUrl: 'https://app-tool.vercel.app/',
     codeSnippet: {
       filename: 'cartStateController.js',
       language: 'javascript',
@@ -445,37 +447,36 @@ export function useStudioControls(initialParams) {
 export const experienceData: ExperienceItem[] = [
   {
     id: 'exp-1',
-    role: 'Lead Creator & Developer',
-    company: 'Toolkit Pro & Brand Identity Tools',
+    role: 'Front-End Engineer (Self-Initiated)',
+    company: 'Independent Projects — Toolkit Pro & Brand Identity Suite',
     period: '2023 — Present',
-    location: 'Remote',
+    location: 'Self-initiated & Remote',
     type: 'Full-time',
     summary:
-      'Engineered and scaled 100% client-side web utility platforms and brand identity engines featuring browser-based media compression, format converters, automated CSS token generators, and AI video studios.',
+      'Engineered client-side web utility platforms and brand identity engines featuring browser-based media compression, format converters, and automated CSS token generators.',
     achievements: [
-      'Architected a 100% client-side Web Worker execution pipeline for off-thread media compression and asset conversion, eliminating cloud compute costs by 100% while guaranteeing user data privacy.',
+      'Architected client-side Web Worker execution pipelines for off-thread media compression and asset conversion, executing compute directly in the browser with guaranteed user data privacy.',
       'Spearheaded real-time WCAG 2.1 AA color contrast evaluators and multi-format CSS/Tailwind design token export pipelines used by digital creators and developers.',
-      'Reduced initial page load speeds and achieved sub-100ms interaction latency by deploying zero-runtime asset compilation on Vercel.',
-      'Integrated privacy-compliant AdSense/Monetag ad revenue models and RSS distribution feeds while maintaining 0 Cumulative Layout Shift (CLS) for optimal core web vitals.',
-      'Designed accessible mobile-first interfaces with snappy :active touch feedback and automatic dark/light mode balance across all viewports.',
+      'Delivered rapid page load speeds and responsive interaction latency by deploying client-side asset compilation on Vercel.',
+      'Designed accessible mobile-first interfaces with tactile touch feedback and automatic dark/light mode balance across all viewports.',
     ],
     technologies: ['React', 'JavaScript (ES6+)', 'Web Workers', 'Canvas API', 'Tailwind CSS', 'Vercel'],
-    statsBadge: '100% Client-Side',
+    statsBadge: 'Client-Side Architecture',
   },
   {
     id: 'exp-2',
-    role: 'Front-End Developer',
-    company: 'App Tool & Web Applications Suite',
+    role: 'Front-End Developer (Self-Initiated)',
+    company: 'Independent Projects — App Tool & Web Utilities',
     period: '2022 — 2024',
-    location: 'Remote',
+    location: 'Self-initiated & Remote',
     type: 'Full-time',
     summary:
-      'Built responsive e-commerce web applications, shopping tools, and interactive utilities with accessible touch controls and real-time client state management.',
+      'Built responsive web utility portals, curated product showcases, and interactive tools with accessible touch controls and client-side state management.',
     achievements: [
-      'Developed responsive e-commerce web applications, interactive web utilities, and shopping platforms reaching global mobile and desktop users.',
-      'Engineered client-side shopping cart state architectures using localized persistence models, achieving instant UI updates with zero database query overhead.',
-      'Standardized design tokens and enforced strict WCAG 2.1 AA contrast requirements across product catalog grids, interactive badges, and checkout flows.',
-      'Refactored touch interface interactions across low-end mobile hardware to deliver smooth 60fps scrolling and responsive tap targets.',
+      'Developed responsive web applications, interactive web utilities, and curated showcases reaching mobile and desktop users.',
+      'Engineered client-side state architectures using localized persistence models, achieving immediate UI updates without server roundtrips.',
+      'Standardized design tokens and enforced strict WCAG 2.1 AA contrast requirements across product grids, interactive badges, and utility cards.',
+      'Refactored touch interface interactions across mobile viewports to deliver fluid scrolling and accessible tap targets.',
     ],
     technologies: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'LocalStorage API', 'Git', 'Vercel'],
     statsBadge: 'Responsive Web Tools',
@@ -483,9 +484,9 @@ export const experienceData: ExperienceItem[] = [
   {
     id: 'exp-3',
     role: 'Front-End & Web Developer',
-    company: 'Independent Projects',
+    company: 'Independent Client & Web Projects',
     period: '2021 — 2023',
-    location: 'Remote',
+    location: 'Self-initiated & Remote',
     type: 'Full-time',
     summary:
       'Built user-centric interfaces, performance-driven web tools, and full-stack local development environments from foundations started on freeCodeCamp in 2021.',
@@ -495,7 +496,7 @@ export const experienceData: ExperienceItem[] = [
       'Established automated deployment pipelines using Git version control, GitHub repositories, and automated edge hosting on Vercel and cPanel.',
     ],
     technologies: ['React', 'JavaScript', 'HTML5/CSS3', 'WordPress', 'MySQL', 'Git'],
-    statsBadge: '5+ Yrs Experience',
+    statsBadge: 'Since 2021',
   },
 ];
 
@@ -594,36 +595,38 @@ export const skillCategories: SkillCategory[] = [
   {
     category: 'Front-End Core',
     skills: [
-      { name: 'React', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Hooks, Functional Components, Component Architecture' },
-      { name: 'JavaScript (ES6+)', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Async/Await, Web Workers, ArrayBuffers, DOM APIs' },
-      { name: 'HTML5 & CSS3', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Semantic HTML, Flexbox, CSS Grid, Responsive Design' },
-      { name: 'Tailwind CSS', level: 'Expert', experienceYears: '4+ yrs', focus: 'Zero-runtime utilities, Custom design tokens, Dark mode' },
+      { name: 'React', level: 'Production', experienceYears: 'Since 2021', focus: 'Hooks, Functional Components, Component Architecture' },
+      { name: 'Next.js', level: 'Production', experienceYears: 'Specialized', focus: 'App Router, Server Components, SSR/SSG, Static Export' },
+      { name: 'JavaScript (ES6+)', level: 'Production', experienceYears: 'Since 2021', focus: 'Async/Await, Web Workers, ArrayBuffers, DOM APIs' },
+      { name: 'HTML5 & CSS3', level: 'Production', experienceYears: 'Since 2021', focus: 'Semantic HTML, Flexbox, CSS Grid, Responsive Design' },
+      { name: 'Tailwind CSS', level: 'Production', experienceYears: 'Since 2021', focus: 'Zero-runtime utilities, Custom design tokens, Dark mode' },
     ],
   },
   {
-    category: 'Performance & Accessibility',
+    category: 'Performance & Architecture',
     skills: [
-      { name: 'Client-Side Web Workers', level: 'Specialist', experienceYears: '4+ yrs', focus: 'Off-thread media compression, asset pipelines & zero-jank compute' },
-      { name: 'WCAG 2.1 AA Standards', level: 'Expert', experienceYears: '5+ yrs', focus: 'AAA Contrast, Accessible touch targets, Radical A11y' },
-      { name: 'Responsive UI/UX Design', level: 'Mastery', experienceYears: '5+ yrs', focus: 'Mobile-first architectures, :active micro-interactions' },
-      { name: 'Chart.js / Data Viz', level: 'Expert', experienceYears: '3+ yrs', focus: 'Data-dense dark dashboards, 60fps rendering' },
+      { name: 'Progressive Web Apps (PWA)', level: 'Production', experienceYears: 'Specialized', focus: 'Service Workers, Offline-first, Web App Manifest & Caching' },
+      { name: 'Client-Side Web Workers', level: 'Production', experienceYears: 'Specialized', focus: 'Off-thread media compression, asset pipelines & zero-jank compute' },
+      { name: 'WCAG 2.1 AA Standards', level: 'Production', experienceYears: 'Standards', focus: 'AAA Contrast, Accessible touch targets, Radical A11y' },
+      { name: 'Responsive UI/UX Design', level: 'Production', experienceYears: 'Mobile-First', focus: 'Mobile-first architectures, tactile micro-interactions' },
+      { name: 'Chart.js / Data Viz', level: 'Production', experienceYears: 'Specialized', focus: 'Data-dense dark dashboards, responsive charts' },
     ],
   },
   {
     category: 'Tooling & Deployment',
     skills: [
-      { name: 'Git & GitHub', level: 'Expert', experienceYears: '5+ yrs', focus: 'Version control, Branching workflows, Repository management' },
-      { name: 'Vercel & Web Analytics', level: 'Expert', experienceYears: '4+ yrs', focus: 'Edge deployments, Core Web Vitals, zero-runtime compilation' },
-      { name: 'cPanel & Web Hosting', level: 'Proficient', experienceYears: '4+ yrs', focus: 'DNS management, SSL, FTP, Domain routing' },
-      { name: 'Vite & Webpack', level: 'Expert', experienceYears: '4+ yrs', focus: 'Fast bundling, HMR, Module federation, Asset pipelines' },
+      { name: 'Git & GitHub', level: 'Production', experienceYears: 'Core', focus: 'Version control, Branching workflows, Repository management' },
+      { name: 'Vercel Edge Hosting', level: 'Production', experienceYears: 'Deploy', focus: 'Edge deployments, Core Web Vitals, zero-runtime compilation' },
+      { name: 'cPanel & Web Hosting', level: 'Production', experienceYears: 'Deploy', focus: 'DNS management, SSL, FTP, Domain routing' },
+      { name: 'Vite & Build Tooling', level: 'Production', experienceYears: 'Core', focus: 'Fast bundling, HMR, Module federation, Asset pipelines' },
     ],
   },
   {
     category: 'Database & Environments',
     skills: [
-      { name: 'XAMPP & LocalWP', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Local server environment & development stack' },
-      { name: 'phpMyAdmin & MySQL', level: 'Proficient', experienceYears: '4+ yrs', focus: 'Relational schemas, Query optimization, Data migration' },
-      { name: 'WordPress', level: 'Advanced', experienceYears: '4+ yrs', focus: 'Theme engineering, Headless CMS, Template architecture' },
+      { name: 'XAMPP & LocalWP', level: 'Production', experienceYears: 'Tooling', focus: 'Local server environment & development stack' },
+      { name: 'phpMyAdmin & MySQL', level: 'Production', experienceYears: 'Database', focus: 'Relational schemas, Query optimization, Data migration' },
+      { name: 'WordPress', level: 'Production', experienceYears: 'CMS', focus: 'Theme engineering, Headless CMS, Template architecture' },
     ],
   },
 ];
@@ -631,7 +634,7 @@ export const skillCategories: SkillCategory[] = [
 export const educationCertificationsData: EducationCertification[] = [
   {
     id: 'fcc-js-v8',
-    title: 'JavaScript Algorithms and Data Structures V8 (300 Hours)',
+    title: 'JavaScript Algorithms and Data Structures (300 Hours)',
     issuer: 'freeCodeCamp',
     hours: '300 Hours',
     issuedDate: 'August 19, 2025',
@@ -641,21 +644,12 @@ export const educationCertificationsData: EducationCertification[] = [
   },
   {
     id: 'fcc-rwd-v8',
-    title: 'Responsive Web Design V8 (300 Hours)',
+    title: 'Responsive Web Design (300 Hours)',
     issuer: 'freeCodeCamp',
     hours: '300 Hours',
     issuedDate: 'July 5, 2025',
     credentialUrl: 'https://www.freecodecamp.org/certification/shaheerasadia/responsive-web-design-v8',
     badge: 'Verified Credential',
     description: 'Modern HTML5 semantic architecture, advanced CSS3 Flexbox and Grid, media query breakpoints, and strict WCAG accessibility compliance across 300 hours of coursework and web design projects.',
-  },
-  {
-    id: 'codeorg-ai-oceans',
-    title: 'AI for Oceans: Hour of Code',
-    issuer: 'Code.org',
-    issuedDate: 'Completed',
-    credentialUrl: 'https://code.org/oceans',
-    badge: 'Certificate of Completion',
-    description: 'Practical training in machine learning classification models, ethical training data curation, bias reduction, and computer vision classification.',
   },
 ];

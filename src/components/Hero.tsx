@@ -42,8 +42,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
     const typed = new Typed(typedTargetRef.current, {
       strings: [
         'Front-End Developer',
-        'React & Vite Specialist',
-        'Web Application Engineer',
+        'React & Next.js Developer',
+        'PWA & Web Worker Specialist',
         'Client-Side Performance Architect',
       ],
       typeSpeed: 55,
@@ -79,17 +79,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
   return (
     <section
       id="hero-section"
-      className="bg-[#0a0d12] text-[#f8fafc] py-12 sm:py-18 relative overflow-hidden"
+      className="bg-[#0a0d12] text-[#f8fafc] py-20 sm:py-28 lg:py-32 relative overflow-hidden"
     >
       {/* Subtle ambient lighting */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Hero Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Human Narrative & Intro */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-7">
             
             {/* Availability Status Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0f172a] border border-emerald-500/30 text-xs font-mono shadow-sm">
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
             {/* Narrative Summary */}
             <p className="text-sm sm:text-base text-white leading-relaxed max-w-xl font-normal">
-              Front-End Developer specializing in React, modern JavaScript (ES6+), Vite, and high-contrast responsive web applications with client-side performance architectures.
+              Front-End Developer specializing in React, Next.js, modern JavaScript (ES6+), Vite, and high-performance client-side architectures with Progressive Web Apps (PWAs) and off-thread Web Workers.
             </p>
 
             {/* Connect Bar */}
@@ -228,23 +228,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
         </div>
 
-        {/* Highlight Metrics Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-[#0f172a] rounded-2xl border border-[#1e293b] mt-12 shadow-sm">
+        {/* Highlight Metrics Strip with Generous Padding & Margin */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 sm:p-7 bg-[#0f172a] rounded-3xl border border-[#1e293b] mt-16 sm:mt-20 shadow-lg shadow-black/20">
           <div className="space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">5+ Yrs</span>
-            <p className="text-xs text-white font-sans font-medium">Front-End Engineering</p>
+            <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">Since 2021</span>
+            <p className="text-xs text-slate-300 font-sans font-medium">Web Applications</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4</span>
-            <p className="text-xs text-white font-sans font-medium">Live Production Tools</p>
+            <p className="text-xs text-slate-300 font-sans font-medium">Production Tools</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">100%</span>
-            <p className="text-xs text-white font-sans font-medium">Client-Side Privacy</p>
+            <p className="text-xs text-slate-300 font-sans font-medium">Client Privacy</p>
           </div>
           <div className="space-y-1">
             <span className="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono block">WCAG AA</span>
-            <p className="text-xs text-white font-sans font-medium">Accessible Contrast</p>
+            <p className="text-xs text-slate-300 font-sans font-medium">Accessible Contrast</p>
           </div>
         </div>
 

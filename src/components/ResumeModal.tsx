@@ -21,7 +21,8 @@ import {
   Printer,
   FileCheck,
   Loader2,
-  Rocket
+  Rocket,
+  Globe
 } from 'lucide-react';
 import {
   developerConfig,
@@ -103,9 +104,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   if (!isOpen) return null;
 
   const atsPlainText = `Shaheera Sadia
-Front-End Developer | Remote
+${developerConfig.role} | Remote (Since 2021)
 
-Email: ${developerConfig.email} | GitHub: ${developerConfig.github.replace('https://', '')} | LinkedIn: ${developerConfig.linkedin.replace('https://', '')}
+Email: ${developerConfig.email} | Portfolio: shaheera-sadia.vercel.app | GitHub: ${developerConfig.github.replace('https://', '')} | LinkedIn: ${developerConfig.linkedin.replace('https://', '').replace(/^www\./, '').replace(/\/$/, '')}
 
 Summary
 ${resumeSummary.summary}
@@ -150,7 +151,7 @@ ${educationCertificationsData
   const markdownContent = `# ${developerConfig.name}
 **${developerConfig.role}** | ${developerConfig.location}
 
-**Email:** ${developerConfig.email} | **GitHub:** ${developerConfig.github} | **LinkedIn:** ${developerConfig.linkedin}
+**Email:** ${developerConfig.email} | **Portfolio:** https://shaheera-sadia.vercel.app | **GitHub:** ${developerConfig.github} | **LinkedIn:** ${developerConfig.linkedin}
 
 ---
 
@@ -163,7 +164,7 @@ ${resumeSummary.summary}
 ${skillCategories
   .map(
     (cat) => `### ${cat.category}
-${cat.skills.map((s) => `- **${s.name}** (${s.level}, ${s.experienceYears}): ${s.focus}`).join('\n')}`
+${cat.skills.map((s) => `- **${s.name}**: ${s.focus}`).join('\n')}`
   )
   .join('\n\n')}
 
@@ -488,12 +489,18 @@ ${cert.description}`
                   <div className="flex items-center gap-1.5">
                     <Linkedin className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
                     <a href={developerConfig.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
-                      {developerConfig.linkedin.replace('https://', '')}
+                      {developerConfig.linkedin.replace('https://', '').replace(/^www\./, '').replace(/\/$/, '')}
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-blue-400 print:text-blue-700 shrink-0" />
+                    <a href="https://shaheera-sadia.vercel.app" target="_blank" rel="noreferrer" className="hover:underline">
+                      shaheera-sadia.vercel.app
                     </a>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-400 print:text-neutral-500">
                     <MapPin className="w-3.5 h-3.5 shrink-0" />
-                    <span>Remote • 5+ Years Experience</span>
+                    <span>Remote • Since 2021</span>
                   </div>
                 </div>
               </div>

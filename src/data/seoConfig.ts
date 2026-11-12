@@ -4,18 +4,21 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
   home: {
     title: 'Shaheera Sadia — Front-End Developer',
     description:
-      'Shaheera Sadia — Front-End Developer building fast React, JavaScript (ES6+), and Vite web applications. Verified projects: SecuLens AI, Toolkit Pro, Brand Identity Generator, and App Tool.',
+      'Shaheera Sadia — Front-End Developer building fast React, Next.js, PWAs, JavaScript (ES6+), and Vite web applications. Verified projects: SecuLens AI, Toolkit Pro, Brand Identity Generator, and App Tool.',
     keywords: [
       'Shaheera Sadia',
       'Front-End Developer',
       'React Developer',
+      'Next.js Developer',
+      'PWAs',
+      'Progressive Web Apps',
+      'Web Workers',
       'JavaScript',
       'Tailwind CSS',
       'Vite',
       'SecuLens AI',
       'Toolkit Pro',
       'Brand Identity Generator',
-      'Cybersecurity Auditor',
     ],
     canonicalPath: '/',
     ogImage: '/og-image.png',
@@ -68,9 +71,12 @@ export const sectionSEOConfig: Record<string, SEOProps> = {
   skills: {
     title: 'Technical Skills Matrix & Stack | Shaheera Sadia',
     description:
-      'Comprehensive technical skills breakdown: React, JavaScript (ES6+), Vite, Tailwind CSS, Web Workers, Canvas API, and WCAG AA accessibility standards.',
+      'Comprehensive technical skills breakdown: React, Next.js, PWAs, JavaScript (ES6+), Vite, Tailwind CSS, Web Workers, Canvas API, and WCAG AA accessibility standards.',
     keywords: [
       'React Skills',
+      'Next.js',
+      'PWAs',
+      'Web Workers',
       'JavaScript Expertise',
       'Tailwind CSS',
       'Front-End Stack Matrix',

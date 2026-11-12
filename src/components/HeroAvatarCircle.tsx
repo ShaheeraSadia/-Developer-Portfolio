@@ -14,38 +14,38 @@ export const HeroAvatarCircle: React.FC = () => {
         <div className="absolute inset-3 sm:inset-4 rounded-full border border-dashed border-blue-500/25" />
 
         {/* Floating Stack Badges - Responsive & high contrast */}
-        {/* Top Right: React */}
+        {/* Top Right: React & Next.js */}
         <motion.div
           animate={{ y: [-2, 2, -2] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-0 right-4 sm:top-2 sm:right-8 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-200 font-mono text-[10px] sm:text-xs shadow-md"
+          className="absolute top-0 right-2 sm:top-2 sm:right-6 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg bg-[#0f172a] border border-blue-500/40 text-blue-300 font-mono text-[10px] sm:text-xs shadow-md"
         >
-          React
+          React &amp; Next.js
         </motion.div>
 
         {/* Bottom Left: Tailwind CSS */}
         <motion.div
           animate={{ y: [2, -2, 2] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-0 left-4 sm:bottom-4 sm:left-6 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-200 font-mono text-[10px] sm:text-xs shadow-md"
+          className="absolute bottom-0 left-2 sm:bottom-4 sm:left-4 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-200 font-mono text-[10px] sm:text-xs shadow-md"
         >
           Tailwind CSS
         </motion.div>
 
-        {/* Top Left: JavaScript */}
+        {/* Top Left: PWAs */}
         <motion.div
           animate={{ y: [1.5, -1.5, 1.5] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-8 left-1 sm:top-10 sm:left-0 z-20 px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 font-mono text-[10px] sm:text-[11px] shadow-md hidden sm:block"
+          className="absolute top-8 left-1 sm:top-10 sm:left-0 z-20 px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-lg bg-[#0f172a] border border-emerald-500/30 text-emerald-300 font-mono text-[10px] sm:text-[11px] shadow-md hidden sm:block"
         >
-          JavaScript
+          PWAs
         </motion.div>
 
         {/* Bottom Right: Web Workers */}
         <motion.div
           animate={{ y: [-1.5, 1.5, -1.5] }}
           transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-8 right-1 sm:bottom-10 sm:right-0 z-20 px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-slate-300 font-mono text-[10px] sm:text-[11px] shadow-md hidden sm:block"
+          className="absolute bottom-8 right-1 sm:bottom-10 sm:right-0 z-20 px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-lg bg-[#0f172a] border border-purple-500/30 text-purple-300 font-mono text-[10px] sm:text-[11px] shadow-md hidden sm:block"
         >
           Web Workers
         </motion.div>
@@ -88,7 +88,7 @@ export const HeroAvatarCircle: React.FC = () => {
           </div>
 
           <span className="text-[10px] sm:text-[11px] font-mono text-slate-300">
-            React • JavaScript • Vite
+            React • Next.js • PWAs • Web Workers
           </span>
         </div>
       </div>

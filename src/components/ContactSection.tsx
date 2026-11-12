@@ -217,29 +217,29 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#0a0d12] text-[#f8fafc] border-b border-[#1e293b]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 sm:py-32 bg-[#0a0d12] text-[#f8fafc] border-b border-[#1e293b]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 mb-12 border-b border-[#1e293b]">
-          <div className="space-y-1">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#1e293b]">
+          <div className="space-y-3">
             <span className="text-xs font-mono text-[#3b82f6] uppercase tracking-wider block">
               Get in Touch
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
               Contact &amp; Collaboration
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white max-w-md leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-slate-300 max-w-md leading-relaxed font-sans">
             Available for full-time engineering roles, frontend contract work, and client-side architecture consulting.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Direct Info & Quick Copy */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 sm:p-7 space-y-6 shadow-sm">
+          <div className="lg:col-span-5 space-y-8">
+            <div className="bg-[#0f172a] border border-[#1e293b] rounded-3xl p-7 sm:p-9 space-y-6 shadow-lg shadow-black/20">
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white">
+                <h3 className="text-xl font-bold text-white">
                   Let's Build Together
                 </h3>
                 <p className="text-xs sm:text-sm text-white font-sans leading-relaxed">

@@ -246,7 +246,7 @@ export async function generateResumeDocx(filename = 'Shaheera_Sadia_Resume.docx'
               spacing: { after: 100 },
               children: [
                 new TextRun({
-                  text: `Live: ${tool.liveUrl}  |  GitHub: ${tool.githubUrl}`,
+                  text: tool.githubUrl ? `Live: ${tool.liveUrl}  |  GitHub: ${tool.githubUrl}` : `Live: ${tool.liveUrl}`,
                   size: 17,
                   color: '64748B',
                 }),

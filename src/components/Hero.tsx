@@ -46,9 +46,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
         'PWA & Web App Specialist',
         'Performance Architect',
       ],
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 1800,
+      typeSpeed: 45,
+      backSpeed: 28,
+      backDelay: 2400,
+      startDelay: 200,
       loop: true,
       showCursor: true,
       cursorChar: '▍',
@@ -234,8 +235,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono block">Since 2021</span>
             <p className="text-xs text-slate-300 font-sans font-medium">Web Applications</p>
           </div>
-          <div className="space-y-1" title="4 core production tools + Veo Director Studio specialized module">
-            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">4 <span className="text-base text-blue-300/80 font-sans font-normal">+1</span></span>
+          <div className="space-y-1" title="5 core production apps + Veo Director Studio specialized module">
+            <span className="text-2xl sm:text-3xl font-bold text-blue-400 font-mono block">5 <span className="text-base text-blue-300/80 font-sans font-normal">+1</span></span>
             <p className="text-xs text-slate-300 font-sans font-medium">Core Apps (+1 Module)</p>
           </div>
           <div className="space-y-1" title="Media compression and format conversion run 100% client-side in the browser via Web Workers">

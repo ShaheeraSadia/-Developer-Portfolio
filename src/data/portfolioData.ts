@@ -39,7 +39,7 @@ export const developerConfig: DeveloperConfig = {
 export const resumeSummary = {
   headline: 'Front-End Developer | Remote (React, Next.js, JavaScript, PWAs, Tailwind CSS)',
   summary:
-    'Front-End Developer engineering accessible, performance-driven web applications, PWAs, and client-side browser utilities since 2021. Proficient in React, Next.js, modern JavaScript (ES6+), Vite, and Tailwind CSS with practical expertise in off-thread Web Worker compute, responsive mobile-first architectures, and WCAG 2.1 AA accessibility standards. Creator of production web applications including SecuLens AI Code Auditor, Toolkit Pro, Brand Identity Generator, and App Tool.',
+    'Front-End Developer engineering accessible, performance-driven web applications, PWAs, and client-side browser utilities since 2021. Proficient in React, Next.js, modern JavaScript (ES6+), Vite, and Tailwind CSS with practical expertise in off-thread Web Worker compute, responsive mobile-first architectures, and WCAG 2.1 AA accessibility standards. Creator of production web applications including SecuLens AI Code Auditor, Toolkit Pro, Brand Identity Generator, App Tool, and Hot Cake Bakers.',
   availability: 'Available immediately | Remote | Full-Time & Contract (40 hrs/wk)',
 };
 
@@ -71,7 +71,7 @@ export interface FeaturedToolItem {
   coreFocus: string;
   keyTech: string;
   liveUrl: string;
-  githubUrl: string;
+  githubUrl?: string;
   description: string;
   image?: string;
   repoName?: string;
@@ -132,6 +132,17 @@ export const featuredToolsData: FeaturedToolItem[] = [
     whatBuilt: 'Constructed an offline-resilient utility and product showcase interface with localized preferences, fast category filtering, and responsive mobile layouts.',
     description: 'Web utility tools hub and curated product showcase with real-time category filtering, persistent browser preferences, and mobile-responsive layout.',
   },
+  {
+    application: 'Hot Cake Bakers — Bakery & Direct Ordering Storefront',
+    category: 'Local Business & Ordering',
+    coreFocus: 'Interactive menu, Order Bag cart, theme toggle & WhatsApp checkout',
+    keyTech: 'React, Tailwind CSS, Vite, Lucide Icons, Vercel',
+    liveUrl: 'https://hot-cake-bakers.vercel.app/',
+    image: '/assets/aistudio/image_91830389.png',
+    problemSolved: 'Local bakeries rely on static social media pages without a structured digital menu, dark/light viewing, or an organized way to build takeout orders.',
+    whatBuilt: 'Engineered a responsive storefront featuring an interactive Order Bag drawer, photo lightbox, WhatsApp order routing, and Google Maps directions.',
+    description: 'Production storefront for Hot Cake Bakers featuring categorized morning & evening menus, interactive Order Bag, theme switcher, and one-tap WhatsApp & Google Maps integration.',
+  },
 ];
 
 export const projectsData: Project[] = [
@@ -151,8 +162,8 @@ export const projectsData: Project[] = [
     whatBuilt: 'Engineered an AI code auditor utilizing Gemini AI for semantic AST code analysis and instant production-hardened patch generation.',
     metrics: [
       { label: 'Vulnerability Detection', value: 'OWASP Top 10', change: 'XSS, SQLi, SSRF, IDOR', isPositive: true },
-      { label: 'Audit Engine', value: 'Gemini AI', change: 'Real-time AST & semantic analysis', isPositive: true },
-      { label: 'Patch Generation', value: 'Sub-3s', change: 'Hardened production-ready code', isPositive: true },
+      { label: 'Audit Engine', value: 'Gemini AI', change: 'AST & semantic analysis', isPositive: true },
+      { label: 'Remediation', value: 'Patch Diffs', change: 'CVSS severity & code fixes', isPositive: true },
     ],
     stack: ['React', 'JavaScript (ES6+)', 'Vite', 'Tailwind CSS', 'Gemini AI', 'OWASP Top 10', 'Vercel'],
     summary:
@@ -193,9 +204,9 @@ and a hardened production-ready patch.\`;
       explanation: 'Streams code payloads to the Gemini AI security evaluator, extracting OWASP classifications, CVSS metrics, and hardened patch implementations.',
     },
     benchmarkComparison: [
-      { metricName: 'Vulnerability Detection Speed', before: '15-30m (Manual review)', after: '< 3.2s (SecuLens AI)', improvement: '300x faster' },
-      { metricName: 'OWASP Top 10 Coverage', before: 'Partial / Ad-hoc', after: 'Automated 100%', improvement: 'Full coverage' },
-      { metricName: 'Patch Delivery Time', before: 'Hours of research', after: 'Instant Diff & Fix', improvement: 'Immediate fix' },
+      { metricName: 'Security Coverage', before: 'Manual / Ad-hoc checks', after: 'OWASP Top 10 Scan', improvement: 'Automated audit' },
+      { metricName: 'Risk Prioritization', before: 'Unranked code notes', after: 'CVSS & CWE Scoring', improvement: 'Structured severity' },
+      { metricName: 'Remediation Output', before: 'Plain warning text', after: 'Side-by-Side Diffs', improvement: 'Actionable patch' },
     ],
   },
   {
@@ -214,8 +225,8 @@ and a hardened production-ready patch.\`;
     whatBuilt: 'Engineered a real-time WCAG 2.1 AA luminance analyzer with one-click export to CSS variables (:root) and Tailwind configuration files.',
     metrics: [
       { label: 'WCAG Contrast', value: 'WCAG 2.1 AA', change: 'Real-time validation', isPositive: true },
-      { label: 'Token Generation', value: 'Instant', change: ':root & Tailwind config', isPositive: true },
-      { label: 'Server Latency', value: '0 ms', change: '100% In-browser execution', isPositive: true },
+      { label: 'Token Export', value: 'CSS & Tailwind', change: ':root variables & config', isPositive: true },
+      { label: 'Data Execution', value: 'No Server Uploads', change: 'Runs in-browser', isPositive: true },
     ],
     stack: ['React', 'JavaScript', 'Tailwind CSS', 'Web Workers', 'Canvas API', 'Vercel'],
     summary:
@@ -257,9 +268,9 @@ export function evaluateBrandPalette(primaryHex, backgroundHex) {
       explanation: 'Calculates relative luminance and WCAG 2.1 AA/AAA contrast ratios before formatting ready-to-use CSS custom properties.',
     },
     benchmarkComparison: [
-      { metricName: 'Token Generation Speed', before: '3.4s (Server API)', after: '< 12ms (Client)', improvement: 'Instantaneous' },
-      { metricName: 'WCAG Contrast Compliance', before: 'Manual check', after: '100% Automated AA', improvement: 'Zero defects' },
-      { metricName: 'Asset Export Latency', before: '1.2s', after: '< 16ms', improvement: '75x faster' },
+      { metricName: 'Color Contrast Audit', before: 'Manual contrast checks', after: 'WCAG 2.1 AA / AAA', improvement: 'Automated check' },
+      { metricName: 'Execution Model', before: 'Remote server API', after: 'No server uploads', improvement: 'In-browser processing' },
+      { metricName: 'Export Formats', before: 'Manual hex copying', after: 'CSS Vars & Tailwind', improvement: 'One-click export' },
     ],
   },
   {
@@ -277,9 +288,9 @@ export function evaluateBrandPalette(primaryHex, backgroundHex) {
     problemSolved: 'Cloud media compressors upload private files to external servers, creating server upload latency and privacy concerns.',
     whatBuilt: 'Built in-browser image compression and format converters that run 100% client-side using off-thread Web Workers and OffscreenCanvas.',
     metrics: [
-      { label: 'File Size Saved', value: 'Up to 85%', change: '100% In-browser compression', isPositive: true },
-      { label: 'Scan / Convert Time', value: '< 800ms', change: 'Zero server upload latency', isPositive: true },
-      { label: 'Media Utilities', value: '12+ Tools', change: 'Converters, studio & compressor', isPositive: true },
+      { label: 'Compression & Convert', value: 'No Server Uploads', change: 'Runs 100% in-browser', isPositive: true },
+      { label: 'Processing Thread', value: 'Web Workers', change: 'OffscreenCanvas API', isPositive: true },
+      { label: 'Core Modules', value: 'Compress & Studio', change: 'Media tools + Veo UI', isPositive: true },
     ],
     stack: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Web Workers', 'Vercel', 'WebAssembly'],
     summary:
@@ -315,9 +326,9 @@ self.onmessage = async (e) => {
       explanation: 'Uses OffscreenCanvas inside Web Workers to perform intensive image compression without blocking the main UI thread.',
     },
     benchmarkComparison: [
-      { metricName: 'Server Processing Cost', before: '$120 / mo', after: '$0.00', improvement: '100% eliminated' },
-      { metricName: 'User Privacy Guarantee', before: 'Server logs', after: '100% Local In-Browser', improvement: 'Zero telemetry' },
-      { metricName: 'Initial Load Time', before: '2.8s', after: '0.64s', improvement: '4.3x faster' },
+      { metricName: 'Media Privacy', before: 'Server file upload', after: 'No server uploads', improvement: '100% browser-local' },
+      { metricName: 'UI Responsiveness', before: 'Main-thread blocking', after: 'Web Workers Thread', improvement: 'Non-blocking UI' },
+      { metricName: 'Image Processing API', before: 'Backend transcoding', after: 'OffscreenCanvas API', improvement: 'Client-side native' },
     ],
   },
   {
@@ -335,9 +346,9 @@ self.onmessage = async (e) => {
     problemSolved: 'Users looking for quick everyday browser tools or curated product guides face cluttered interfaces and slow reload cycles.',
     whatBuilt: 'Constructed an offline-resilient utility and product showcase interface with localized preferences, fast category filtering, and responsive mobile layouts.',
     metrics: [
-      { label: 'Cart Latency', value: '< 10ms', change: 'Instant state persistence', isPositive: true },
-      { label: 'Touch Response', value: '< 16ms', change: ':active touch feedback', isPositive: true },
-      { label: 'Mobile Fidelity', value: '100%', change: 'Fluid responsive layout', isPositive: true },
+      { label: 'State Persistence', value: 'LocalStorage', change: 'Saved browser preferences', isPositive: true },
+      { label: 'Category Filtering', value: 'Real-Time UI', change: 'Client-side filtering', isPositive: true },
+      { label: 'Layout & UI', value: 'Fully Responsive', change: 'Mobile & desktop screens', isPositive: true },
     ],
     stack: ['JavaScript (ES6+)', 'React', 'Tailwind CSS', 'LocalStorage', 'Responsive UI', 'Vercel'],
     summary:
@@ -385,9 +396,60 @@ export function createCartController() {
       explanation: 'Synchronizes cart items, quantity counts, and subtotal calculations directly in browser storage without backend roundtrips.',
     },
     benchmarkComparison: [
-      { metricName: 'Cart Update Latency', before: '140 ms (Server)', after: '< 10 ms (Local)', improvement: '14x faster' },
-      { metricName: 'Mobile Checkout Flow', before: 'Multi-step reload', after: 'Instant Client-Side', improvement: 'Zero reload' },
-      { metricName: 'Page Load Speed', before: '2.1s', after: '0.48s', improvement: '4.3x faster' },
+      { metricName: 'User Preferences', before: 'Lost on page refresh', after: 'LocalStorage Sync', improvement: 'Persistent state' },
+      { metricName: 'Device Support', before: 'Fixed desktop grid', after: 'Fully responsive', improvement: 'Mobile & desktop' },
+      { metricName: 'Navigation Flow', before: 'Full page reloads', after: 'Client-Side Filter', improvement: 'No reload required' },
+    ],
+  },
+  {
+    id: 'hot-cake-bakers',
+    title: 'Hot Cake Bakers — Bakery & Ordering Website',
+    tagline: 'Responsive bakery storefront for Hot Cake Bakers featuring categorized morning & evening menus, interactive Order Bag, theme switcher, and WhatsApp & Google Maps integration.',
+    category: 'Local Business & Ordering',
+    year: '2026',
+    role: 'Lead Front-End Developer',
+    clientOrContext: 'Client Business Storefront',
+    featured: true,
+    status: 'production',
+    image: '/assets/aistudio/image_91830389.png',
+    problemSolved: 'Local bakeries often rely solely on static social feeds without an interactive menu, theme adaptability, or structured takeout order building.',
+    whatBuilt: 'Engineered a responsive bakery storefront with categorized menus, an interactive Order Bag drawer, full-photo viewer, dark/light mode toggle, and direct WhatsApp ordering.',
+    metrics: [
+      { label: 'Order Workflow', value: 'Order Bag + WhatsApp', change: 'Direct client ordering', isPositive: true },
+      { label: 'Accessibility & UI', value: 'Dark & Light Mode', change: 'Fully responsive layout', isPositive: true },
+      { label: 'Store Discovery', value: 'Google Maps Link', change: 'Location & directions', isPositive: true },
+    ],
+    stack: ['React', 'JavaScript (ES6+)', 'Vite', 'Tailwind CSS', 'Lucide Icons', 'Vercel'],
+    summary:
+      'Built a production website for Hot Cake Bakers (Kashmir Road, Kotli Behram, Sialkot), showcasing morning Halwa Puri breakfast, mithai, and evening baking with a live Order Bag drawer, dark/light theme switcher, photo lightbox, and one-tap WhatsApp & Google Maps links.',
+    challenges: [
+      'Structuring a dual morning breakfast and evening bakery catalog so customers can browse specials and build takeout orders seamlessly on mobile.',
+      'Implementing an interactive Order Bag with quantity updates and clean WhatsApp message formatting with zero backend server dependencies.',
+      'Maintaining readable editorial serif/sans typography and crisp contrast across both warm light and dark themes.',
+    ],
+    architecturalDecisions: [
+      'Implemented a modular React product catalog with an interactive Order Bag state drawer for quick item selection.',
+      'Integrated direct WhatsApp deep-linking and Google Maps directions so customers can confirm orders or navigate in one tap.',
+      'Added a light/dark theme toggle and high-resolution photo lightbox ("View Full Photo") without blocking layout stability.',
+    ],
+    impactDescription:
+      'Provided a modern, fast-loading digital storefront connecting local walk-in and takeout customers directly with the bakery via WhatsApp and Google Maps.',
+    liveUrl: 'https://hot-cake-bakers.vercel.app/',
+    codeSnippet: {
+      filename: 'whatsappOrderLink.js',
+      language: 'javascript',
+      code: `// Formats the active Order Bag items into a pre-filled WhatsApp checkout link
+export function buildWhatsAppOrderUrl(bagItems, bakeryPhone) {
+  const lines = bagItems.map((item) => \`• \${item.qty}x \${item.name} (\${item.price})\`);
+  const summary = ['Hello Hot Cake Bakers! I would like to order:', ...lines].join('\\n');
+  return \`https://wa.me/\${bakeryPhone}?text=\${encodeURIComponent(summary)}\`;
+}`,
+      explanation: 'Constructs a clean, URL-encoded WhatsApp order summary directly from client-side Order Bag state with no backend required.',
+    },
+    benchmarkComparison: [
+      { metricName: 'Customer Ordering', before: 'Manual phone call / DMs', after: 'Order Bag + WhatsApp', improvement: 'Structured order link' },
+      { metricName: 'Storefront Access', before: 'Static social images', after: 'Responsive Web App', improvement: 'Direct menu & maps' },
+      { metricName: 'Viewing Comfort', before: 'Single fixed contrast', after: 'Dark & Light Theme', improvement: 'Theme toggle' },
     ],
   },
   {
@@ -405,9 +467,8 @@ export function createCartController() {
     problemSolved: 'Complex generative video parameter configuration often requires tedious UI re-renders and disjointed preview steps.',
     whatBuilt: 'Engineered an interactive prompt tuning and video parameter playground with instant client-side preview controls.',
     metrics: [
-      { label: 'Prompt Latency', value: '< 12ms', change: 'Instant state batching', isPositive: true },
-      { label: 'Format Support', value: '12+ Types', change: 'Universal transcoding', isPositive: true },
-      { label: 'User Feedback', value: '99.4%', change: 'Positive satisfaction', isPositive: true },
+      { label: 'Video Controls', value: 'Live Preview', change: 'Interactive parameter UI', isPositive: true },
+      { label: 'Prompt Workflow', value: 'Aspect & Style', change: 'Structured prompt builder', isPositive: true },
     ],
     stack: ['React', 'JavaScript', 'Tailwind CSS', 'MediaSource API', 'Vercel'],
     summary:
@@ -438,8 +499,8 @@ export function useStudioControls(initialParams) {
       explanation: 'Optimized state transitions maintain instant UI reactivity during rapid parameter adjustments.',
     },
     benchmarkComparison: [
-      { metricName: 'Parameter Update Delay', before: '95 ms', after: '8 ms', improvement: '11x faster' },
-      { metricName: 'Preview Frame Rate', before: '30 FPS', after: '60 FPS', improvement: 'Silky smooth' },
+      { metricName: 'Preview Experience', before: 'Static text prompt', after: 'Live preview UI', improvement: 'Interactive controls' },
+      { metricName: 'State Updates', before: 'Manual re-entry', after: 'React State Hooks', improvement: 'Modular configuration' },
     ],
   },
 ];

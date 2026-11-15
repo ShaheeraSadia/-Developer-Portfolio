@@ -123,8 +123,7 @@ Key Featured Projects
 ${featuredToolsData
   .map(
     (tool) => `• ${tool.application} (${tool.keyTech})
-  Live Application: ${tool.liveUrl}
-  GitHub Repository: ${tool.githubUrl}
+  Live Application: ${tool.liveUrl}${tool.githubUrl ? `\n  GitHub Repository: ${tool.githubUrl}` : ''}
   Problem Solved: ${tool.problemSolved || tool.description}
   What Was Built: ${tool.whatBuilt || tool.coreFocus}`
   )
@@ -174,7 +173,7 @@ ${cat.skills.map((s) => `- **${s.name}**: ${s.focus}`).join('\n')}`
 ${featuredToolsData
   .map(
     (tool) => `### [${tool.application}](${tool.liveUrl})
-**Tech Stack:** \`${tool.keyTech}\` | [GitHub Source](${tool.githubUrl})
+**Tech Stack:** \`${tool.keyTech}\`${tool.githubUrl ? ` | [GitHub Source](${tool.githubUrl})` : ''}
 
 - **Problem Solved:** ${tool.problemSolved || tool.description}
 - **What Was Built:** ${tool.whatBuilt || tool.coreFocus}`
@@ -699,16 +698,20 @@ ${cert.description}`
                           <span>Live</span>
                           <ExternalLink className="w-2.5 h-2.5" />
                         </a>
-                        <span className="text-slate-600">•</span>
-                        <a
-                          href={tool.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-slate-400 hover:text-white flex items-center gap-1 text-[11px]"
-                        >
-                          <Github className="w-2.5 h-2.5" />
-                          <span>Code</span>
-                        </a>
+                        {tool.githubUrl && (
+                          <>
+                            <span className="text-slate-600">•</span>
+                            <a
+                              href={tool.githubUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-slate-400 hover:text-white flex items-center gap-1 text-[11px]"
+                            >
+                              <Github className="w-2.5 h-2.5" />
+                              <span>Code</span>
+                            </a>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

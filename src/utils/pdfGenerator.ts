@@ -164,7 +164,10 @@ export function generateNativeVectorPdf(filename = 'Shaheera_Sadia_Resume.pdf'):
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
-    doc.text(`Live Demo: ${tool.liveUrl}   |   Source Code: ${tool.githubUrl}`, margin + 6, y + 6);
+    const linksLine = tool.githubUrl
+      ? `Live Demo: ${tool.liveUrl}   |   Source Code: ${tool.githubUrl}`
+      : `Live Demo: ${tool.liveUrl}`;
+    doc.text(linksLine, margin + 6, y + 6);
     y += 12;
   }
 
@@ -384,7 +387,7 @@ function createResumePdfContainer(): HTMLDivElement {
             </div>
             <div style="font-size: 9.5px;">
               <a href="${p.liveUrl}" style="color: #2563eb; text-decoration: none; margin-right: 10px;">Live Demo ↗</a>
-              <a href="${p.githubUrl}" style="color: #475569; text-decoration: none;">Source Code ↗</a>
+              ${p.githubUrl ? `<a href="${p.githubUrl}" style="color: #475569; text-decoration: none;">Source Code ↗</a>` : ''}
             </div>
           </div>
         `

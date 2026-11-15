@@ -155,7 +155,7 @@ export const AboutSection: React.FC = () => {
                 <span className="text-xs text-slate-400 block font-medium">Front-End Engineer</span>
               </div>
               <div className="bg-[#0f172a] p-5 rounded-2xl border border-[#1e293b] text-center space-y-1 shadow-sm">
-                <span className="text-2xl sm:text-3xl font-bold font-mono text-blue-400 block">4 <span className="text-sm font-sans font-normal text-blue-300/80">+1</span></span>
+                <span className="text-2xl sm:text-3xl font-bold font-mono text-blue-400 block">5 <span className="text-sm font-sans font-normal text-blue-300/80">+1</span></span>
                 <span className="text-xs text-slate-400 block font-medium">Core Apps (+1 Module)</span>
               </div>
               <div className="bg-[#0f172a] p-5 rounded-2xl border border-[#1e293b] text-center space-y-1 shadow-sm">

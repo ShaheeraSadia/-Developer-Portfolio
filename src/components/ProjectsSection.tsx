@@ -27,7 +27,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
     { id: 'AI & Cybersecurity', label: 'AI & Cybersecurity' },
     { id: 'Web Utilities & Design Systems', label: 'Design Systems' },
     { id: 'Web Utilities & SaaS Engine', label: 'Client-Side Utilities' },
-    { id: 'Web Utilities & E-Commerce', label: 'Catalog & Store' },
+    { id: 'Web Utilities & Catalog Hub', label: 'Catalog & Utilities' },
+    { id: 'Local Business & Ordering', label: 'Client Storefront' },
   ];
 
   const filteredProjects = selectedCategory === 'all'
@@ -136,18 +137,22 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                     {project.summary}
                   </p>
 
-                  {/* 2-3 Concrete Verified Numbers / Performance Metrics */}
+                  {/* Verifiable Technical Specs & Standards */}
                   {project.metrics && project.metrics.length > 0 && (
-                    <div className="grid grid-cols-3 gap-2.5 sm:gap-3 pt-1">
+                    <div
+                      className={`grid gap-2.5 sm:gap-3 pt-1 ${
+                        project.metrics.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'
+                      }`}
+                    >
                       {project.metrics.slice(0, 3).map((metric, mIdx) => (
                         <div
                           key={mIdx}
-                          className="p-2.5 sm:p-3 rounded-xl bg-[#0a0d12] border border-[#1e293b] flex flex-col justify-center"
+                          className="p-3 rounded-xl bg-[#0a0d12] border border-[#1e293b] flex flex-col justify-center"
                         >
                           <span className="text-sm sm:text-base font-bold font-mono text-white">
                             {metric.value}
                           </span>
-                          <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans truncate" title={metric.label}>
+                          <span className="text-[11px] text-slate-400 font-sans" title={metric.label}>
                             {metric.label}
                           </span>
                         </div>
@@ -206,16 +211,18 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
 
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="bg-[#0a0d12] hover:bg-[#1e293b] text-slate-200 hover:text-white border border-[#1e293b] hover:border-slate-500 text-xs sm:text-sm font-mono px-4 py-2.5 rounded-xl transition-all flex items-center gap-2"
-                      title="GitHub Source"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>{project.repoName || 'Source'}</span>
-                    </a>
+                    {project.githubUrl && (
+                      <a 
+                        href={project.githubUrl} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="bg-[#0a0d12] hover:bg-[#1e293b] text-slate-200 hover:text-white border border-[#1e293b] hover:border-slate-500 text-xs sm:text-sm font-mono px-4 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                        title="GitHub Source"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>{project.repoName || 'Source'}</span>
+                      </a>
+                    )}
 
                     <button
                       onClick={() => onSelectProject(project)}
